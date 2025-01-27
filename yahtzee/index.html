@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Yahtzee</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <button type="button" , id="rollButton">Gooien</button>
+
+    <table>
+        <tbody>
+            <tr>
+                <td class="roll"></td>
+                <td class="roll"></td>
+                <td class="roll"></td>
+                <td class="roll"></td>
+                <td class="roll"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Ones</th>
+                <td class="score upperSection"></td>
+            </tr>
+            <tr>
+                <th>Twos</th>
+                <td class="score upperSection"></td>
+            </tr>
+            <tr>
+                <th>Threes</th>
+                <td class="score upperSection"></td>
+            </tr>
+            <tr>
+                <th>Fours</th>
+                <td class="score upperSection"></td>
+            </tr>
+            <tr>
+                <th>Fives</th>
+                <td class="score upperSection"></td>
+            </tr>
+            <tr>
+                <th>Sixes</th>
+                <td class="score upperSection"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="separator"></td>
+            </tr>
+            <tr>
+                <th>Three of a kind</th>
+                <td class="score ofAKind"></td>
+            </tr>
+            <tr>
+                <th>Four of a kind</th>
+                <td class="score ofAKind"></td>
+            </tr>
+            <tr>
+                <th>Full house</th>
+                <td class="score" id="fullHouse"></td>
+            </tr>
+            <tr>
+                <th>Small straight</th>
+                <td class="score" id="smallStraight"></td>
+            </tr>
+            <tr>
+                <th>Large straight</th>
+                <td class="score" id="largeStraight"></td>
+            </tr>
+            <tr>
+                <th>Yahtzee</th>
+                <td class="score ofAKind"></td>
+            </tr>
+            <tr>
+                <th>Chance</th>
+                <td class="score" id="chance"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
+</body>
+
+</html>
