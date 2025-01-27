@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <table>
+    <table id="groceries">
         <thead>
             <tr>
                 <th>Product</th>
@@ -19,37 +19,38 @@
         <tbody>
             <tr>
                 <td>Brood</td>
-                <td class="bedrag">1.00</td>
-                <td>1</td>
-                <td class="bedrag">1.00</td>
+                <td class="bedrag, productPrice">1.00</td>
+                <td><input type="number" value="0" min="0" size="3" class="productQuantity"></td>
+                <td class="bedrag, productTotalCost">1.00</td>
             </tr>
             <tr>
                 <td>Broccoli</td>
-                <td class="bedrag">0.99</td>
-                <td>2</td>
-                <td class="bedrag">1.98</td>
+                <td class="bedrag, productPrice">0.99</td>
+                <td><input type="number" value="0" min="0" size="3" class="productQuantity"></td>
+                <td class="bedrag, productTotalCost">1.98</td>
             </tr>
             <tr>
                 <td>Krentenbollen</td>
-                <td class="bedrag">1.20</td>
-                <td>4</td>
-                <td class="bedrag">4.80</td>
+                <td class="bedrag, productPrice">1.20</td>
+                <td><input type="number" value="0" min="0" size="3" class="productQuantity"></td>
+                <td class="bedrag, productTotalCost">4.80</td>
             </tr>
             <tr>
                 <td>Noten</td>
-                <td class="bedrag">2.99</td>
-                <td>0</td>
-                <td class="bedrag">0.00</td>
+                <td class="bedrag, productPrice">2.99</td>
+                <td><input type="number" value="0" min="0" size="3" class="productQuantity"></td>
+                <td class="bedrag, productTotalCost">0.00</td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
-                <th>Totaal</th>
-                <td class="bedrag"></td>
-                <td></td>
-                <td class="bedrag">7.78</td>
+                <th colspan="3">Totaal</th>
+                <td class="bedrag, TotalCost">7.78</td>
             </tr>
         </tfoot>
     </table>
+
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
 </body>
 </html>
