@@ -1,6 +1,10 @@
 const nbDice = 5;
 const nbSides = 6;
 
+// Unicode drawings of dice.
+const dieFaces = '\u2680\u2681\u2682\u2683\u2684\u2685';
+const useFaces = true;
+
 function rollDice() {
     let rolls = [];
     for (let i = 0; i < nbDice; i++) {
@@ -28,7 +32,11 @@ function sumOfAllRolls(rolls) {
 function displayRolls(rolls) {
     const rollCells = document.getElementsByClassName('roll');
     for (let i = 0; i < nbDice; i++) {
-        rollCells[i].innerHTML = rolls[i].toString();
+        if (useFaces) {
+            rollCells[i].innerHTML = dieFaces[rolls[i] - 1];
+        } else {
+            rollCells[i].innerHTML = rolls[i].toString();
+        }
     }
 }
 

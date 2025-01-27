@@ -1,8 +1,13 @@
+html {
+    font-family: sans-serif;
+}
+
 .roll {
     border-collapse: collapse;
     border: 1px solid;
-    height: 32px;
-    width: 32px;
+    height: 64px;
+    width: 64px;
+    font-size: 48px;
     text-align: center;
     vertical-align: center;
 }
@@ -12,7 +17,9 @@ th {
 }
 
 .score {
-    width: 32px;
+    font-family: monospace;
+    font-size: 20px;
+    width: 40px;
     text-align: right;
 }
 
