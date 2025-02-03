@@ -8,9 +8,9 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="./index.php">Lijst</a></li>
-            <li><a href="./create.php">Toevoegen</a></li>
+        <ul class="navItems">
+            <li class="navItem"><a href="./index.php">Lijst</a></li>
+            <li class="navItem"><a href="./create.php">Toevoegen</a></li>
         </ul>
     </nav>
     <main>
