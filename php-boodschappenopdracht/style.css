@@ -1,0 +1,16 @@
+html {
+    font-family: sans-serif;
+}
+table {
+    border-collapse: collapse;
+}
+td, th {
+    padding: 10px;
+    border: 1px solid #888;
+}
+th {
+    text-align: left;
+}
+.bedrag {
+    text-align: right;
+}
