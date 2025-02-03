@@ -1,10 +1,11 @@
 <?php
+    $heading = "Lijst";
     require("partials/head.php");
     require("partials/nav.php");
+    require("partials/header.php");
 ?>
 
-<main>
-    <h1>Lijst</h1>
+<main>    
     <table id="groceries">
         <thead>
             <tr>

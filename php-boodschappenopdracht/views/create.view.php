@@ -1,10 +1,11 @@
 <?php
+    $heading = "Toevoegen";
     require("partials/head.php");
     require("partials/nav.php");
+    require("partials/header.php");
 ?>
 
 <main>
-    <h1>Toevoegen</h1>
     <form>
         <ul>
             <li>
