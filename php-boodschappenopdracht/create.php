@@ -1,3 +1,3 @@
 <?php
-require "create.view.php"
+require "./views/create.view.php"
 ?>

@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boodschappenlijst</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <nav>
-        <ul class="navItems">
-            <li class="navItem"><a href="./index.php">Lijst</a></li>
-            <li class="navItem"><a href="./create.php">Toevoegen</a></li>
-        </ul>
-    </nav>
+<?php
+    require "views/partials/head.php";
+    require "views/partials/nav.php";
+?>
+
     <main>
         <h1>Lijst</h1>
         <table id="groceries">
@@ -52,7 +42,7 @@
             </tfoot>
         </table>
     </main>
-    <!-- SCRIPT -->
-    <!-- <script src="script.js"></script> -->
-</body>
-</html>
+
+<?php
+    require "views/partials/foot.php";
+?>

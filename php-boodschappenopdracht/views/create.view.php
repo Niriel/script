@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boodschappenlijst</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <nav>
-        <ul class="navItems">
-            <li class="navItem"><a href="./index.php">Lijst</a></li>
-            <li class="navItem"><a href="./create.php">Toevoegen</a></li>
-        </ul>
-    </nav>
+<?php
+    require "views/partials/head.php";
+    require "views/partials/nav.php";
+?>
     <main>
         <h1>Toevoegen</h1>
         <form>
@@ -33,5 +22,7 @@
             <input type="submit" value="Voeg aan de lijst toe">
         </form>
     </main>
-</body>
-</html>
+
+<?php
+    require "views/partials/foot.php";
+?>
