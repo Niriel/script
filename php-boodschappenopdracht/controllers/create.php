@@ -1,4 +1,3 @@
 <?php
-    require("./../functions.php");
-    require("./../views/create.view.php");
+    require("views/create.view.php");
 ?>

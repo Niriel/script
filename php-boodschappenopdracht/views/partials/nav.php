@@ -1,6 +1,6 @@
 <nav>
     <ul class="navItems">
-        <li class="navItem <?= highlighIfUrlIs('/') ?>"><a href="/">Lijst</a></li>
-        <li class="navItem <?= highlighIfUrlIs('/controllers/create.php') ?>"><a href="/controllers/create.php">Toevoegen</a></li>
+        <li class="navItem <?= highlighForPath('/') ?>"><a href="/">Lijst</a></li>
+        <li class="navItem <?= highlighForPath('/create') ?>"><a href="/create">Toevoegen</a></li>
     </ul>
 </nav>
