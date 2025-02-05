@@ -25,13 +25,19 @@ ul.navItems {
     background-color: #666;
 }
 
+
+
 li.navItem {
     display: inline;
     vertical-align: middle;
     margin: 8px;
-    background-color: #8d1e7e;
+    background-color: darkmagenta;
     font-size: 32px;
     font-weight: bold;
+}
+
+li.navItem.highlight {
+    background-color: magenta;
 }
 
 li.navItem a {
