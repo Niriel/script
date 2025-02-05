@@ -10,5 +10,5 @@ $total_cost = array_reduce($groceries, function($acc, $item) {
     return $acc + $item['price'] * $item['quantity'];
 }, 0);
 
-require("views/list.view.php");
+require("views/index.view.php");
 ?>

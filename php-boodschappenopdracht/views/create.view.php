@@ -1,8 +1,9 @@
 <?php
     $heading = "Toevoegen";
-    require("partials/head.php");
-    require("partials/nav.php");
-    require("partials/header.php");
+    // echo getcwd();
+    require("./../views/partials/head.php");
+    require("./../views/partials/nav.php");
+    require("./../views/partials/header.php");
 ?>
 
 <main>
@@ -26,5 +27,5 @@
 </main>
 
 <?php
-    require("partials/foot.php");
+    require("./../views/partials/foot.php");
 ?>

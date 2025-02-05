@@ -1,4 +1,3 @@
 <?php
-
-require("controllers/list.php");
+    require("controllers/index.php");
 ?>
