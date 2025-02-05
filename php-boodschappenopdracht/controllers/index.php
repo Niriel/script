@@ -7,8 +7,8 @@ $groceries = [
 ];
 require("database.php");
 
-$db = connectToDb($db_config);
-$groceries = fetchGroceries($db);
+$db = new GroceriesDatabase($db_config);
+$groceries = $db->fetchGroceries();
 
 $total_cost = array_reduce($groceries, function($acc, $item) {
     return $acc + $item['price'] * $item['quantity'];
