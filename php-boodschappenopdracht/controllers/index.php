@@ -5,6 +5,10 @@ $groceries = [
     ['name' => 'Krentenbollen', "price" => 1.20, 'quantity' => 2],
     ['name' => 'Noten', "price" => 2.99, 'quantity' => 3],
 ];
+require("database.php");
+
+$pdo = connectToDb($db_config);
+$groceries = fetchGroceries($pdo);
 
 $total_cost = array_reduce($groceries, function($acc, $item) {
     return $acc + $item['price'] * $item['quantity'];
