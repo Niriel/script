@@ -11,28 +11,38 @@ function configToDsn($db_config) {
     return $dsn;
 }
 
-function _connectToDb($db_config) {
-    $dsn = configToDsn($db_config);
-    $pdo = new PDO($dsn);
-    return $pdo;
-}
 
-function _fetchGroceries($pdo) {
-    $statement = $pdo->prepare("SELECT * FROM groceries");
-    $statement->execute();
-    $groceries = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $groceries;
-}
-
-class GroceriesDatabase {
+class Database {
     public $connection;
 
     public function __construct($db_config) {
-        $this->connection = _connectToDb($db_config);
+        $dsn = configToDsn($db_config);
+        $this->connection = new PDO($dsn, null, null, [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
     }
 
+    public function execute($sql) {
+        $statement = $this->connection->prepare($sql);
+        $statement->execute();
+        return $statement;
+    }
+
+    public function fetch($sql) {
+        $result = $this->execute($sql)->fetch();
+        return $result;
+    }
+
+    public function fetchall($sql) {
+        $result = $this->execute($sql)->fetchAll();
+        return $result;
+    }
+}
+
+
+class GroceriesDatabase extends Database {   
     public function fetchGroceries() {
-        return _fetchGroceries($this->connection);
+        return $this->fetchAll('SELECT * FROM groceries');
     }
 }
 ?>

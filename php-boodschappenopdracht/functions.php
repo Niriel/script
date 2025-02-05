@@ -1,4 +1,10 @@
 <?php
+function var_dump_p($var, $prefix='var_dump') {
+    echo '<p><b>'.$prefix.'</b>: ';
+    var_dump($var);
+    echo '</p>';
+}
+
 function urlIs($url) {
     return $_SERVER['REQUEST_URI'] === $url;
 }
