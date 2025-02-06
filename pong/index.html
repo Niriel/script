@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worst Pong Ever</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h1>The worst pong</h1>
+
+    <table>
+        <tr>
+            <td></td> <!-- nothing above the paddle controls -->
+            <td>
+                <table id="scores">
+                    <tr>
+                        <td class="score" id="scoreLeft">0</td>
+                        <td class="score" id="scoreRight">0</td>
+                    </tr>
+                </table>
+            </td>
+            <td></td> <!-- nothing above the paddle controls -->
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="paddleControl" id="lu">left up</button>
+            </td>
+            <td rowspan="2">
+                <table id="screen">
+                    <!-- Filled in by script because I don't want to write 1000 tds -->
+                </table>
+            </td>
+            <td>
+                <button type="button" class="paddleControl" id="ru">right up</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" class="paddleControl" id="ld">left down</button>
+            </td>
+            <!-- screen still happening here -->
+            <td>
+                <button type="button" class="paddleControl" id="rd">right down</button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- SCRIPT -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
