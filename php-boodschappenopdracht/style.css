@@ -1,0 +1,49 @@
+html {
+    font-family: sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 10px;
+    border: 1px solid #888;
+}
+
+th {
+    text-align: left;
+}
+
+.bedrag {
+    text-align: right;
+}
+
+ul.navItems {
+    list-style-type: none;
+    background-color: #666;
+}
+
+
+
+li.navItem {
+    display: inline;
+    vertical-align: middle;
+    margin: 8px;
+    background-color: darkmagenta;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+li.navItem.highlight {
+    background-color: magenta;
+}
+
+li.navItem a {
+    color: white;
+}
+
+li.navItem a:hover {
+    color: black;
+}
