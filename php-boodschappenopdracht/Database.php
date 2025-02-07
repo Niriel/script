@@ -48,7 +48,7 @@ class Database {
 
 class GroceriesDatabase extends Database {   
     public function fetchGroceries() {
-        return $this->fetchAll('SELECT * FROM groceries');
+        return $this->fetchAll('SELECT * FROM groceries;');
     }
 }
 ?>
