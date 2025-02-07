@@ -1,5 +1,4 @@
 <?php
-require('config.php');
 
 function arrayToString($assoc_arr, $equal, $separator) {
     $strings = array_map(

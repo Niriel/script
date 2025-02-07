@@ -1,6 +1,7 @@
 <?php
 require("Database.php");
 
+$db_config = require('config.php');
 $db = new GroceriesDatabase($db_config);
 $groceries = $db->fetchGroceries();
 
