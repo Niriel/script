@@ -33,22 +33,18 @@ class Database {
         $statement->execute($params);
         return $statement;
     }
-
-    public function fetch($sql, $params=[]) {
-        $result = $this->query($sql, $params)->fetch();
-        return $result;
-    }
-
-    public function fetchall($sql, $params=[]) {
-        $result = $this->query($sql, $params)->fetchAll();
-        return $result;
-    }
 }
 
 
 class GroceriesDatabase extends Database {   
     public function fetchGroceries() {
-        return $this->fetchAll('SELECT * FROM groceries;');
+        return $this->query('SELECT * FROM groceries;')->fetchAll();
+    }
+
+    public function addGroceryItem($name, $price, $quantity) {
+        $params = ['name' => $name, 'price' => $price, 'quantity' => $quantity];
+        $sql = 'INSERT INTO groceries (name, price, quantity) VALUES(:name, :price, :quantity);';
+        $this->query($sql, $params);
     }
 }
 ?>

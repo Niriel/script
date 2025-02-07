@@ -6,11 +6,16 @@
 ?>
 
 <main>
-    <form>
+    <?php
+        if ($posted and !$post_ok) {
+            echo '<p>The product was NOT added to the list.</p>';
+        }
+    ?>
+    <form method="POST">
         <ul>
             <li>
-                <label for="productName">Naam:</label>
-                <input type="text" id="productName" name="productName" value="brood">
+                <label for="productName">Naam (verplicht):</label>
+                <input type="text" id="productName" name="productName" placeholder="brood">
             </li>
             <li>
                 <label for="productPrice">Prijs per stuk:</label>

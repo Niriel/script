@@ -19,7 +19,7 @@
             <?php foreach ($groceries as $product) : ?>
             <tr>
                 <td>
-                    <?= $product['name'] ?>
+                    <?= htmlspecialchars($product['name']) ?>
                 </td>
                 <td class="bedrag, productPrice">
                     <?= $product['price'] ?>
