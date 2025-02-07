@@ -17,7 +17,7 @@ function pathIs($path) {
     return getPath() === $path;
 }
 
-function highlighForPath($path) {
+function highlightForPath($path) {
     if (pathIs($path)) {
         return 'highlight';
     } else {
