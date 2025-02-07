@@ -11,7 +11,7 @@ function routeToController($path, $routes) {
         $route = $routes[$path];
         require($route);
     } else {
-        abort(404);
+        abort(Response::NOT_FOUND);
     }
 }
 
