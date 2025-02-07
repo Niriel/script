@@ -5,7 +5,7 @@ $groceries = [
     ['name' => 'Krentenbollen', "price" => 1.20, 'quantity' => 2],
 //    ['name' => 'Noten', "price" => 2.99, 'quantity' => 3],
 ];
-require("database.php");
+require("Database.php");
 
 $db = new GroceriesDatabase($db_config);
 $groceries = $db->fetchGroceries();
