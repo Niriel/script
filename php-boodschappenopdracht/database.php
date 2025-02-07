@@ -1,13 +1,20 @@
 <?php
 require('config.php');
 
+function arrayToString($assoc_arr, $equal, $separator) {
+    $strings = array_map(
+        function ($key, $value) use ($equal) {
+            return strval($key) . $equal . strval($value);
+        },
+        array_keys($assoc_arr),
+        array_values($assoc_arr)
+    );
+    return join($separator, $strings);
+}
+
+
 function configToDsn($db_config) {
-    $dsn = 'mysql:host='.$db_config['host'].
-                ';port='.strval($db_config['port']).
-                ';user='.$db_config['user'].
-                ';password='.$db_config['password'].
-                ';dbname='.$db_config['dbname'].
-                ';charset='.$db_config['charset'];
+    $dsn = 'mysql:' . arrayToString($db_config, '=', ';');
     return $dsn;
 }
 
@@ -22,19 +29,19 @@ class Database {
         ]);
     }
 
-    public function execute($sql) {
+    public function query($sql) {
         $statement = $this->connection->prepare($sql);
-        $statement->execute();
+        $statement->query();
         return $statement;
     }
 
     public function fetch($sql) {
-        $result = $this->execute($sql)->fetch();
+        $result = $this->query($sql)->fetch();
         return $result;
     }
 
     public function fetchall($sql) {
-        $result = $this->execute($sql)->fetchAll();
+        $result = $this->query($sql)->fetchAll();
         return $result;
     }
 }
