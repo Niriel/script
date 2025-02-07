@@ -34,13 +34,13 @@ class Database {
         return $statement;
     }
 
-    public function fetch($sql) {
-        $result = $this->query($sql)->fetch();
+    public function fetch($sql, $params=[]) {
+        $result = $this->query($sql, $params)->fetch();
         return $result;
     }
 
-    public function fetchall($sql) {
-        $result = $this->query($sql)->fetchAll();
+    public function fetchall($sql, $params=[]) {
+        $result = $this->query($sql, $params)->fetchAll();
         return $result;
     }
 }
