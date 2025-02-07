@@ -47,3 +47,13 @@ li.navItem a {
 li.navItem a:hover {
     color: black;
 }
+
+.error {
+    color:red;
+    font-size: smaller;
+}
+
+.devWarning {
+    color:red;
+    font-size: large;
+}
