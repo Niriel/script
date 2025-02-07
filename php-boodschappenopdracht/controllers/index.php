@@ -1,10 +1,4 @@
 <?php
-$groceries = [
-    ['name' => 'Brood', "price" => 1.00, 'quantity' => 0],
-    ['name' => 'Broccoli', "price" => 0.99, 'quantity' => 1],
-    ['name' => 'Krentenbollen', "price" => 1.20, 'quantity' => 2],
-//    ['name' => 'Noten', "price" => 2.99, 'quantity' => 3],
-];
 require("Database.php");
 
 $db = new GroceriesDatabase($db_config);
