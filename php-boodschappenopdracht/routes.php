@@ -1,6 +1,6 @@
 <?php
 
-$routes = [
+return [
     '/' => 'controllers/index.php',
     '/create' => 'controllers/create.php',
 ];
