@@ -1,8 +1,8 @@
 <?php
 require("Database.php");
 
-$db_config = require('config.php');
-$db = new GroceriesDatabase($db_config);
+$config = require('config.php');
+$db = new GroceriesDatabase($config['database']);
 $groceries = $db->fetchGroceries();
 
 $total_cost = array_reduce($groceries, function($acc, $item) {
