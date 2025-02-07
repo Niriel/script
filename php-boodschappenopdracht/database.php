@@ -31,7 +31,7 @@ class Database {
 
     public function query($sql) {
         $statement = $this->connection->prepare($sql);
-        $statement->query();
+        $statement->execute();
         return $statement;
     }
 
