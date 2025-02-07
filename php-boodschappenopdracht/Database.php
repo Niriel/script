@@ -21,9 +21,9 @@ function configToDsn($db_config) {
 class Database {
     public $connection;
 
-    public function __construct($db_config) {
+    public function __construct($db_config, $username=null, $password=null) {
         $dsn = configToDsn($db_config);
-        $this->connection = new PDO($dsn, null, null, [
+        $this->connection = new PDO($dsn, $username, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
     }
