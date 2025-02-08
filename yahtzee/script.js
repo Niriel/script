@@ -39,18 +39,6 @@ function sumOfAllRolls(counts) {
 }
 
 
-function displayRolls(rolls) {
-    const rollCells = document.getElementsByClassName('roll');
-    for (let i = 0; i < nbDice; i++) {
-        if (useFaces) {
-            rollCells[i].innerHTML = dieFaces[rolls[i] - 1];
-        } else {
-            rollCells[i].innerHTML = rolls[i].toString();
-        }
-    }
-}
-
-
 function scoreUpperSectionSide(side, counts) {
     return counts[side] * side;
 }
@@ -80,6 +68,24 @@ function isFullHouse(counts) {
         }
     }
     return two && three;
+}
+
+
+function isStraight(kind, counts) {
+    let result = false;
+    let longest = 0;
+    for (let side = 1; side <= nbSides; side++) {
+        const count = counts[side];
+        if (count >= 1) {
+            longest++;
+            if (longest == kind) {
+                result = true;
+            }
+        } else {
+            longest = 0;
+        }
+    }
+    return result;
 }
 
 
@@ -117,23 +123,8 @@ function scoreFullHouse(counts) {
 
 function scoreStraight(counts) {
     // Calculate.
-    let small = false;
-    let large = false;
-    let longest = 0;
-    for (let side = 1; side <= nbSides; side++) {
-        const count = counts[side];
-        if (count >= 1) {
-            longest++;
-            if (longest == 4) {
-                small = true;
-            }
-            if (longest == 5) {
-                large = true;
-            }
-        } else {
-            longest = 0;
-        }
-    }
+    let small = isStraight(4, counts);
+    let large = isStraight(5, counts);
     scoreSmall = small ? 30 : 0;
     scoreLarge = large ? 40 : 0;
     // Display.
@@ -151,12 +142,24 @@ function scoreChance(counts) {
 }
 
 
+function displayRolls(rolls) {
+    const rollCells = document.getElementsByClassName('roll');
+    for (let i = 0; i < nbDice; i++) {
+        if (useFaces) {
+            rollCells[i].innerHTML = dieFaces[rolls[i] - 1];
+        } else {
+            rollCells[i].innerHTML = rolls[i].toString();
+        }
+    }
+}
+
+
 function play() {
     let rolls = rollDice();
     // rolls = [3, 5, 3, 4, 3]; // Three of a kind.
     // rolls = [3, 3, 3, 4, 3]; // Four of a kind.
     // rolls = [3, 3, 3, 3, 3]; // Yahtzee.
-    rolls = [1, 1, 1, 5, 5]; // Full house.
+    // rolls = [1, 1, 1, 5, 5]; // Full house.
     // rolls = [2, 3, 2, 5, 4]; // Small straight.
     // rolls = [6, 3, 2, 5, 4]; // Large straight.
 
