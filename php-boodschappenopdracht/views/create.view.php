@@ -6,7 +6,7 @@
 
     function errorMessage($errors, $key) {
         if (isset($errors[$key])) {
-            return "<p class='error'>{$errors[$key]}</p>";
+            return '<p class="error">'.$errors[$key].'</p>';
         }
         return '';
     }
@@ -34,7 +34,7 @@
             <li>
                 <label for="productPrice">Prijs per stuk:</label>
                 <input type="number" id="productPrice" name="productPrice"
-                    value="<?= $_POST['productPrice'] ?? '' ?>"
+                    value="<?= $_POST['productPrice'] ?? '1.00' ?>"
                     <?= $clientSideValidation ? 'min="0" step="0.01"' : 'step="any"' ?>
                 >
                 <?= errorMessage($errors, 'price_decimals') ?>
@@ -43,7 +43,7 @@
             <li>
                 <label for="productQuantity">Aantal:</label>
                 <input type="number" id="productQuantity" name="productQuantity"
-                    value="<?= $_POST['productQuantity'] ?? '' ?>"
+                    value="<?= $_POST['productQuantity'] ?? '1' ?>"
                     <?= $clientSideValidation ? 'min="0" step="1"' : '' ?>
                 >
                 <?= errorMessage($errors, 'quantity') ?>
