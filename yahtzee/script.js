@@ -69,26 +69,26 @@ function scoreUpperSection(counts) {
 }
 
 
-function scoreOfAKind(counts) {
-    const sum = sumOfAllRolls(counts);
-    const cells = document.getElementsByClassName('ofAKind');
-    for (let kind = 3; kind <= 5; kind++) {
-        // Calculate.
-        let score = 0;
-        for (let side = 1; side <= nbSides; side++) {
-            const count = counts[side];
-            if (count >= kind) {
-                score = sum;
-                if (kind == 5) { // Yahtzee.
-                    score = 50;
-                }
-                break;
-            }
+function isOfAKind(kind, counts) {
+    let result = false;
+    for (let side = 1; side <= nbSides; side++) {
+        if (counts[side] >= kind) {
+            result = true;
         }
-        // Display.
-        const row = kind - 3;
-        cells[row].innerHTML = score.toString();
     }
+    return result;
+}
+
+
+function scoreOfAKind(counts) {
+    let score = isOfAKind(3, counts) ? sumOfAllRolls(counts) : 0;
+    document.getElementById('3oak').innerHTML = score.toString();
+
+    score = isOfAKind(4, counts) ? sumOfAllRolls(counts) : 0;
+    document.getElementById('4oak').innerHTML = score.toString();
+
+    score = isOfAKind(5, counts) ? 50 : 0;
+    document.getElementById('5oak').innerHTML = score.toString();
 }
 
 
