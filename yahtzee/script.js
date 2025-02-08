@@ -5,6 +5,7 @@ const nbSides = 6;
 const dieFaces = '\u2680\u2681\u2682\u2683\u2684\u2685';
 const useFaces = true;
 
+
 function rollDice() {
     let rolls = [];
     for (let i = 0; i < nbDice; i++) {
@@ -13,6 +14,7 @@ function rollDice() {
     }
     return rolls;
 }
+
 
 // Return a dictionary that looks like {1:2, 2:0, 3:1, 4:1, 5:0, 6:1}.
 // The key is the dice side, and the value is the number of dice that fell on that side.
@@ -27,6 +29,7 @@ function countRolls(rolls) {
     return count;
 }
 
+
 function sumOfAllRolls(counts) {
     let sum = 0;
     for (const [side, count] of Object.entries(counts)) {
@@ -34,6 +37,7 @@ function sumOfAllRolls(counts) {
     }
     return sum;
 }
+
 
 function displayRolls(rolls) {
     const rollCells = document.getElementsByClassName('roll');
@@ -46,17 +50,24 @@ function displayRolls(rolls) {
     }
 }
 
+
+function scoreUpperSectionSide(side, counts) {
+    return counts[side] * side;
+}
+
+
 function scoreUpperSection(counts) {
     const upperCells = document.getElementsByClassName('upperSection');
 
     for (let side = 1; side <= nbSides; side++) {
         // Calculate.
-        const score = counts[side] * side;
+        const score = scoreUpperSectionSide(side, counts);
         // Display.
         const row = side - 1;
         upperCells[row].innerHTML = score.toString();
     }
 }
+
 
 function scoreOfAKind(counts) {
     const sum = sumOfAllRolls(counts);
@@ -80,6 +91,7 @@ function scoreOfAKind(counts) {
     }
 }
 
+
 function scoreFullHouse(counts) {
     // Calculate.
     let two = false;
@@ -98,6 +110,7 @@ function scoreFullHouse(counts) {
     const cell = document.getElementById('fullHouse');
     cell.innerHTML = score.toString();
 }
+
 
 function scoreStraight(counts) {
     // Calculate.
@@ -127,11 +140,13 @@ function scoreStraight(counts) {
     cell.innerHTML = scoreLarge.toString();
 }
 
+
 function scoreChance(counts) {
     const sum = sumOfAllRolls(counts);
     const cell = document.getElementById('chance');
     cell.innerHTML = sum.toString();
 }
+
 
 function play() {
     let rolls = rollDice();
@@ -152,8 +167,11 @@ function play() {
     scoreChance(counts);
 }
 
+
 function main() {
     const rollButton = document.getElementById('rollButton');
     rollButton.addEventListener('click', play);
 }
+
+
 main();
