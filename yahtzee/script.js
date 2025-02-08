@@ -14,6 +14,8 @@ function rollDice() {
     return rolls;
 }
 
+// Return a dictionary that looks like {1:2, 2:0, 3:1, 4:1, 5:0, 6:1}.
+// The key is the dice side, and the value is the number of dice that fell on that side.
 function countRolls(rolls) {
     let count = {};
     for (let side = 1; side <= nbSides; side++) {
@@ -25,8 +27,12 @@ function countRolls(rolls) {
     return count;
 }
 
-function sumOfAllRolls(rolls) {
-    return rolls.reduce((acc, val) => acc + val);
+function sumOfAllRolls(counts) {
+    let sum = 0;
+    for (const [side, count] of Object.entries(counts)) {
+        sum += side * count;
+    }
+    return sum;
 }
 
 function displayRolls(rolls) {
@@ -52,7 +58,8 @@ function scoreUpperSection(counts) {
     }
 }
 
-function scoreOfAKind(sum, counts) {
+function scoreOfAKind(counts) {
+    const sum = sumOfAllRolls(counts);
     const cells = document.getElementsByClassName('ofAKind');
     for (let kind = 3; kind <= 5; kind++) {
         // Calculate.
@@ -120,28 +127,33 @@ function scoreStraight(counts) {
     cell.innerHTML = scoreLarge.toString();
 }
 
-function scoreChance(sum) {
+function scoreChance(counts) {
+    const sum = sumOfAllRolls(counts);
     const cell = document.getElementById('chance');
     cell.innerHTML = sum.toString();
 }
 
 function play() {
-    rolls = rollDice();
+    let rolls = rollDice();
     // rolls = [3, 5, 3, 4, 3]; // Three of a kind.
     // rolls = [3, 3, 3, 4, 3]; // Four of a kind.
     // rolls = [3, 3, 3, 3, 3]; // Yahtzee.
     // rolls = [1, 1, 1, 5, 5]; // Full house.
     // rolls = [2, 3, 2, 5, 4]; // Small straight.
     // rolls = [6, 3, 2, 5, 4]; // Large straight.
-    sum = sumOfAllRolls(rolls);
-    counts = countRolls(rolls);
+
     displayRolls(rolls);
+
+    const counts = countRolls(rolls);
     scoreUpperSection(counts);
-    scoreOfAKind(sum, counts);
+    scoreOfAKind(counts);
     scoreFullHouse(counts);
     scoreStraight(counts);
-    scoreChance(sum);
+    scoreChance(counts);
 }
 
-const rollButton = document.getElementById('rollButton');
-rollButton.addEventListener('click', play);
+function main() {
+    const rollButton = document.getElementById('rollButton');
+    rollButton.addEventListener('click', play);
+}
+main();
