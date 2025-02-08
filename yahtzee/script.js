@@ -123,10 +123,10 @@ function scoreFullHouse(counts) {
 
 function scoreStraight(counts) {
     // Calculate.
-    let small = isStraight(4, counts);
-    let large = isStraight(5, counts);
-    scoreSmall = small ? 30 : 0;
-    scoreLarge = large ? 40 : 0;
+    const small = isStraight(4, counts);
+    const large = isStraight(5, counts);
+    const scoreSmall = small ? 30 : 0;
+    const scoreLarge = large ? 40 : 0;
     // Display.
     let cell = document.getElementById('smallStraight');
     cell.innerHTML = scoreSmall.toString();
