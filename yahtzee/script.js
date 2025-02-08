@@ -60,10 +60,10 @@ function isFullHouse(counts) {
     let three = false;
     for (let side = 1; side <= nbSides; side++) {
         const count = counts[side];
-        if (count == 2) {
+        if (count === 2) {
             two = true;
         }
-        if (count == 3) {
+        if (count === 3) {
             three = true;
         }
     }
@@ -78,7 +78,7 @@ function isStraight(kind, counts) {
         const count = counts[side];
         if (count >= 1) {
             longest++;
-            if (longest == kind) {
+            if (longest === kind) {
                 result = true;
             }
         } else {
