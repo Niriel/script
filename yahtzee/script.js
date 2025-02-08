@@ -56,6 +56,33 @@ function scoreUpperSectionSide(side, counts) {
 }
 
 
+function isOfAKind(kind, counts) {
+    let result = false;
+    for (let side = 1; side <= nbSides; side++) {
+        if (counts[side] >= kind) {
+            result = true;
+        }
+    }
+    return result;
+}
+
+
+function isFullHouse(counts) {
+    let two = false;
+    let three = false;
+    for (let side = 1; side <= nbSides; side++) {
+        const count = counts[side];
+        if (count == 2) {
+            two = true;
+        }
+        if (count == 3) {
+            three = true;
+        }
+    }
+    return two && three;
+}
+
+
 function scoreUpperSection(counts) {
     const upperCells = document.getElementsByClassName('upperSection');
 
@@ -66,17 +93,6 @@ function scoreUpperSection(counts) {
         const row = side - 1;
         upperCells[row].innerHTML = score.toString();
     }
-}
-
-
-function isOfAKind(kind, counts) {
-    let result = false;
-    for (let side = 1; side <= nbSides; side++) {
-        if (counts[side] >= kind) {
-            result = true;
-        }
-    }
-    return result;
 }
 
 
@@ -93,20 +109,7 @@ function scoreOfAKind(counts) {
 
 
 function scoreFullHouse(counts) {
-    // Calculate.
-    let two = false;
-    let three = false;
-    for (let side = 1; side <= nbSides; side++) {
-        const count = counts[side];
-        if (count == 2) {
-            two = true;
-        }
-        if (count == 3) {
-            three = true;
-        }
-    }
-    const score = (two && three) ? 25 : 0;
-    // Display.
+    const score = isFullHouse(counts) ? 25 : 0;
     const cell = document.getElementById('fullHouse');
     cell.innerHTML = score.toString();
 }
@@ -153,7 +156,7 @@ function play() {
     // rolls = [3, 5, 3, 4, 3]; // Three of a kind.
     // rolls = [3, 3, 3, 4, 3]; // Four of a kind.
     // rolls = [3, 3, 3, 3, 3]; // Yahtzee.
-    // rolls = [1, 1, 1, 5, 5]; // Full house.
+    rolls = [1, 1, 1, 5, 5]; // Full house.
     // rolls = [2, 3, 2, 5, 4]; // Small straight.
     // rolls = [6, 3, 2, 5, 4]; // Large straight.
 
