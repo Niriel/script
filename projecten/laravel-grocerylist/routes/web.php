@@ -46,12 +46,10 @@ Route::post('/items', function(){})->name('items.store');
 Route::get('/items/{id}', function(){})->name('items.show');
 
 // Serve a form to edit one item. Items are small, we're not going to patch them by bits.
-Route::get('/items/{id}/edit', function(string $item_id) {
-  return view('items.edit');
-})->name('items.edit');
+Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
 
 // Send all the new data about an edited item to a controller.
-Route::put('/items/{id}', function(){})->name('items.update');
+Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
 
 // Delete an item.
 Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');

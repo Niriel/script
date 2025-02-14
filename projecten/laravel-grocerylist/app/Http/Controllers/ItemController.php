@@ -46,7 +46,11 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Item::find($id);
+        if ($item) {
+            return view('items.edit', compact('item'));
+        }
+        return view('items.index');
     }
 
     /**
@@ -54,7 +58,14 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = Item::find($id);
+        if ($item) {
+            dd($request);
+            // I don't know how to do extract the parameters yet.
+            $item->name = $request->request->parameters['name'];
+            $item->save();
+        }
+        return redirect()->route('items.index');
     }
 
     /**
