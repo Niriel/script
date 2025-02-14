@@ -18,7 +18,7 @@ Route::get('/hello', function () {
 // });
 
 
-/* Manipulate the Items table.
+/* Manipulate the items table.
   
   Note that it's always items, plural, even for one item.
   That's because we consider normal, in this application, to display ALL the items.
@@ -29,7 +29,8 @@ Route::get('/hello', function () {
   We post, put or patch to /items or /items/id, which is where we get from.
   Only the forms get their /create or /edit extra URL bit.
   
-  index, create, store, show, etc., in the name method seem be what we put in hrefs.
+  index, create, store, show, etc., in the name method seem be what we put in hrefs,
+  or maybe views.
 */
 
 // Retrieve all the items.
