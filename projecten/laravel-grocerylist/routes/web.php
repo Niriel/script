@@ -10,6 +10,11 @@ Route::get('/hello', function () {
     return 'Hello, World!';
 });
 
+// Just to test Blabes.
+// Route::get('/welcome', function() {
+//     return view('welcome');
+// });
+
 
 /* Manipulate the Items table.
   
@@ -22,18 +27,24 @@ Route::get('/hello', function () {
   We post, put or patch to /items or /items/id, which is where we get from.
   Only the forms get their /create or /edit extra URL bit.
   
-  index, create, store, show, etc., seem to be methods on a controller.
+  index, create, store, show, etc., in the name method seem to be methods on a controller.
 */
 // Retrieve all the items.
-Route::get('/items', function(){})->name('items.index');
+Route::get('/items', function() {
+  return view('items.index');
+})->name('items.index');
 // Serve a form to create one item.
-Route::get('/items/create', function(){})->name('items.create');
+Route::get('/items/create', function() {
+  return view('items.create');
+})->name('items.create');
 // Send the form data to this controller.
 Route::post('/items', function(){})->name('items.store');
 // Retrieve one item.
 Route::get('/items/{id}', function(){})->name('items.show');
 // Serve a form to edit one item. Items are small, we're not going to patch them by bits.
-Route::get('/items/{id}/edit', function(){})->name('items.edit');
+Route::get('/items/{id}/edit', function(string $item_id) {
+  return view('items.edit');
+})->name('items.edit');
 // Send all the new data about an edited item to a controller.
 Route::put('/items/{id}', function(){})->name('items.update');
 // Delete an item.
