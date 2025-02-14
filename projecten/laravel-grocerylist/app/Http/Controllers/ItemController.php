@@ -48,13 +48,9 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Item $item)
     {
-        $item = Item::find($id);
-        if ($item) {
-            return view('items.edit', compact('item'));
-        }
-        return redirect()->route('items.index');
+        return view('items.edit', compact('item'));
     }
 
     /**
