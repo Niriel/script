@@ -54,7 +54,7 @@ Route::get('/items/{id}/edit', function(string $item_id) {
 Route::put('/items/{id}', function(){})->name('items.update');
 
 // Delete an item.
-Route::delete('/items/{id}', function(){})->name('items.destroy');
+Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 // This overrides the Route::get('/') defined above.
 // Does that mean that if I post to /, I will create an item?
