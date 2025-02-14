@@ -30,7 +30,11 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item();
+        $item->name = $request->input('name');
+        $item->description = $request->input('description');
+        $item->save();
+        return redirect()->route('items.index');
     }
 
     /**
@@ -46,7 +50,11 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Item::find($id);
+        if ($item) {
+            return view('items.edit', compact('item'));
+        }
+        return redirect()->route('items.index');
     }
 
     /**
@@ -54,7 +62,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = Item::find($id);
+        if ($item) {
+            $item->name = $request->input('name');
+            $item->description = $request->input('description');
+            $item->save();
+        }
+        return redirect()->route('items.index');
     }
 
     /**
