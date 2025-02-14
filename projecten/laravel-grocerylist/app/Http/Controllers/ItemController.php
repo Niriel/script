@@ -60,14 +60,11 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Item $item)
     {
-        $item = Item::find($id);
-        if ($item) {
-            $item->name = $request->input('name');
-            $item->description = $request->input('description');
-            $item->save();
-        }
+        $item->name = $request->input('name');
+        $item->description = $request->input('description');
+        $item->save();
         return redirect()->route('items.index');
     }
 
