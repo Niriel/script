@@ -15,7 +15,11 @@
         <tbody>
             @foreach($items as $item)
             <tr>
-                <td>{{ $item->name }}</td>
+                <td>
+                    <a href="{{ route('items.show', $item->id) }}">
+                    {{ $item->name }}
+                    </a>
+                </td>
                 <td>{{ $item->description }}</td>
                 <td>
                     <a href="{{ route('items.edit', $item->id) }}">Bewerken</a>
