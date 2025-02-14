@@ -20,7 +20,7 @@
     <?php if (!$clientSideValidation): ?>
         <p class="devWarning">WARNING: client-side validation is switched off.</p>
     <?php endif;?>
-    
+
     <form method="POST">
         <ul>
             <li>
@@ -44,7 +44,7 @@
                 <label for="productQuantity">Aantal:</label>
                 <input type="number" id="productQuantity" name="productQuantity"
                     value="<?= $_POST['productQuantity'] ?? '' ?>"
-                    <?= $clientSideValidation ? 'min="0" step="1"' : '' ?>
+                    <?= $clientSideValidation ? 'min="1" step="1"' : '' ?>
                 >
                 <?= errorMessage($errors, 'quantity') ?>
             </li>
