@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\Item;
+use App\Http\Requests\StoreItemRequest;
+use App\Http\Requests\UpdateItemRequest;
 
 class ItemController extends Controller
 {
@@ -28,12 +28,9 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreItemRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'nullable',
-        ]);
+        $validated = $request->validated();
         $item = new Item();
         $item->name = $validated['name'];
         $item->description = $validated['description'];
@@ -60,12 +57,9 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item)
+    public function update(UpdateItemRequest $request, Item $item)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'nullable',
-        ]);
+        $validated = $request->validated();
         $item->name = $validated['name'];
         $item->description = $validated['description'];
         $item->save();
