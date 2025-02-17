@@ -9,9 +9,11 @@
 
 <body>
     @include('partials.nav')
-    <section id="content">
-        @yield('content')
-    </section>
+    <main>
+        <section id="content">
+            @yield('content')
+        </section>
+    </main>
 </body>
 
 </html>
