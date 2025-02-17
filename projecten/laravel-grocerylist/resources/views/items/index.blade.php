@@ -8,7 +8,8 @@
     <thead>
         <tr>
             <th>Naam</th>
-            <th>Bescrijving</th>
+            <th>Categorie</th>
+            <th>Beschrijving</th>
             <th colspan="2">Acties</th>
         </tr>
     </thead>
@@ -20,6 +21,7 @@
                     {{ $item->name }}
                 </a>
             </td>
+            <td>{{ $item->category->name }}</td>
             <td>{{ $item->description }}</td>
             <td>
                 <a href="{{ route('items.edit', $item->id) }}">Bewerken</a>

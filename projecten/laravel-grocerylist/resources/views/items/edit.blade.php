@@ -19,6 +19,16 @@
         <br />
         <input type="text" id="update_name" name="name" placeholder="brood" value="{{ $item->name }}">
         <br />
+        <label for="update_category">Category:</label>
+        <br />
+        <select name="category_id" id="update_category" required>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ $item->category_id == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
+        <br />
         <label for="update_desc">Description:</label>
         <br />
         <textarea type="textarea" id="update_desc" name="description" placeholder="lekker onder jam">{{ $item->description}} </textarea>

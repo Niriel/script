@@ -19,6 +19,14 @@
         <br />
         <input type="text" id="store_name" name="name" placeholder="brood">
         <br />
+        <label for="store_category">Category:</label>
+        <br />
+        <select name="category_id" id="store_category" required>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+        <br />
         <label for="store_desc">Description:</label>
         <br />
         <textarea type="textarea" id="store_desc" name="description" placeholder="lekker onder jam"></textarea>
