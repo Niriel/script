@@ -49,7 +49,7 @@ function toggleTaskCompletion(task) {
             <h2>Things to do</h2>
             <ul>
                 <li v-for="(task, index) in tasks" :key="index">
-                    {{ task.name }}, completed: {{ task.completed }}
+                    {{ task.name }}, {{ task.completed ? 'done' : 'to do' }}.
                     <button type="button" @click="toggleTaskCompletion(task)">toggle completed</button>
                 </li>
             </ul>
