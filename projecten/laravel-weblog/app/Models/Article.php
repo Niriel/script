@@ -12,7 +12,7 @@ class Article extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'articles_categories', 'article_id', 'category_id');
+        return $this->belongsToMany(Category::class);
     }
 
     public function comments()
@@ -20,8 +20,8 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 }
