@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('article_id');
             $table->foreignId('category_id');
             $table->primary(['article_id', 'category_id']);
+            $table->timestamps();
         });
     }
 
