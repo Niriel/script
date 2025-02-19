@@ -12,12 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_category', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('article_id');
             $table->foreignId('category_id');
-            $table->timestamps();
-
-            $table->unique(['article_id', 'category_id']);
+            $table->primary(['article_id', 'category_id']);
         });
     }
 
