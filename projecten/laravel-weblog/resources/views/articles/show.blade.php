@@ -1,28 +1,34 @@
 @extends('layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Article')
 
 @section('content')
 <article>
-    <h2 class="article_title"><a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a></h2>
-    <p>{{ $article->created_at }}, by {{ $article->user->name }}</p>
-    <ul class="article_categories">
+    <h2 id="article_title">{{ $article->title }}</h2>
+    
+    <div id="article_edit">
+        <a class="button" href="{{ route('articles.edit', $article->id) }}">Edit article</a>
+    </div>
+    
+    <div id="article_header">
+        {{ $article->created_at }}, by
+        {{ $article->user->name }}
+    </div>
+    <ul id="article_categories">
         @foreach($article->categories as $category)
         <li class="article_category">
             {{ $category->name }}
         </li>
         @endforeach
     </ul>
-    <div class="article_content">
+    <blockquote id="article_content">
         {{ $article->content }}
-    </div>
-    <ul>
+    </blockquote>
+    <ul id="comments">
         @foreach($article->comments as $comment)
-        <li class="article_comments">
-            <div class="article_comment">
-                <p>{{ $comment->user->name }}, {{ $comment->created_at }}</p>
-                <p>{{ $comment->content }}</p>
-            </div>
+        <li class="comment">
+            <p class="comment_header">{{ $comment->user->name }}, {{ $comment->created_at }}</p>
+            <blockquote class="comment_content">{{ $comment->content }}</blockquote>
         </li>
         @endforeach
     </ul>
