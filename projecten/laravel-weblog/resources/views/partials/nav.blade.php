@@ -1,8 +1,8 @@
 <nav>
-    <div class="navigation">
+    <div id="navigation">
         <ul>
-            <li><a href="{{ route('articles.index') }}">Home</a>
-            <li><a href="{{ route('articles.create') }}">Create</a>
+            <li class="navitem"><a href="{{ route('articles.index') }}">Home</a>
+            <li class="navitem"><a href="{{ route('articles.create') }}">Create</a>
         </ul>
     </div>
     <hr />

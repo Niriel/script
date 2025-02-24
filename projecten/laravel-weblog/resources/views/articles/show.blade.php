@@ -5,11 +5,11 @@
 @section('content')
 <article>
     <h2 id="article_title">{{ $article->title }}</h2>
-    
+
     <div id="article_edit">
         <a class="button" href="{{ route('articles.edit', $article->id) }}">Edit article</a>
     </div>
-    
+
     <div id="article_header">
         {{ $article->created_at }}, by
         {{ $article->user->name }}
