@@ -8,6 +8,11 @@
 
     <div id="article_edit">
         <a class="button" href="{{ route('articles.edit', $article->id) }}">Edit article</a>
+        <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete article</button>
+        </form>
     </div>
 
     <div id="article_header">
