@@ -23,6 +23,7 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
+            'categories' => 'nullable',
             'content' => 'required',
             'user_id' => 'required',
             'image_path' => 'nullable',

@@ -22,7 +22,7 @@
         <br />
         <label for="article_categories">Categories:</label>
         <br />
-        <select name="category_id" id="article_categories" multiple>
+        <select name="categories[]" id="article_categories" multiple>
             @foreach($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
