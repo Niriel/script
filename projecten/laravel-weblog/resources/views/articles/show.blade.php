@@ -7,14 +7,24 @@
     <h2 id="article_title">{{ $article->title }}</h2>
     <span class="premium">{{ $article->is_premium ? 'Premium' : ''}}</span>
 
-    <div id="article_edit">
-        <a class="button" href="{{ route('articles.edit', $article->id) }}">Edit article</a>
-        <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete article</button>
-        </form>
-    </div>
+    <table>
+        <tr>
+            <td>
+                <form action="{{ route('articles.edit', $article->id) }}" method="POST">
+                    @csrf
+                    @method('GET')
+                    <button type="submit">Edit article</button>
+                </form>
+            </td>
+            <td>
+                <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete article</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 
     <div id="article_header">
         {{ $article->created_at }}, by
