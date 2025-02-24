@@ -13,7 +13,7 @@
                 {{ $article->user->name }}
             </div>
             <blockquote class="article_excerpt">
-                {{ substr($article->content, 0, 500) }}{{ mb_strlen($article->content) > 500 ? '...' : '' }}
+                {{ substr($article->content, 0, 500) }}{{ mb_strlen($article->content) > 500 ? '…' : '' }}
             </blockquote>
         </article>
     </li>
