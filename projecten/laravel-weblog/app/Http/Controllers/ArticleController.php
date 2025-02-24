@@ -66,7 +66,7 @@ class ArticleController extends Controller
         $validated['is_premium'] = $request->has('is_premium');
         $article->update($validated);
         $article->categories()->sync($request['categories']);
-        return redirect()->route('articles.index');
+        return redirect()->route('articles.show', $article->id);
     }
 
     /**
