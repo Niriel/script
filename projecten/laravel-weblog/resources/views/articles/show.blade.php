@@ -5,6 +5,7 @@
 @section('content')
 <article>
     <h2 id="article_title">{{ $article->title }}</h2>
+    <span class="premium">{{ $article->is_premium ? 'Premium' : ''}}</span>
 
     <div id="article_edit">
         <a class="button" href="{{ route('articles.edit', $article->id) }}">Edit article</a>
