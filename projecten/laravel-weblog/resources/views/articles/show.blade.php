@@ -5,7 +5,7 @@
 @section('content')
 <article>
     <h2 id="article_title">{{ $article->title }}</h2>
-    <span class="premium">{{ $article->is_premium ? 'Premium' : ''}}</span>
+    <div><span class="premium">{{ $article->is_premium ? 'Premium' : ''}}</span></div>
 
     <table>
         <tr>
@@ -41,6 +41,13 @@
         {{ $article->content }}
     </blockquote>
 
+    @if ($errors->any())
+    <ul class="errors">
+        @foreach ($errors->all() as $error)
+        <li class="error"> {{ $error }} </li>
+        @endforeach
+    </ul>
+    @endif
     <form action="{{ route('comments.store') }}" method="POST">
         @csrf
         @method('POST')

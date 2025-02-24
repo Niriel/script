@@ -5,3 +5,7 @@ html {
 .premium {
     background-color: gold;
 }
+
+.error {
+    color: red;
+}
