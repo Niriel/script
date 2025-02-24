@@ -29,11 +29,26 @@
     <blockquote id="article_content">
         {{ $article->content }}
     </blockquote>
+
+    <form action="{{ route('comments.store') }}" method="POST">
+        @csrf
+        @method('POST')
+        <input type="hidden" name="user_id" value="1" />
+        <input type="hidden" name="article_id" value="{{$article->id}}" />
+        <textarea type="textarea" id="comment_content" name="content" placeholder="Type your comment here." rows="4" cols="80"></textarea>
+        <button type="submit">Comment</button>
+    </form>
+
     <ul id="comments">
-        @foreach($article->comments as $comment)
+        @foreach($article->comments->sortByDesc('created_at') as $comment)
         <li class="comment">
             <p class="comment_header">{{ $comment->user->name }}, {{ $comment->created_at }}</p>
             <blockquote class="comment_content">{{ $comment->content }}</blockquote>
+            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete comment</button>
+            </form>
         </li>
         @endforeach
     </ul>
