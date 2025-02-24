@@ -36,7 +36,7 @@ class ArticleController extends Controller
         $validated = $request->validated();
         $validated['is_premium'] = $request->has('is_premium');
         $article = Article::create($validated);
-        $article->categories()->attach($request['categories']);
+        $article->categories()->sync($request['categories']);
         return redirect()->route('articles.index');
     }
 
@@ -65,6 +65,7 @@ class ArticleController extends Controller
         $validated = $request->validated();
         $validated['is_premium'] = $request->has('is_premium');
         $article->update($validated);
+        $article->categories()->sync($request['categories']);
         return redirect()->route('articles.index');
     }
 
