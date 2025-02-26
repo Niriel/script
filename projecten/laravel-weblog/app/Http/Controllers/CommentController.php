@@ -17,6 +17,7 @@ class CommentController extends Controller
 
     public function destroy(Comment $comment)
     {
+        // TODO: check that the person deleting the comment is the comment's author or the article's author.
         $comment->delete();
         return redirect()->route('articles.show', $comment->article_id);
     }
