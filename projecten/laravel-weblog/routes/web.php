@@ -6,6 +6,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 
 Route::get('/articles',                [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/create',         [ArticleController::class, 'create'])->name('articles.create');
@@ -22,5 +23,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout.perform');
 
 Route::redirect('/', '/articles');
