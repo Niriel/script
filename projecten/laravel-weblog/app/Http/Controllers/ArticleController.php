@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use App\Models\Category;
 use App\Http\Requests\StoreArticleRequest;
@@ -74,7 +75,14 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        $article->delete();
-        return redirect()->route('articles.index');
+        // Only the article's author may delete an article.
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->id === $article->user_id) {
+                $article->delete();
+                return redirect()->route('articles.index');
+            }
+        }
+        abort(403);
     }
 }
