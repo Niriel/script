@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/articles',                [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/create',         [ArticleController::class, 'create'])->name('articles.create');
@@ -15,5 +17,10 @@ Route::delete('/articles/{article}',   [ArticleController::class, 'destroy'])->n
 
 Route::post('/comments',               [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}',   [CommentController::class, 'destroy'])->name('comments.destroy');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
 
 Route::redirect('/', '/articles');
