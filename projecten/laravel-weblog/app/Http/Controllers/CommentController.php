@@ -11,9 +11,12 @@ class CommentController extends Controller
 {
     public function store(StoreCommentRequest $request)
     {
-        $validated = $request->validated();
-        Comment::create($validated);
-        return redirect()->route('articles.show', $validated['article_id']);
+        if (Auth::check()) {
+            $validated = $request->validated();
+            Comment::create($validated);
+            return redirect()->route('articles.show', $validated['article_id']);
+        }
+        abort(403);
     }
 
     public function destroy(Comment $comment)
