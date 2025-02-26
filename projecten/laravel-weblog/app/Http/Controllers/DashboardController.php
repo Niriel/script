@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Article;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $articles = Article::where(
+            'user_id',
+            '=',
+            Auth::id()
+        )->orderByDesc('created_at')->get();
+        return view('dashboard.index', compact('articles'));
     }
 }
