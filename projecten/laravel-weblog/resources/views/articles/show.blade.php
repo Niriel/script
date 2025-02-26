@@ -57,11 +57,11 @@
             </ul>
             @endif
         </div>
+
         <div id="comment_create">
             <form action="{{ route('comments.store') }}" method="POST">
                 @csrf
                 @method('POST')
-                <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
                 <input type="hidden" name="article_id" value="{{$article->id}}" />
                 <textarea type="textarea" id="comment_content" name="content" placeholder="Type your comment here." rows="4" cols="80"></textarea>
                 <button type="submit">Comment</button>

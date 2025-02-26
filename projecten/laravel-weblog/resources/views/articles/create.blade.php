@@ -3,18 +3,22 @@
 @section('title', 'Article, create')
 
 @section('content')
-@if ($errors->any())
-<ul class="errors">
-    @foreach ($errors->all() as $error)
-    <li class="error"> {{ $error }} </li>
-    @endforeach
-</ul>
-@endif
-<div id="article_create">
+<section id="article_create">
+    <h1>Write a new article</h1>
+    @if ($errors->any())
+    <div id="errors">
+        <ul class="errors">
+            @foreach ($errors->all() as $error)
+            <li class="error"> {{ $error }} </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    @auth
     <form action="{{ route('articles.store') }}" method="POST">
         @csrf
         @method('POST')
-        <input type="hidden" name="user_id" value="1" />
         <input type="hidden" name="image_path" value="/dummy/pic.jpg" />
         <label for="article_title">Title:</label>
         <br />
@@ -37,5 +41,6 @@
         <br />
         <button type="submit">Create</button>
     </form>
-</div>
+    @endauth
+</section>
 @endsection

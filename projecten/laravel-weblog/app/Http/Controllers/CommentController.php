@@ -13,6 +13,7 @@ class CommentController extends Controller
     {
         if (Auth::check()) {
             $validated = $request->validated();
+            $validated['user_id'] = Auth::id();
             Comment::create($validated);
             return redirect()->route('articles.show', $validated['article_id']);
         }

@@ -34,11 +34,15 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        $validated = $request->validated();
-        $validated['is_premium'] = $request->has('is_premium');
-        $article = Article::create($validated);
-        $article->categories()->sync($request['categories']);
-        return redirect()->route('articles.index');
+        if (Auth::check()) {
+            $validated = $request->validated();
+            $validated['user_id'] = Auth::id();
+            $validated['is_premium'] = $request->has('is_premium');
+            $article = Article::create($validated);
+            $article->categories()->sync($request['categories']);
+            return redirect()->route('articles.index');
+        }
+        abort(403);
     }
 
     /**
