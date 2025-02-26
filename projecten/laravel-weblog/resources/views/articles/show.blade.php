@@ -75,6 +75,8 @@
                 <p class="comment_header">{{ $comment->user->name }}, {{ $comment->created_at }}</p>
                 <blockquote class="comment_content">{{ $comment->content }}</blockquote>
 
+                {{-- Only the comment's author or the article author may delete a comment. --}}
+                {{-- This is also checked in the controller. --}}
                 @auth
                 @if(Auth::id() === $comment->id || Auth::id() === $article->user_id)
                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
@@ -82,9 +84,9 @@
                     @method('DELETE')
                     <button type="submit">Delete comment</button>
                 </form>
+
                 @endif
                 @endauth
-
             </li>
             @endforeach
         </ul>
