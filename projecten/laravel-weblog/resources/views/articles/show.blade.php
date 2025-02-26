@@ -77,16 +77,16 @@
 
                 {{-- Only the comment's author or the article author may delete a comment. --}}
                 {{-- This is also checked in the controller. --}}
-                @auth
-                @if(Auth::id() === $comment->user_id || Auth::id() === $article->user_id)
+                {{-- @auth--}}
+                {{-- @if(Auth::id() === $comment->user_id || Auth::id() === $article->user_id)--}}
                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit">Delete comment</button>
                 </form>
 
-                @endif
-                @endauth
+                {{-- @endif--}}
+                {{-- @endauth --}}
             </li>
             @endforeach
         </ul>

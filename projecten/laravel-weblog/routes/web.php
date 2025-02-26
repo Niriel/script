@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Models\Comment;
 
 Route::get('/articles',                [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/create',         [ArticleController::class, 'create'])->name('articles.create');
@@ -16,8 +17,8 @@ Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name
 Route::put('/articles/{article}',      [ArticleController::class, 'update'])->name('articles.update');
 Route::delete('/articles/{article}',   [ArticleController::class, 'destroy'])->name('articles.destroy');
 
-Route::post('/comments',               [CommentController::class, 'store'])->name('comments.store');
-Route::delete('/comments/{comment}',   [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::post('/comments',               [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+Route::delete('/comments/{comment}',   [CommentController::class, 'destroy'])->middleware('auth')->can('can:delete', Comment::class)->name('comments.destroy');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
