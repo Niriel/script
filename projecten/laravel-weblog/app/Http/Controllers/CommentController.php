@@ -38,8 +38,8 @@ class CommentController extends Controller
     }
 
     public function mayCommentPremium($article_id, $user_id) {
-        $article = Article::where('id', $article_id)->first();
-        $user = User::where('id', $user_id)->first();
+        $article = Article::find($article_id);
+        $user = User::find($user_id);
         if ($article && $user) {
             $articlePremium = boolval($article->is_premium);
             $userPremium = boolval($user->has_premium);
