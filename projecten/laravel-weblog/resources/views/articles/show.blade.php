@@ -30,16 +30,13 @@
     <section id="premium">
         @if(!$article->matchPremiumWithAuth())
         <h2>Premium</h2>
-        <p>This is a <span class="premium">premium article</span> Get a premium account to read further.</p>
+        <p>This is a <span class="premium">premium article</span>. Get a premium account to read further.</p>
         @endif
     </section>
 
     <section id="comments">
         <h2>Comments</h2>
-        @guest
-        <p><a href="{{ route('auth.loginPage') }}">Log in</a> to write comments.</p>
-        @endguest
-        @auth
+
         <div id="comment_error">
             @if ($errors->any())
             <ul class="errors">
@@ -50,6 +47,12 @@
             @endif
         </div>
 
+        @guest
+        <p><a href="{{ route('auth.loginPage') }}">Log in</a> to write comments.</p>
+        @endguest
+
+        @auth
+        @if($article->matchPremiumWithAuth())
         <div id="comment_create">
             <form action="{{ route('comments.store') }}" method="POST">
                 @csrf
@@ -59,6 +62,9 @@
                 <button type="submit">Comment</button>
             </form>
         </div>
+        @else
+        <p>Get a premium account to comment on this article.</p>
+        @endif
         @endauth
 
         <ul id="comments_show">
