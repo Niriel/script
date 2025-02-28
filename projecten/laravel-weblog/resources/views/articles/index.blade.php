@@ -14,8 +14,7 @@
                 </h2>
                 <div class="article_header">
                     {{ $article->created_at }}, by
-                    {{ $article->user->name }}
-
+                    {{ $article->user->name }}.
                 </div>
                 <blockquote class="article_excerpt">
                     {{ substr($article->content, 0, 500) }}
