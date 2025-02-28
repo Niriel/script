@@ -19,8 +19,15 @@
             @endforeach
         </ul>
         <blockquote id="article_content">
+            @if($article->matchPremiumWithAuth())
             {{ $article->content }}
+            @else
+            {{ substr($article->content, 0, 500) }}&hellip;
+            @endif
         </blockquote>
+        @if(!$article->matchPremiumWithAuth())
+        <p>This is a <span class="premium">premium article</span> Get a premium account to read further.</p>
+        @endif
     </section>
 
     <section id="comments">

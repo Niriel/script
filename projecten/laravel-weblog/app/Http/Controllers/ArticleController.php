@@ -47,21 +47,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        // Non-premium articles can be seen by anyone, logged in or not.
-        // Premium articles can only be seen by premium users (who need to be logged in, obviously).
-        $allowed = (!$article->is_premium) || (Auth::check() && Auth::user()->has_premium);
-        // An author is always allowed to see their article, even if they're not premium user anymore.
-        if (Auth::check() && Auth::user()->id === $article->user_id) {
-            $allowed = true;
-        }
-
-        // TODO: Move the above logic into articles.show. It's a better advertisement for the premium feature.
-
-        if ($allowed) {
-            return view('articles.show', compact('article'));
-        }
-        // // Todo: send the user to a "buy premium" page.
-        abort(403);
+        return view('articles.show', compact('article'));
     }
 
     /**
