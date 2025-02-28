@@ -32,7 +32,7 @@
         <br />
         <textarea type="textarea" id="article_content" name="content" placeholder="Article content" rows="20" cols="150">{{ $article->content }}</textarea>
         <br />
-        <input type="checkbox" id="article_is_premium" name="is_premium" value="1" {{ $article->is_premium ? 'checked' : '' }} />
+        <input type="checkbox" id="article_is_premium" name="is_premium" value="1" {{ $article->is_premium ? 'checked' : '' }} {{ Auth::user()->has_premium ? '' : 'disabled' }} />
         <label for="article_is_premium">Premium content</label>
         <br />
         <button type="submit">Edit</button>

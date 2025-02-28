@@ -36,7 +36,7 @@
         <br />
         <textarea type="textarea" id="article_content" name="content" placeholder="Article content" rows="20" cols="150"></textarea>
         <br />
-        <input type="checkbox" id="article_is_premium" name="is_premium" value="1" />
+        <input type="checkbox" id="article_is_premium" name="is_premium" value="1" {{ Auth::user()->has_premium ? '' : 'disabled' }} />
         <label for="article_is_premium">Premium content</label>
         <br />
         <button type="submit">Create</button>

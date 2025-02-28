@@ -36,7 +36,7 @@ class ArticleController extends Controller
     {
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
-        $validated['is_premium'] = $request->has('is_premium');
+        $validated['is_premium'] = $request->has('is_premium') && Auth::user()->has_premium;
         $article = Article::create($validated);
         $article->categories()->sync($request['categories']);
         return redirect()->route('articles.index');
@@ -47,7 +47,21 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles.show', compact('article'));
+        // Non-premium articles can be seen by anyone, logged in or not.
+        // Premium articles can only be seen by premium users (who need to be logged in, obviously).
+        $allowed = (!$article->is_premium) || (Auth::check() && Auth::user()->has_premium);
+        // An author is always allowed to see their article, even if they're not premium user anymore.
+        if (Auth::check() && Auth::user()->id === $article->user_id) {
+            $allowed = true;
+        }
+
+        // TODO: Move the above logic into articles.show. It's a better advertisement for the premium feature.
+
+        if ($allowed) {
+            return view('articles.show', compact('article'));
+        }
+        // // Todo: send the user to a "buy premium" page.
+        abort(403);
     }
 
     /**
@@ -64,11 +78,16 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $validated = $request->validated();
-        $validated['is_premium'] = $request->has('is_premium');
-        $article->update($validated);
-        $article->categories()->sync($request['categories']);
-        return redirect()->route('articles.show', $article->id);
+        // Only the article's author may update an article.
+        $user = Auth::user();
+        if ($user->id === $article->user_id) {
+            $validated = $request->validated();
+            $validated['is_premium'] = $request->has('is_premium') && $user->has_premium;
+            $article->update($validated);
+            $article->categories()->sync($request['categories']);
+            return redirect()->route('articles.show', $article->id);
+        }
+        abort(403);
     }
 
     /**
@@ -82,5 +101,6 @@ class ArticleController extends Controller
             $article->delete();
             return redirect()->route('articles.index');
         }
+        abort(403);
     }
 }
