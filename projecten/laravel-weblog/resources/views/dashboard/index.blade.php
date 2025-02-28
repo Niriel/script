@@ -34,7 +34,7 @@
 @guest
 <h2>Greetings, visitor</h2>
 <p>You may wish to
-    <a href="{{ route('login.index') }}">log in</a>
+    <a href="{{ route('auth.loginPage') }}">log in</a>
     or return to the website's
     <a href="{{ route('articles.index') }}">home page</a>.
 </p>

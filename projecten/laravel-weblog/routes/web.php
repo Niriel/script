@@ -6,7 +6,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/articles',                [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/create',         [ArticleController::class, 'create'])->name('articles.create');
@@ -21,8 +21,8 @@ Route::delete('/comments/{comment}',   [CommentController::class, 'destroy'])->n
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
-Route::get('/logout', [LogoutController::class, 'logout'])->name('logout.perform');
+Route::get('/login', [AuthController::class, 'loginPage'])->name('auth.loginPage');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::redirect('/', '/articles');

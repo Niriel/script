@@ -11,7 +11,7 @@
 </ul>
 @endif
 <h1>Log in</h1>
-<form action="{{ route('login.perform') }}" method="POST">
+<form action="{{ route('auth.login') }}" method="POST">
     @csrf
     @method('POST')
     <label for="login_email">E-mail:</label>

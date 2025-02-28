@@ -45,7 +45,7 @@
 
     <section id="comments">
         @guest
-        <p><a href="{{ route('login.index') }}">Log in</a> to write comments.</p>
+        <p><a href="{{ route('auth.loginPage') }}">Log in</a> to write comments.</p>
         @endguest
         @auth
         <div id="comment_error">
