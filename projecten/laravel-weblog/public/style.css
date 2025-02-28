@@ -14,3 +14,14 @@ blockquote {
     border-left: 2px solid gray;
     padding-left: 8px;
 }
+
+.danger {
+    background-color: red;   
+}
+
+.article_box{
+    border: 1px solid gray;
+    padding: 8px;
+    margin-left: 40px;
+    margin-right: 40px;
+}

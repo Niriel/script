@@ -25,7 +25,7 @@
                     <a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a>
                     {{ $article->is_premium ? 'Premium' : ''}}
                 </h2>
-                
+
                 <div class="article_header">
                     {{ $article->created_at }}
                 </div>
@@ -48,9 +48,9 @@
                             </form>
                         </td>
                         <td>
-                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                            <form action="{{ route('articles.delete', $article->id) }}" method="POST">
                                 @csrf
-                                @method('DELETE')
+                                @method('GET')
                                 <button type="submit">Delete article</button>
                             </form>
                         </td>

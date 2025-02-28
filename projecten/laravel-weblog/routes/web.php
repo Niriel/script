@@ -8,11 +8,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/articles/create',         [ArticleController::class, 'create'])->name('articles.create');
-    Route::post('/articles',               [ArticleController::class, 'store'])->name('articles.store');
-    Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
-    Route::put('/articles/{article}',      [ArticleController::class, 'update'])->name('articles.update');
-    Route::delete('/articles/{article}',   [ArticleController::class, 'destroy'])->name('articles.destroy');
+    Route::get('/articles/create',           [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('/articles',                 [ArticleController::class, 'store'])->name('articles.store');
+    Route::get('/articles/{article}/edit',   [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::put('/articles/{article}',        [ArticleController::class, 'update'])->name('articles.update');
+    Route::get('/articles/{article}/delete', [ArticleController::class, 'delete'])->name('articles.delete');
+    Route::delete('/articles/{article}',     [ArticleController::class, 'destroy'])->name('articles.destroy');
 
     Route::post('/comments',               [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{comment}',   [CommentController::class, 'destroy'])->name('comments.destroy');

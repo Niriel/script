@@ -39,7 +39,7 @@ class ArticleController extends Controller
         $validated['is_premium'] = $request->has('is_premium') && Auth::user()->has_premium;
         $article = Article::create($validated);
         $article->categories()->sync($request['categories']);
-        return redirect()->route('articles.index');
+        return redirect()->route('dashboard.index');
     }
 
     /**
@@ -77,6 +77,19 @@ class ArticleController extends Controller
     }
 
     /**
+     * Show a confirmation page before deleting an article.
+     */
+    public function delete(Article $article)
+    {
+        // Only the article's author may delete an article.
+        $user = Auth::user();
+        if ($user->id === $article->user_id) {
+            return view('articles.delete', compact('article'));
+        }
+        abort(403);
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Article $article)
@@ -85,7 +98,7 @@ class ArticleController extends Controller
         $user = Auth::user();
         if ($user->id === $article->user_id) {
             $article->delete();
-            return redirect()->route('articles.index');
+            return redirect()->route('dashboard.index');
         }
         abort(403);
     }
