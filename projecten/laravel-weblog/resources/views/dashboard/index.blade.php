@@ -4,14 +4,19 @@
 
 @section('content')
 @auth
-<h1>{{ auth()->user()->name }}</h1>
-@if(Auth::user()->has_premium)
-<p><span class="premium">Premium member</span></p>
-@else
-<p><a href="{{ route('premium.index') }}">Become a Premium member</a>.</p>
-@endif
+<h1>Greetings, {{ Auth::user()->name }}</h1>
+
+<section id="dashboard_user_info">
+    <p>Member since {{Auth::user()->created_at}}.</p>
+    @if(Auth::user()->has_premium)
+    <p><span class="premium"><a href="{{ route('premium.index') }}">Premium member</a></span></p>
+    @else
+    <p><a href="{{ route('premium.index') }}">Become a Premium member</a>.</p>
+    @endif
+</section>
 
 <section id="dashboard_write_new_article">
+    <h2>Feeling chatty?</h2>
     <form action="{{ route('articles.create') }}" method="POST">
         @csrf
         @method('GET')
@@ -26,9 +31,11 @@
         @foreach($articles as $article)
         <li>
             <article>
-                <h2 class="article_title {{ $article->is_premium ? 'premium' : ''}}">
+                <h2 class="article_title">
                     <a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a>
-                    {{ $article->is_premium ? 'Premium' : ''}}
+                    @if($article->is_premium)
+                    <a href="{{ route('premium.index') }}" class="premium">Premium</a>
+                    @endif
                 </h2>
 
                 <div class="article_header">
