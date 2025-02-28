@@ -17,7 +17,10 @@
 
             </div>
             <blockquote class="article_excerpt">
-                {{ substr($article->content, 0, 500) }}{{ mb_strlen($article->content) > 500 ? '…' : '' }}
+                {{ substr($article->content, 0, 500) }}
+                @if(mb_strlen($article->content) >= 500)
+                    <a href="{{ route('articles.show', $article->id) }}">&hellip;</a>
+                @endif
             </blockquote>
         </article>
     </li>

@@ -9,3 +9,8 @@ html {
 .error {
     color: red;
 }
+
+blockquote {
+    border-left: 2px solid gray;
+    padding-left: 8px;
+}

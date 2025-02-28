@@ -4,7 +4,6 @@
             <li class="navitem"><a href="{{ route('articles.index') }}">Home</a></li>
             @auth
             <li class="navitem"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-            <li class="navitem"><a href="{{ route('articles.create') }}">Write a new article</a></li>
             <li class="navitem"><a href="{{ route('auth.logout') }}">Log out</a></li>
             @endauth
             @guest
