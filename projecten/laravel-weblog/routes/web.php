@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PremiumController;
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/articles/create',           [ArticleController::class, 'create'])->name('articles.create');
@@ -20,11 +21,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::get('/premium/purchase', [PremiumController::class, 'purchase'])->name('premium.purchase');
+    Route::post('/premium',         [PremiumController::class, 'store'])->name('premium.store');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
 Route::get('/articles',           [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/premium',            [PremiumController::class, 'index'])->name('premium.index');
 Route::get('/login',              [AuthController::class,    'loginPage'])->name('auth.loginPage');
 Route::post('/login',             [AuthController::class,    'login'])->name('auth.login');
 

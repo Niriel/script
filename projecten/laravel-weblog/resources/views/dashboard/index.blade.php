@@ -3,10 +3,14 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<h1>Dashboard</h1>
-
 @auth
-<h2>Greetings, {{ auth()->user()->name }}</h2>
+<h1>{{ auth()->user()->name }}</h1>
+@if(Auth::user()->has_premium)
+<p><span class="premium">Premium member</span></p>
+@else
+<p><a href="{{ route('premium.index') }}">Become a Premium member</a>.</p>
+@endif
+
 <section id="dashboard_write_new_article">
     <form action="{{ route('articles.create') }}" method="POST">
         @csrf
@@ -14,8 +18,9 @@
         <button type="submit">Write a new article</button>
     </form>
 </section>
+
 <section id="dashboard_articles">
-    <h3>Your articles</h3>
+    <h2>Your articles</h2>
     <p>Number of articles: {{ $articles->count() }}.</p>
     <ul>
         @foreach($articles as $article)
@@ -65,7 +70,7 @@
 @endauth
 
 @guest
-<h2>Greetings, visitor</h2>
+<h1>Greetings, visitor</h1>
 <p>You may wish to
     <a href="{{ route('auth.loginPage') }}">log in</a>
     or return to the website's
