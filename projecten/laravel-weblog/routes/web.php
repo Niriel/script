@@ -7,11 +7,6 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/articles',           [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
-Route::get('/login',              [AuthController::class,    'loginPage'])->name('auth.loginPage');
-Route::post('/login',             [AuthController::class,    'login'])->name('auth.login');
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/articles/create',         [ArticleController::class, 'create'])->name('articles.create');
     Route::post('/articles',               [ArticleController::class, 'store'])->name('articles.store');
@@ -26,5 +21,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
+
+Route::get('/articles',           [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/login',              [AuthController::class,    'loginPage'])->name('auth.loginPage');
+Route::post('/login',             [AuthController::class,    'login'])->name('auth.login');
 
 Route::redirect('/', '/articles');
