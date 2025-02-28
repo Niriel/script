@@ -34,15 +34,12 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        if (Auth::check()) {
-            $validated = $request->validated();
-            $validated['user_id'] = Auth::id();
-            $validated['is_premium'] = $request->has('is_premium');
-            $article = Article::create($validated);
-            $article->categories()->sync($request['categories']);
-            return redirect()->route('articles.index');
-        }
-        abort(403);
+        $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
+        $validated['is_premium'] = $request->has('is_premium');
+        $article = Article::create($validated);
+        $article->categories()->sync($request['categories']);
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -80,13 +77,10 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         // Only the article's author may delete an article.
-        if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->id === $article->user_id) {
-                $article->delete();
-                return redirect()->route('articles.index');
-            }
+        $user = Auth::user();
+        if ($user->id === $article->user_id) {
+            $article->delete();
+            return redirect()->route('articles.index');
         }
-        abort(403);
     }
 }
