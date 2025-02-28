@@ -6,7 +6,6 @@
 <article>
     <section id="article">
         <h2 id="article_title">{{ $article->title }}</h2>
-        <div><span class="premium">{{ $article->is_premium ? 'Premium' : ''}}</span></div>
         <div id="article_header">
             {{ $article->created_at }}, by
             {{ $article->user->name }}
@@ -23,14 +22,20 @@
             {{ $article->content }}
             @else
             {{ substr($article->content, 0, 500) }}&hellip;
+            <span class="premium">Premium</span>
             @endif
         </blockquote>
+    </section>
+
+    <section id="premium">
         @if(!$article->matchPremiumWithAuth())
+        <h2>Premium</h2>
         <p>This is a <span class="premium">premium article</span> Get a premium account to read further.</p>
         @endif
     </section>
 
     <section id="comments">
+        <h2>Comments</h2>
         @guest
         <p><a href="{{ route('auth.loginPage') }}">Log in</a> to write comments.</p>
         @endguest
