@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Article;
 use App\Models\Comment;
+use App\Models\User;
 use App\Http\Requests\StoreCommentRequest;
 
 class CommentController extends Controller
@@ -14,8 +16,10 @@ class CommentController extends Controller
         if (Auth::check()) {
             $validated = $request->validated();
             $validated['user_id'] = Auth::id();
-            Comment::create($validated);
-            return redirect()->route('articles.show', $validated['article_id']);
+            if ($this->mayCommentPremium($validated['article_id'], $validated['user_id'])) {
+                Comment::create($validated);
+                return redirect()->route('articles.show', $validated['article_id']);
+            }            
         }
         abort(403);
     }
@@ -31,5 +35,18 @@ class CommentController extends Controller
             }
         }
         abort(403);
+    }
+
+    public function mayCommentPremium($article_id, $user_id) {
+        $article = Article::where('id', $article_id)->first();
+        $user = User::where('id', $user_id)->first();
+        if ($article && $user) {
+            $articlePremium = boolval($article->is_premium);
+            $userPremium = boolval($user->has_premium);
+            // Obtained with a Karnaugh table.
+            // The only forbidden case is a non-premium user commenting on a premium article.
+            return !$articlePremium || $userPremium;
+        }
+        return false;        
     }
 }
