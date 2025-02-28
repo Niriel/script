@@ -19,8 +19,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->validated();
-
-        if (Auth::attempt($credentials)) {
+        $remember = $request->has('remember_me');
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
