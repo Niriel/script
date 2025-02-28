@@ -3,6 +3,8 @@
 @section('title', 'Article, edit')
 
 @section('content')
+<h1>Edit an article</h1>
+
 @if ($errors->any())
 <ul class="errors">
     @foreach ($errors->all() as $error)
@@ -10,7 +12,8 @@
     @endforeach
 </ul>
 @endif
-<div id="article_edit">
+
+<section id="article_edit">
     <form action="{{ route('articles.update', $article->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -33,9 +36,9 @@
         <textarea type="textarea" id="article_content" name="content" placeholder="Article content" rows="20" cols="150">{{ $article->content }}</textarea>
         <br />
         <input type="checkbox" id="article_is_premium" name="is_premium" value="1" {{ $article->is_premium ? 'checked' : '' }} {{ Auth::user()->has_premium ? '' : 'disabled' }} />
-        <label for="article_is_premium">Premium content</label>
+        <label for="article_is_premium">Premium article</label>
         <br />
         <button type="submit">Edit</button>
     </form>
-</div>
+</section>
 @endsection

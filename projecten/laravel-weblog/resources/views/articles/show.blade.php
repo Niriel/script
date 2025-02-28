@@ -8,7 +8,10 @@
         <h2 id="article_title">{{ $article->title }}</h2>
         <div id="article_header">
             {{ $article->created_at }}, by
-            {{ $article->user->name }}
+            {{ $article->user->name }}.
+            @if($article->is_premium)
+            <span class="premium">Premium</span>
+            @endif
         </div>
         <ul id="article_categories">
             @foreach($article->categories as $category)
@@ -30,7 +33,7 @@
     <section id="premium">
         @if(!$article->matchPremiumWithAuth())
         <h2>Premium</h2>
-        <p>This is a <span class="premium">premium article</span>. Get a premium account to read further.</p>
+        <p>This is a <span class="premium">premium article</span>. Become a <a href="{{ route('premium.index') }}">Premium member</a> to read this article and many more!</p>
         @endif
     </section>
 
@@ -63,7 +66,7 @@
             </form>
         </div>
         @else
-        <p>Get a premium account to comment on this article.</p>
+        <p>Become a <a href="{{ route('premium.index') }}">Premium member<a> to comment on this article.</p>
         @endif
         @endauth
 
