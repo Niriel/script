@@ -25,7 +25,6 @@ class UpdateArticleRequest extends FormRequest
             'title' => 'required|max:255',
             'categories' => 'nullable',
             'content' => 'required',
-            'user_id' => 'required',
             'image_path' => 'nullable',
             'is_premium' => 'nullable',
         ];

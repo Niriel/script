@@ -68,6 +68,7 @@ class ArticleController extends Controller
         $user = Auth::user();
         if ($user->id === $article->user_id) {
             $validated = $request->validated();
+            $validated['user_id'] = Auth::id();
             $validated['is_premium'] = $request->has('is_premium') && $user->has_premium;
             $article->update($validated);
             $article->categories()->sync($request['categories']);
