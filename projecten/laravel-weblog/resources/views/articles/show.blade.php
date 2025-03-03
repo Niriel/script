@@ -72,7 +72,7 @@
                     <textarea type="textarea" id="comment_content" name="content" placeholder="Type your comment here." rows="4" cols="80" required></textarea>
                 </div>
                 <div class="form_submit">
-                    <button type="submit" class="good">Comment</button>
+                    <button type="submit" class="good full_width">Comment</button>
                 </div>
             </div>
         </form>
