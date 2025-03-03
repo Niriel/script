@@ -4,14 +4,16 @@
 
 @section('content')
 @auth
-<h1>Greetings, {{ Auth::user()->name }}</h1>
+<header>
+    <h1>Greetings, {{ Auth::user()->name }}</h1>
+</header>
 
 <section id="dashboard_user_info">
     <p>Member since {{Auth::user()->created_at}}.</p>
     @if(Auth::user()->has_premium)
-    <p><span class="premium"><a href="{{ route('premium.index') }}">Premium member</a></span></p>
+    <p><a href="{{ route('premium.index') }}" class="premium">Premium member</a></p>
     @else
-    <p><a href="{{ route('premium.index') }}">Become a Premium member</a>.</p>
+    <p><a href="{{ route('premium.index') }}" class="premium">Become a Premium member</a>.</p>
     @endif
 </section>
 
@@ -25,32 +27,35 @@
 </section>
 
 <section id="dashboard_articles">
-    <h2>Your articles</h2>
-    <p>Number of articles: {{ $articles->count() }}.</p>
-    <ul>
+    <header>
+        <h2>Your articles</h2>
+        <p>Number of articles: {{ $articles->count() }}.</p>
+    </header>
+    <main>
         @foreach($articles as $article)
-        <li>
-            <article>
+        <div class="article_preview">
+            <header class="article_header">
                 <h2 class="article_title">
                     <a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a>
+                </h2>
+                <div>
+                    {{ $article->created_at }}.
                     @if($article->is_premium)
                     <a href="{{ route('premium.index') }}" class="premium">Premium</a>
                     @endif
-                </h2>
-
-                <div class="article_header">
-                    {{ $article->created_at }}
                 </div>
-
-                <blockquote class="article_excerpt">
+            </header>
+            <main class="article_excerpt">
+                <p>
                     {{ substr($article->content, 0, 500) }}
                     @if(mb_strlen($article->content) >= 500)
                     <a href="{{ route('articles.show', $article->id) }}">&hellip;</a>
                     @endif
-                </blockquote>
-
+                </p>
+            </main>
+            <footer>
                 @if(Auth::id() === $article->user_id)
-                <table class="article_modify">
+                <table>
                     <tr>
                         <td>
                             <form action="{{ route('articles.edit', $article->id) }}" method="POST">
@@ -69,10 +74,10 @@
                     </tr>
                 </table>
                 @endif
-            </article>
-        </li>
+            </footer>
+        </div>
         @endforeach
-    </ul>
+    </main>
 </section>
 @endauth
 

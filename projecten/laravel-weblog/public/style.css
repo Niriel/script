@@ -11,6 +11,7 @@
     --bad_color: #f44336;
     --button_text_color: #eee;
     --frame_color: #999;
+    --premium_color: gold;
 
     --navbar_background_color: purple;
     
@@ -34,6 +35,18 @@ h1{
     color: var(--accent_color);
     text-align: center;
     font-size: xx-large;
+}
+
+a {
+    color: var(--site_foreground_color);
+}
+
+a:visited {
+    color: var(--good_color);
+}
+
+a:hover {
+    filter: brightness(130%);
 }
 
 .nav_top {
@@ -72,10 +85,6 @@ h1{
     border: none;
     border-radius: var(--radius);
     padding: 16px 24px;
-}
-
-.nav_top a:hover {
-    filter: brightness(120%);
 }
 
 
@@ -211,23 +220,7 @@ h2.article_title {
 }
 
 .premium {
-    background-color: gold;
-}
-
-
-
-blockquote {
-    border-left: 2px solid gray;
-    padding-left: 8px;
-}
-
-.danger {
-    background-color: red;   
-}
-
-.article_box{
-    border: 1px solid gray;
-    padding: 8px;
-    margin-left: 40px;
-    margin-right: 40px;
+    color: var(--premium_color) !important;
+    font-weight: bold;
+    letter-spacing: 0.05em;
 }
