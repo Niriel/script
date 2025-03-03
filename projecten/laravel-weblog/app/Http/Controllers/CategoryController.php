@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterCategoryRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -23,5 +24,11 @@ class CategoryController extends Controller
             }
         )->orderByDesc('created_at')->get();
         return view('categories.show', compact('category', 'articles'));
+    }
+
+    public function filter(FilterCategoryRequest $request)
+    {
+        $validated = $request->validated();
+        return redirect()->route('categories.show', $validated['id']);
     }
 }

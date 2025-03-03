@@ -35,6 +35,7 @@ Route::get('/login',              [AuthController::class,    'loginPage'])->name
 Route::post('/login',             [AuthController::class,    'login'])->name('auth.login');
 
 Route::get('/categories',            [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/filter',     [CategoryController::class, 'filter'])->name('categories.filter');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::redirect('/', '/articles');

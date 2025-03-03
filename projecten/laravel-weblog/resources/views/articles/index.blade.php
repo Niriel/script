@@ -8,13 +8,28 @@
 </header>
 
 <section>
-    <form>
-        <select name="categories[]" id="article_categories" multiple>
-            @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-        <button type="submit">Filter</button>
+    <form action="{{ route('categories.filter') }}" method="POST">
+        @csrf
+        @method('GET')
+        <table>
+            <tr>
+                <td>
+                    <div class="form_field">
+                        <label for="filter_category">Filter by category: </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form_field">
+                        <select name="id" id="filter_category" required>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </td>
+                <td><button type="submit">Filter</button></td>
+            </tr>
+        </table>
     </form>
 </section>
 
