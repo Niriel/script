@@ -111,6 +111,11 @@ li.error {
     padding: 16px;
 }
 
+.form_field {
+    margin: 0.5em 0;
+    line-height: 2em;
+}
+
 /* For real forms, not just forms that are wrapping a single button. */
 form.real_form {
     border: 3px solid var(--frame_color);
@@ -119,13 +124,31 @@ form.real_form {
 
 input {
     accent-color: var(--accent_color);
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent_color);
+    padding: 12px 20px;
 }
 
 input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+}
+
+select {
+    accent-color: var(--accent_color);
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent_color);
+    width: 25%;
+}
+
+textarea {
+    accent-color: var(--accent_color);
     display: inline-block;
     box-sizing: border-box;
     width: 100%;
-    margin: 8px 0;
     border-radius: var(--radius);
     border: 1px solid var(--accent_color);
     padding: 12px 20px;
