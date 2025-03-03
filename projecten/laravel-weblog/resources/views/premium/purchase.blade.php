@@ -42,7 +42,7 @@
                 </div>
                 <p>Then, confirm my pressing this button. That's it!</p>
                 <div class="form_submit">
-                    <button type="submit" class="good">Purchase your <span class="premium">Premium membership</span></button>
+                    <button type="submit" class="good full_width">Purchase your <span class="premium">Premium membership</span></button>
                 </div>
             </div>
         </form>

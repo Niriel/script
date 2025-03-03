@@ -47,7 +47,7 @@
                     <label for="article_is_premium">Premium article</label>
                 </div>
                 <div class="form_submit">
-                    <button type="submit" class="good">Edit</button>
+                    <button type="submit" class="good full_width">Edit</button>
                 </div>
             </div>
         </form>

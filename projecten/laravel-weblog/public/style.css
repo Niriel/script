@@ -172,12 +172,15 @@ button {
     font-size: medium;
     font-weight: bold;
     letter-spacing: 0.05em;
-    width: 100%;
     margin: 8px 0;
     border: none;
     border-radius: var(--radius);
     padding: 14px 20px;
     /*cursor: pointer;*/
+}
+
+button.full_width {
+    width: 100%;
 }
 
 button:hover {

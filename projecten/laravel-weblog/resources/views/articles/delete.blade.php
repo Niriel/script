@@ -47,7 +47,7 @@
 
                 <p>You are about to delete this article.</p>
                 <p>This action cannot be undone.</p>
-                <button type="submit" class="bad">Delete article</button>
+                <button type="submit" class="bad full_width">Delete article</button>
             </div>
         </form>
     </div>
