@@ -19,11 +19,7 @@
 
 <section id="dashboard_write_new_article">
     <h2>Feeling chatty?</h2>
-    <form action="{{ route('articles.create') }}" method="POST">
-        @csrf
-        @method('GET')
-        <button type="submit">Write a new article</button>
-    </form>
+    <a href="{{ route('articles.create') }}" class="button_link">Write a new article</a>
 </section>
 
 <section id="dashboard_articles">
@@ -58,11 +54,7 @@
                 <table>
                     <tr>
                         <td>
-                            <form action="{{ route('articles.edit', $article->id) }}" method="POST">
-                                @csrf
-                                @method('GET')
-                                <button type="submit">Edit article</button>
-                            </form>
+                            <a href="{{ route('articles.edit', $article->id) }}" class="button_link">Edit article<a>
                         </td>
                         <td>
                             <form action="{{ route('articles.delete', $article->id) }}" method="POST">

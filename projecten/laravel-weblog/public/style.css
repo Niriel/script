@@ -49,6 +49,21 @@ a:hover {
     filter: brightness(130%);
 }
 
+a.button_link {
+    display: inline-block;
+    box-sizing: border-box;
+    color: var(--button_text_color);
+    background-color: var(--neutral_color);
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin: 8px 0;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+}
+
 .nav_top {
     background-color: var(--navbar_background_color);
     border: none;
@@ -74,13 +89,13 @@ a:hover {
 
 .nav_top a {
     display: inline-block;
-    color: var(--site_foreground_color);
+    box-sizing: border-box;
+    color: var(--button_text_color);
     background-color: var(--neutral_color);
     font-size: large;
     font-weight: bolder;
     text-decoration: none;
     letter-spacing: 0.05em;
-    vertical-align: middle;
     margin: 8px;
     border: none;
     border-radius: var(--radius);
@@ -169,6 +184,8 @@ textarea {
 
 /* Set a style for all buttons */
 button {
+    display: inline-block;
+    box-sizing: border-box;
     color: var(--button_text_color);
     background-color: var(--neutral_color);
     font-size: medium;
@@ -178,7 +195,6 @@ button {
     border: none;
     border-radius: var(--radius);
     padding: 14px 20px;
-    /*cursor: pointer;*/
 }
 
 button.full_width {
