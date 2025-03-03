@@ -83,6 +83,15 @@ h1{
 /*                    FORMS AND BUTTONS                     */
 /* ======================================================== */
 
+ul.errors {
+    color: var(--bad_color);
+    margin-top: 0;
+}
+
+li.error {
+    padding-left: 0px;
+}
+
 /* For content that should not take the whole width of the page.
    meant for login form, maybe errors, narrow centered on the page. */
 .dialog {
@@ -157,17 +166,32 @@ button.bad {
 /*                         ARTICLES                         */
 /* ======================================================== */
 
+.article_preview {
+    box-sizing: border-box;
+    margin: 8px 40px;
+    border: 1px solid var(--neutral_color);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+}
+
+.article_header {
+    color: var(--accent_color);
+}
+
+h2.article_title {
+    margin-top: 0;
+}
+
+.article_excerpt {
+    border-left: 2px solid var(--neutral_color);
+    padding-left: 16px;
+}
+
 .premium {
     background-color: gold;
 }
 
-ul.errors {
-    color: var(--bad_color);
-    margin-top: 0;
-}
-li.error {
-    padding-left: 0px;
-}
+
 
 blockquote {
     border-left: 2px solid gray;
