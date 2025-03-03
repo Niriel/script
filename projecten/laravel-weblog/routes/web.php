@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/premium',         [PremiumController::class, 'store'])->name('premium.store');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories',       [CategoryController::class, 'store'])->name('categories.store');
 });
 
 Route::get('/articles',           [ArticleController::class, 'index'])->name('articles.index');

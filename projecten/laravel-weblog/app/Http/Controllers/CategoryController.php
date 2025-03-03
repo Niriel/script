@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FilterCategoryRequest;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -24,6 +25,18 @@ class CategoryController extends Controller
             }
         )->orderByDesc('created_at')->get();
         return view('categories.show', compact('category', 'articles'));
+    }
+
+    public function create()
+    {
+        return view('categories.create');
+    }
+
+    public function store(StoreCategoryRequest $request)
+    {
+        $validated = $request->validated();
+        Category::create($validated);
+        return redirect()->route('categories.index');
     }
 
     public function filter(FilterCategoryRequest $request)
