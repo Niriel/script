@@ -1,11 +1,165 @@
-html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ======================================================== */
+/*                         CONSTANTS                        */
+/* ======================================================== */
+
+:root {
+    --site_foreground_color: #eee;
+    --site_background_color: #333;
+    --neutral_color: #999;
+    --accent_color: hotpink;
+    --good_color: #04AA6D;
+    --bad_color: #f44336;
+    --button_text_color: #eee;
+    --frame_color: #999;
+
+    --navbar_background_color: purple;
+    
+    --highlight_foreground_color: #fff;
+
+    --radius: 3px;
+}
+
+
+/* ======================================================== */
+/*                      MAIN ELEMENTS                       */
+/* ======================================================== */
+
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    color: var(--site_foreground_color);
+    background-color: var(--site_background_color);
 }
 
 h1{
+    color: var(--accent_color);
     text-align: center;
     font-size: xx-large;
 }
+
+.nav_top {
+    background-color: var(--navbar_background_color);
+    border: none;
+    border-radius: var(--radius);
+}
+
+/* This actually allocated the height of the navbar for the navbar only.
+   Without this, because the left and right are floats, the page title
+   would be displayed in the middle of the navbar, not after. */
+.nav_top:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.nav_top_left {
+    float: left;
+}
+
+.nav_top_right {
+    float: right;
+}
+
+.nav_top a {
+    display: inline-block;
+    color: var(--site_foreground_color);
+    background-color: var(--neutral_color);
+    font-size: large;
+    font-weight: bolder;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+    margin: 8px;
+    border: none;
+    border-radius: var(--radius);
+    padding: 16px 24px;
+}
+
+.nav_top a:hover {
+    filter: brightness(120%);
+}
+
+.nav_top a:active {
+    color: var(--highlight_foreground_color);
+    background-color: var(--accent_color);
+}
+
+/* ======================================================== */
+/*                    FORMS AND BUTTONS                     */
+/* ======================================================== */
+
+/* For content that should not take the whole width of the page.
+   meant for login form, maybe errors, narrow centered on the page. */
+.dialog {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog_title {
+    color: var(--accent_color);
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+.container {
+    padding: 16px;
+}
+
+/* For real forms, not just forms that are wrapping a single button. */
+form.real_form {
+    border: 3px solid var(--frame_color);
+    border-radius: var(--radius);
+}
+
+input {
+    accent-color: var(--accent_color);
+}
+
+input[type=text], input[type=password], input[type=email] {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 8px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent_color);
+    padding: 12px 20px;
+}
+
+/* Set a style for all buttons */
+button {
+    color: var(--button_text_color);
+    background-color: var(--neutral_color);
+    font-size: medium;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    width: 100%;
+    margin: 8px 0;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    /*cursor: pointer;*/
+}
+
+button:hover {
+    filter: brightness(120%);
+}
+
+/* For buttons that imply progress: post an article, log in, etc. */
+button.good {
+    background-color: var(--good_color);
+}
+
+/* For buttons that imply danger: cancel, delete article, unsubscribe, etc */
+button.bad {
+    background-color: var(--bad_color);
+}
+
+
+
+/* ======================================================== */
+/*                         ARTICLES                         */
+/* ======================================================== */
 
 .premium {
     background-color: gold;

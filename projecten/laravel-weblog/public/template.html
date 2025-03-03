@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <header>
+        <p>Website header, common to all</p>
+    </header>
+    <nav>
+        <div class="nav_top">
+            <div class="nav_top_left">
+                <a href="#" class="nav_link">Home (logo)</a>
+            </div>
+            <div class="nav_top_right">
+                <a href="#" class="nav_link">Log out</a>
+                <a href="#" class="nav_link">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="articles_list">
+        <header>
+            <h1>Articles</h1>
+        </header>   
+        <main>
+        <article class="article_preview">
+            <div class="container">
+                <header class="article_header">
+                    <h2><a href="#">Start your day with necromancy</a></h2>
+                    <div><span class="date">2025-12-31 23:59</span>, by <span class="author">Roper Klacks</span></div>
+                </header>
+                <main class="article_excerpt">
+                    <p>Here is the content of my article, or at least an excerpt.</p>
+                </main>
+            </div>
+        </article>
+        <article class="article_preview">
+            <div class="container">
+                <header class="article_header">
+                    <h2><a href="#">Carpentry, my love, my passion</a> <a href="#"><span class="premium">Premium</span></a></h2>
+                    <div><span class="date">2025-12-31 23:59</span>, by <span class="author">Roper Klacks</span></div>
+                </header>
+                <main class="article_excerpt">
+                    <p>Here is the content of my article, or at least an excerpt.</p>
+                </main>
+            </div>
+        </article>
+        </main>
+    </section>
+
+    <section id="login_form">
+        <header>
+            <h1>Log in</h1>
+        </header>
+        <main>
+            <div class="dialog">
+                <form action="" method="" class="real_form">
+                    <div class="container">
+                        <div class="dialog_title">Enter your credentials</div>
+                        <div class="form_field">
+                            <label for="login_email">E-mail:</label>
+                            <br />
+                            <input type="email" id="login_email" name="email" required placeholder="alice@wonderland.com" />
+                        </div>
+                        <div class="form_field">
+                            <label for="login_password">Password:</label>
+                            <br />
+                            <input type="password" id="login_password" name="password" required placeholder="p@ssW0rD"/>
+                        </div>
+                        <div class="form_field">
+                            <input type="checkbox" id="login_remember" name="remember" checked />
+                            <label for="login_remember">remember me</label>
+                        </div>
+                        <div class="form_submit">
+                            <button type="submit" class="good">Log in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </section>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
