@@ -1,15 +1,16 @@
 <nav>
-    <div id="navigation">
-        <ul>
-            <li class="navitem"><a href="{{ route('articles.index') }}">Home</a></li>
+    <div class="nav_top">
+        <div class="nav_top_left">
+            <a href="{{ route('articles.index') }}" class="nav_link">Home (logo)</a>
+        </div>
+        <div class="nav_top_right">
             @auth
-            <li class="navitem"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-            <li class="navitem"><a href="{{ route('auth.logout') }}">Log out</a></li>
+            <a href="{{ route('dashboard.index') }}" class="nav_link">Dashboard</a>
+            <a href="{{ route('auth.logout') }}" class="nav_link">Log out</a>
             @endauth
             @guest
-            <li class="navitem"><a href="{{ route('auth.loginPage') }}">Log in</a></li>
+            <a href="{{ route('auth.loginPage') }}" class="nav_link">Log in</a>
             @endguest
-        </ul>
+        </div>
     </div>
-    <hr />
 </nav>

@@ -3,28 +3,47 @@
 @section('title', 'Log in')
 
 @section('content')
-@if ($errors->any())
-<ul class="errors">
-    @foreach ($errors->all() as $error)
-    <li class="error"> {{ $error }} </li>
-    @endforeach
-</ul>
-@endif
-<h1>Log in</h1>
-<form action="{{ route('auth.login') }}" method="POST">
-    @csrf
-    @method('POST')
-    <label for="login_email">E-mail:</label>
-    <br />
-    <input type="text" name="email" id="login_email" placeholder="name@example.com" />
-    <br />
-    <label for="login_password">Password:</label>
-    <br />
-    <input type="password" name="password" id="login_password" />
-    <br />
-    <input type="checkbox" name="remember_me" id="login_remember" value="1" />
-    <label for="login_remember">Remember me</label>
-    <br />
-    <button type="submit">Log in</button>
-</form>
+<header>
+    <h1>Log in</h1>
+</header>
+
+<main>
+    <div class="dialog">
+        <form action="{{ route('auth.login') }}" method="POST" class="real_form">
+            @csrf
+            @method('POST')
+            <div class="container">
+                <div class="dialog_title">Enter your credentials</div>
+
+                @if ($errors->any())
+                <div>Errors:</div>
+                <ul class="errors">
+                    @foreach ($errors->all() as $error)
+                    <li class="error">{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
+
+                <div class="form_field">
+                    <label for="login_email">E-mail:</label>
+                    <br />
+                    <input type="email" id="login_email" name="email" required placeholder="alice@wonderland.com" />
+                </div>
+                <div class="form_field">
+                    <label for="login_password">Password:</label>
+                    <br />
+                    <input type="password" id="login_password" name="password" required placeholder="p@ssW0rD" />
+                </div>
+                <div class="form_field">
+                    <input type="checkbox" id="login_remember" name="remember" />
+                    <label for="login_remember">remember me</label>
+                </div>
+                <div class="form_submit">
+                    <button type="submit" class="good">Log in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
 @endsection

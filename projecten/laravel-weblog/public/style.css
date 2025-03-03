@@ -78,10 +78,6 @@ h1{
     filter: brightness(120%);
 }
 
-.nav_top a:active {
-    color: var(--highlight_foreground_color);
-    background-color: var(--accent_color);
-}
 
 /* ======================================================== */
 /*                    FORMS AND BUTTONS                     */
@@ -165,8 +161,12 @@ button.bad {
     background-color: gold;
 }
 
-.error {
-    color: red;
+ul.errors {
+    color: var(--bad_color);
+    margin-top: 0;
+}
+li.error {
+    padding-left: 0px;
 }
 
 blockquote {
