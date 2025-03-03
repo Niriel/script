@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PremiumController;
@@ -32,5 +33,8 @@ Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('art
 Route::get('/premium',            [PremiumController::class, 'index'])->name('premium.index');
 Route::get('/login',              [AuthController::class,    'loginPage'])->name('auth.loginPage');
 Route::post('/login',             [AuthController::class,    'login'])->name('auth.login');
+
+Route::get('/categories',            [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::redirect('/', '/articles');

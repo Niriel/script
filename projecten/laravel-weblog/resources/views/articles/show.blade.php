@@ -12,12 +12,18 @@
             @if($article->is_premium)
             <a href="{{ route('premium.index') }}" class="premium">Premium</a>
             @endif
-            <ul id="article_categories">
+
+            <p>Categories:</p>
+            <ul>
+                @if ($article->categories->isEmpty())
+                <li>None</li>
+                @else
                 @foreach($article->categories as $category)
-                <li class="article_category">
-                    {{ $category->name }}
+                <li>
+                    <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
                 </li>
                 @endforeach
+                @endif
             </ul>
         </div>
     </header>

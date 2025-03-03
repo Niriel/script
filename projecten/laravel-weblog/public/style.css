@@ -155,7 +155,6 @@ select {
     box-sizing: border-box;
     border-radius: var(--radius);
     border: 1px solid var(--accent_color);
-    width: 25%;
 }
 
 textarea {

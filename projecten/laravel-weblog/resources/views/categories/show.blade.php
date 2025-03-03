@@ -1,26 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Articles')
+@section('title', 'Category')
 
 @section('content')
 <header>
-    <h1>Scriptlog</h1>
+    <h1>Category: {{ $category->name }}</h1>
 </header>
-
-<section>
-    <form>
-        <select name="categories[]" id="article_categories" multiple>
-            @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-        <button type="submit">Filter</button>
-    </form>
-</section>
 
 <section id="article_list">
     <header>
-        <h2>Articles</h2>
+        <a href="{{ route('categories.index') }}">List of categories</a>
+        <h2>Articles in {{ $category->name }}</h2>
         <p>Number of articles: {{ $articles->count() }}.</p>
     </header>
     <main>
