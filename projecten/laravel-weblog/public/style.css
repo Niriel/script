@@ -120,15 +120,17 @@ li.error {
     padding: 16px;
 }
 
-.form_field {
-    margin: 0.5em 0;
-    line-height: 2em;
-}
 
 /* For real forms, not just forms that are wrapping a single button. */
 form.real_form {
     border: 3px solid var(--frame_color);
     border-radius: var(--radius);
+}
+
+/* Group label and field together. */
+.form_field {
+    margin: 0.5em 0;
+    line-height: 2em;
 }
 
 input {

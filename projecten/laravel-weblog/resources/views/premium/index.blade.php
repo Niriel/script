@@ -3,7 +3,9 @@
 @section('title', 'Premium')
 
 @section('content')
-<h1>Premium membership</h1>
+<header>
+    <h1>Premium membership</h1>
+</header>
 <section id="premium_explain">
     <h2>Why Premium?</h2>
     <p>Premium members may write Premium articles, read Premium articles, and comment on Premium Articles.</p>
@@ -14,7 +16,7 @@
     <p>Dear {{ Auth::user()->name }}, you are already a valued Premium member of our community. No need to purchase anything more.</p>
     @else
     <h2>Become a Premium member</h2>
-    <p>Dear {{ Auth::user()->name }}, you may purchase your Premium membership on the following page:</p>
+    <p>Dear {{ Auth::user()->name }}, you may purchase your <span class="premium">Premium membership</span> on the following page:</p>
     <p><a href="{{ route('premium.purchase') }}">Purchase my Premium membership</a></p>
     @endif
 </section>
