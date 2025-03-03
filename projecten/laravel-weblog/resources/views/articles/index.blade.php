@@ -13,12 +13,12 @@
     </header>
     <main>
         @foreach($articles as $article)
-        <div class="article_preview">
+        <div class="article_box">
             <header class="article_header">
                 <h2 class="article_title">
                     <a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a>
                 </h2>
-                <div>
+                <div class="article_metadata">
                     {{ $article->created_at }}, by
                     {{ $article->user->name }}.
                     @if($article->is_premium)
@@ -26,7 +26,7 @@
                     @endif
                 </div>
             </header>
-            <main class="article_excerpt">
+            <main class="article_content">
                 <p>
                     {{ substr($article->content, 0, 500) }}
                     @if(mb_strlen($article->content) >= 500)

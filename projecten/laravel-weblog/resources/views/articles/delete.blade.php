@@ -7,17 +7,17 @@
     <h1>Delete article</h1>
 </header>
 
-<section id="article_preview">
+<section id="article_box">
     <p>You are about to delete the following article:</p>
-    <div class="article_preview">
+    <div class="article_box">
         <header class="article_header">
             <h2 class="article_title">{{ $article->title }}</h2>
-            <div>
+            <div class="article_metadata">
                 {{ $article->created_at }}, by
                 {{ $article->user->name }}
             </div>
         </header>
-        <main class="article_excerpt">
+        <main class="article_content">
             <p>
                 {{ substr($article->content, 0, 500) }}
                 @if(mb_strlen($article->content) >= 500)

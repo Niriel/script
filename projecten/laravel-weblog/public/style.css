@@ -133,6 +133,9 @@ form.real_form {
     line-height: 2em;
 }
 
+.form_submit {
+}
+
 input {
     accent-color: var(--accent_color);
     display: inline-block;
@@ -203,7 +206,7 @@ button.bad {
 /*                         ARTICLES                         */
 /* ======================================================== */
 
-.article_preview {
+.article_box {
     box-sizing: border-box;
     margin: 8px 40px;
     border: 1px solid var(--neutral_color);
@@ -211,15 +214,36 @@ button.bad {
     padding: 16px 24px;
 }
 
-.article_header {
-    color: var(--accent_color);
+.article_header{
+
 }
 
-h2.article_title {
+.article_title {
     margin-top: 0;
 }
 
-.article_excerpt {
+.article_metadata {
+    color: var(--accent_color);
+}
+
+.article_content {
+    border-left: 2px solid var(--neutral_color);
+    padding-left: 16px;
+}
+
+.comment_box {
+    box-sizing: border-box;
+    margin: 8px 40px;
+    border: 1px solid var(--neutral_color);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+}
+
+.comment_header {
+    color: var(--accent_color);
+}
+
+.comment_content {
     border-left: 2px solid var(--neutral_color);
     padding-left: 16px;
 }
