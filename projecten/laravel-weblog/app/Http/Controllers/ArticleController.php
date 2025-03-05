@@ -43,7 +43,7 @@ class ArticleController extends Controller
         // dd($validated);
 
         if ($request->has('image_file')) {
-            $image_path = $request->file('image_file')->store('article_images');
+            $image_path = $request->file('image_file')->store('article_images', ['disk' => 'public']);
             $validated['image_path'] = $image_path;
         } else {
             $validated['image_path'] = null;

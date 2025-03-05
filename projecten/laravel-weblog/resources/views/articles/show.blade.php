@@ -31,6 +31,9 @@
                 @endforeach
                 @endif
             </ul>
+            @if($article->image_path)
+            <img src="{{ URL::asset($article->image_path) }}" />
+            @endif
         </div>
     </header>
 
