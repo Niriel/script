@@ -62,8 +62,8 @@
 <section id="comments">
     <h2>Comments</h2>
 
+    @auth
     <div class="dialog">
-        @auth
         @if($article->matchPremiumWithAuth())
         <form action="{{ route('comments.store') }}" method="POST" class="real_form">
             @csrf
@@ -94,11 +94,11 @@
         @else
         <p>Become a <a href="{{ route('premium.index') }}">Premium member<a> to comment on this article.</p>
         @endif
-        @endauth
-        @guest
-        <p><a href="{{ route('auth.loginPage') }}">Log in</a> to write comments.</p>
-        @endguest
     </div>
+    @endauth
+    @guest
+    <p><a href="{{ route('auth.loginPage') }}">Log in</a> to write comments.</p>
+    @endguest
 
 
     @foreach($article->comments->sortByDesc('created_at') as $comment)
