@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Article;
 use App\Models\Category;
@@ -59,6 +60,12 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        if ($article->image_path) {
+            $asset = asset($article->image_path);
+            if (!File::exists($article->image_path)) {
+                $article->image_path = null;
+            }
+        }
         return view('articles.show', compact('article'));
     }
 
