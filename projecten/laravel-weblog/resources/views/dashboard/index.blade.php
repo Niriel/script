@@ -54,7 +54,6 @@
                 <table>
                     <tr>
                         <td>
-                            <!-- <a href="{{ route('articles.edit', $article->id) }}" class="button_link">Edit article<a> -->
                             <a href="{{ route('articles.edit', $article->id) }}" role="button">Edit article<a>
                         </td>
                         <td>
