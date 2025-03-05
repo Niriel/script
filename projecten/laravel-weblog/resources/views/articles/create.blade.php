@@ -9,7 +9,7 @@
 
 <section id="article_create">
     <div class="dialog">
-        <form action="{{ route('articles.store') }}" method="POST" class="real_form">
+        <form action="{{ route('articles.store') }}" method="POST" class="real_form" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="container">
@@ -37,6 +37,11 @@
                         @endforeach
                     </select>
                     <span>Press Ctrl to select multiple categories.</span>
+                </div>
+                <div class="form_field">
+                    <label for="article_image_file">Image:</label>
+                    <br />
+                    <input type="file" name="image_file" id="article_image_file" />
                 </div>
                 <div class="form_field">
                     <label for="article_content">Content:</label>

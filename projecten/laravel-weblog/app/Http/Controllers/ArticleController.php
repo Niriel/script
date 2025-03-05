@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Article;
 use App\Models\Category;
 use App\Http\Requests\StoreArticleRequest;
@@ -35,9 +36,19 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
+        // dd($request);
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
         $validated['is_premium'] = $request->has('is_premium') && Auth::user()->has_premium;
+        // dd($validated);
+
+        if ($request->has('image_file')) {
+            $image_path = $request->file('image_file')->store('article_images');
+            $validated['image_path'] = $image_path;
+        } else {
+            $validated['image_path'] = null;
+        }
+
         $article = Article::create($validated);
         $article->categories()->sync($request['categories']);
         return redirect()->route('dashboard.index');
