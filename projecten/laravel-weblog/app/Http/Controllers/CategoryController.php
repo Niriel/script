@@ -18,12 +18,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $articles = Article::whereHas(
-            'categories',
-            function ($query) use ($category) {
-                $query->where('id', $category->id);
-            }
-        )->orderByDesc('created_at')->get();
+        $articles = $category->articles()->orderByDesc('created_at')->get();
         return view('categories.show', compact('category', 'articles'));
     }
 

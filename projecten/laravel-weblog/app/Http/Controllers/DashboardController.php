@@ -10,11 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $articles = Article::where(
-            'user_id',
-            '=',
-            Auth::id()
-        )->orderByDesc('created_at')->get();
+        $articles = Auth::user()->articles()->orderByDesc('created_at')->get();
         return view('dashboard.index', compact('articles'));
     }
 }

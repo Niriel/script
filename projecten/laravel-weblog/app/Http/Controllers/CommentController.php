@@ -31,7 +31,8 @@ class CommentController extends Controller
         }
     }
 
-    public function mayCommentPremium($article_id, $user_id) {
+    public function mayCommentPremium($article_id, $user_id)
+    {
         $article = Article::find($article_id);
         $user = User::find($user_id);
         if ($article && $user) {
@@ -41,6 +42,6 @@ class CommentController extends Controller
             // The only forbidden case is a non-premium user commenting on a premium article.
             return !$articlePremium || $userPremium;
         }
-        return false;        
+        return false;
     }
 }
