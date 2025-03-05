@@ -3,6 +3,7 @@
 @section('title', 'Article')
 
 @section('content')
+<h2>Article</h2>
 <article class="article_box">
     <header class="article_header">
         <h1 class="article_title">{{ $article->title }}</h1>
@@ -114,7 +115,7 @@
         <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit">Delete comment</button>
+            <button type="submit" class="bad">Delete comment</button>
         </form>
         @endif
         @endauth
