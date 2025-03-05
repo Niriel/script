@@ -7,7 +7,7 @@
     <h1>Categories</h1>
 </header>
 <section id="category_create">
-    <a href="{{ route('categories.create') }}" class="button_link">Create a new category</a>
+    <a href="{{ route('categories.create') }}" role="button">Create a new category</a>
 </section>
 <section id="category_list">
     <header>

@@ -13,8 +13,8 @@
         <header class="article_header">
             <h2 class="article_title">{{ $article->title }}</h2>
             <div class="article_metadata">
-                {{ $article->created_at }}, by
-                {{ $article->user->name }}
+                <span class="author">{{ $article->user->name }}</span>
+                <span class="date">{{ $article->created_at }}</span>
             </div>
         </header>
         <main class="article_content">

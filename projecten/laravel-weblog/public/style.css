@@ -49,10 +49,10 @@ a:hover {
     filter: brightness(130%);
 }
 
-a.button_link {
+[role="button"] {
     display: inline-block;
     box-sizing: border-box;
-    color: var(--button_text_color);
+    color: var(--button_text_color) !important;
     background-color: var(--neutral_color);
     font-size: medium;
     font-weight: bold;
@@ -88,7 +88,7 @@ a.button_link {
     border-radius: var(--radius);
 }
 
-.nav_top a.button_link {
+.nav_top a {
     font-size: large;
     font-weight: bolder;
     margin: 8px;
@@ -127,7 +127,6 @@ li.error {
 .container {
     padding: 16px;
 }
-
 
 /* For real forms, not just forms that are wrapping a single button. */
 form.real_form {
@@ -231,11 +230,22 @@ button.bad {
 }
 
 .article_metadata {
-    color: var(--accent_color);
+
+}
+
+.author {
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.date{
+    color: var(--neutral_color);
 }
 
 .article_content {
-    border-left: 2px solid var(--neutral_color);
+    margin-left: 16px;
+    border-left: 3px solid var(--neutral_color);
     padding-left: 16px;
 }
 
@@ -248,7 +258,7 @@ button.bad {
 }
 
 .comment_header {
-    color: var(--accent_color);
+
 }
 
 .comment_content {

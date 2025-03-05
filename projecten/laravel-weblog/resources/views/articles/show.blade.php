@@ -7,12 +7,17 @@
     <header class="article_header">
         <h1 class="article_title">{{ $article->title }}</h1>
         <div class="container article_metadata">
-            {{ $article->created_at }}, by
-            {{ $article->user->name }}.
-            @if($article->is_premium)
-            <a href="{{ route('premium.index') }}" class="premium">Premium</a>
-            @endif
-
+            <div class="left_right">
+                <div class="left">
+                    <span class="author">{{ $article->user->name }}</span>
+                    <span class="date">{{ $article->created_at }}</span>
+                </div>
+                <div class="right">
+                    @if($article->is_premium)
+                    <a href="{{ route('premium.index') }}" class="premium">Premium</a>
+                    @endif
+                </div>
+            </div>
             <p>Categories:</p>
             <ul>
                 @if ($article->categories->isEmpty())
@@ -94,7 +99,10 @@
 
     @foreach($article->comments->sortByDesc('created_at') as $comment)
     <div class="comment_box">
-        <div class="comment_header">{{ $comment->user->name }}, {{ $comment->created_at }}</div>
+        <div class="comment_header">
+            <span class="author">{{ $comment->user->name }}</span>
+            <span class="date">{{ $comment->created_at }}</span>
+        </div>
         <div class="comment_content">
             <p>{{ $comment->content }}</p>
         </div>
