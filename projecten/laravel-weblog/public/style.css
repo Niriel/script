@@ -29,6 +29,9 @@ body {
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     color: var(--site_foreground_color);
     background-color: var(--site_background_color);
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1{
