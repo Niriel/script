@@ -22,7 +22,6 @@
                 </ul>
                 @endif
 
-                <input type="hidden" name="image_path" value="/dummy/pic.jpg" />
                 <div class="form_field">
                     <label for="article_title">Title:</label>
                     <br />

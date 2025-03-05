@@ -28,7 +28,6 @@ class StoreArticleRequest extends FormRequest
             'categories' => 'nullable',
             'content' => 'required',
             'is_premium' => 'nullable',
-            'image_path' => 'nullable', // Should disappear soon.
             'image_file' => [
                 'nullable',
                 'max:100000', // kilobytes, so 0.1 MB.

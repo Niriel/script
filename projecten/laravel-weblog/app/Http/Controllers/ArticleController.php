@@ -74,6 +74,12 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        if ($article->image_path) {
+            $asset = asset($article->image_path);
+            if (!File::exists($article->image_path)) {
+                $article->image_path = null;
+            }
+        }
         $categories = Category::all();
         return view('articles.edit', compact('article', 'categories'));
     }
@@ -89,6 +95,19 @@ class ArticleController extends Controller
             $validated = $request->validated();
             $validated['user_id'] = Auth::id();
             $validated['is_premium'] = $request->has('is_premium') && $user->has_premium;
+            if ($request->has('no_image')) {
+                // We ask to remove the image.
+                $validated['image_path'] = null;
+            } else {
+                if ($request->has('image_file')) {
+                    // We modify the image.
+                    $image_path = $request->file('image_file')->store('article_images', ['disk' => 'public']);
+                    $validated['image_path'] = $image_path;
+                } else {
+                    // We leave the image as it is.
+                    $validated['image_path'] = $article->image_path;
+                }
+            }
             $article->update($validated);
             $article->categories()->sync($request['categories']);
             return redirect()->route('dashboard.index');

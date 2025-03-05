@@ -9,7 +9,7 @@
 
 <section id="article_edit">
     <div class="dialog">
-        <form action="{{ route('articles.update', $article->id) }}" method="POST" class="real_form">
+        <form action="{{ route('articles.update', $article->id) }}" method="POST" class="real_form" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="container">
@@ -21,7 +21,6 @@
                     @endforeach
                 </ul>
                 @endif
-                <input type="hidden" name="image_path" value="{{ $article->image_path }}" />
                 <div class="form_field">
                     <label for="article_title">Title:</label>
                     <br />
@@ -36,6 +35,19 @@
                         @endforeach
                     </select>
                     <span>Press Ctrl to select multiple categories.</span>
+                </div>
+                <div class="form_field">
+                    @if($article->image_path)
+                    <div>Current image:</div>
+                    <img src="{{ URL::asset($article->image_path) }}" />
+                    @else
+                    <div>Current image: none.</div>
+                    @endif
+                    <label for="article_image_file">New image:</label>
+                    <input type="file" name="image_file" id="article_image_file" />
+                    <br />
+                    <input type="checkbox" id="article_no_image" name="no_image" value="1" />
+                    <label for="article_no_image">No image (this has priority over "New image")</label>
                 </div>
                 <div class="form_field">
                     <label for="article_content">Content:</label>

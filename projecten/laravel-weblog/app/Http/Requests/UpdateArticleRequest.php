@@ -25,8 +25,13 @@ class UpdateArticleRequest extends FormRequest
             'title' => 'required|max:255',
             'categories' => 'nullable',
             'content' => 'required',
-            'image_path' => 'nullable',
             'is_premium' => 'nullable',
+            'image_file' => [
+                'nullable',
+                'max:100000', // kilobytes, so 0.1 MB.
+                'extensions:jpg,jpeg,png',
+                'mimes:jpg,bmp,png',
+            ]
         ];
     }
 }
