@@ -64,6 +64,10 @@ a.button_link {
     padding: 14px 20px;
 }
 
+::placeholder {
+    font-style: italic;
+}
+
 .left_right:after {
     display: block;
     clear: both;
