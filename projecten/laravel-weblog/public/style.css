@@ -64,41 +64,30 @@ a.button_link {
     padding: 14px 20px;
 }
 
+.left_right:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
 .nav_top {
     background-color: var(--navbar_background_color);
     border: none;
     border-radius: var(--radius);
 }
 
-/* This actually allocated the height of the navbar for the navbar only.
-   Without this, because the left and right are floats, the page title
-   would be displayed in the middle of the navbar, not after. */
-.nav_top:after {
-    display: block;
-    clear: both;
-    content: '';
-}
-
-.nav_top_left {
-    float: left;
-}
-
-.nav_top_right {
-    float: right;
-}
-
-.nav_top a {
-    display: inline-block;
-    box-sizing: border-box;
-    color: var(--button_text_color);
-    background-color: var(--neutral_color);
+.nav_top a.button_link {
     font-size: large;
     font-weight: bolder;
-    text-decoration: none;
-    letter-spacing: 0.05em;
     margin: 8px;
-    border: none;
-    border-radius: var(--radius);
     padding: 16px 24px;
 }
 
