@@ -36,11 +36,9 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        // dd($request);
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
         $validated['is_premium'] = $request->has('is_premium') && Auth::user()->has_premium;
-        // dd($validated);
 
         if ($request->has('image_file')) {
             $image_path = $request->file('image_file')->store('article_images', ['disk' => 'public']);
@@ -60,7 +58,6 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         if ($article->image_path) {
-            $asset = asset($article->image_path);
             if (!File::exists($article->image_path)) {
                 $article->image_path = null;
             }
