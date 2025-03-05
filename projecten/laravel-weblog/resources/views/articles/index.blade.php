@@ -12,7 +12,6 @@
         <h2>Categories</h2>
     </header>
     <main>
-        <p><a href="{{ route('categories.index') }}">List of categories</a></p>
         <form action="{{ route('categories.filter') }}" method="POST">
             @csrf
             @method('GET')

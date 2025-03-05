@@ -9,7 +9,6 @@
 
 <section id="article_list">
     <header>
-        <a href="{{ route('categories.index') }}">List of categories</a>
         <h2>Articles in {{ $category->name }}</h2>
         <p>Number of articles: {{ $articles->count() }}.</p>
     </header>
