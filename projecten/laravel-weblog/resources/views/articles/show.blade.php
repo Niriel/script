@@ -32,7 +32,7 @@
                 @endif
             </ul>
             @if($article->image_path)
-            <img src="{{ URL::asset($article->image_path) }}" />
+            <div class="article_image"><img src="{{ URL::asset($article->image_path) }}" /></div>
             @endif
         </div>
     </header>

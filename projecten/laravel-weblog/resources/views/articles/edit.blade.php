@@ -39,7 +39,7 @@
                 <div class="form_field">
                     @if($article->image_path)
                     <div>Current image:</div>
-                    <img src="{{ URL::asset($article->image_path) }}" />
+                    <div class="article_image"><img src="{{ URL::asset($article->image_path) }}" /></div>
                     @else
                     <div>Current image: none.</div>
                     @endif

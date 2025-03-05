@@ -246,6 +246,17 @@ button.bad {
     color: var(--neutral_color);
 }
 
+.article_image {
+    text-align: center;
+}
+
+.article_image img {
+    max-width: 1024px;
+    max-height: 1024px;
+    width: auto;
+    height: auto;
+}
+
 .article_content {
     margin-left: 16px;
     border-left: 3px solid var(--neutral_color);
