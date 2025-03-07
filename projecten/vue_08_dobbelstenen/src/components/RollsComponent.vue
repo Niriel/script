@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-    rolls: [],
+    rolls: Array,
 });
 </script>
 
