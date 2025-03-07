@@ -1,5 +1,6 @@
 <script setup>
-import ParentComponent from './components/MyParent.vue';
+import FirstParentComponent from './components/MyFirstParent.vue';
+import SecondParentComponent from './components/MySecondParent.vue';
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import ParentComponent from './components/MyParent.vue';
             and
             <span class="code">defineEmits</span>
         </h1>
-        <ParentComponent />
+        <FirstParentComponent />
     </section>
     <hr />
     <section>
@@ -18,6 +19,7 @@ import ParentComponent from './components/MyParent.vue';
             With
             <span class="code">defineModel</span>
         </h1>
+        <SecondParentComponent />
     </section>
 </template>
 

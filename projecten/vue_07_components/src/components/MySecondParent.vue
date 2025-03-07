@@ -1,17 +1,19 @@
 <script setup>
 import {ref} from 'vue';
-import ChildComponent from './MyOtherChild.vue';
+import ChildComponent from './MySecondChild.vue';
 
-const sharedMessage = ref('');
+const sharedMessage = ref('Hello!');
+
 </script>
 
 <template>
-    <h2>Other Parent</h2>
-    <hr />
-    <ChildComponent v-model="sharedMessage" />
+    <h2>Second Parent</h2>
     <blockquote>
         {{ sharedMessage }}
     </blockquote>
+    <input v-model="sharedMessage" />
+    <hr />
+    <ChildComponent v-model="sharedMessage" />
 </template>
 
 <style scoped>

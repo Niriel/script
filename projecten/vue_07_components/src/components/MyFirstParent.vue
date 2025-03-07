@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from 'vue';
-import ChildComponent from './MyChild.vue';
+import ChildComponent from './MyFirstChild.vue';
 
 const messageFromTheChild = ref('');
 const messageToTheChild = 'Hello, child!';
@@ -11,7 +11,7 @@ function handleMessage(newMessage) {
 </script>
 
 <template>
-    <h2>Parent</h2>
+    <h2>First Parent</h2>
     <div>
         <p>I am waiting for a message from my child.</p>
         <p>{{ messageFromTheChild === '' ? 'I hope it will not take too long.' : 'Oh, here is the message:' }}</p>
