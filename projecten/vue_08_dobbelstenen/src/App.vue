@@ -1,5 +1,5 @@
 <script setup>
-import {ref, computed} from 'vue';
+import {ref} from 'vue';
 import RollsComponent from './components/RollsComponent.vue';
 import CountsComponent from './components/CountsComponent.vue';
 
@@ -8,28 +8,17 @@ const NB_SIDES = 6;
 
 const rolls = ref([]);
 
-const counts = computed(() => {
-    const results = {};
-    for (var side = 1; side <= NB_SIDES; side++) {
-        results[side] = 0;
-    }
-    for (var i = 0; i < rolls.value.length; i++) {
-        results[rolls.value[i]]++;
-    }
-    return results;
-});
-
-function rollDice() {
+const rollDice = () => {
     rolls.value.length = 0;
     for (let i = 0; i < NB_ROLLS; i++) {
         const roll = Math.floor(Math.random() * NB_SIDES + 1);
         rolls.value.push(roll);
     }
-}
+};
 
-function rollClear() {
+const rollClear = () => {
     rolls.value.length = 0;
-}
+};
 </script>
 
 <template>
@@ -56,7 +45,7 @@ function rollClear() {
         <header>
             <h2>Counts</h2>
         </header>
-        <main><CountsComponent :counts="counts" /></main>
+        <main><CountsComponent :rolls="rolls" /></main>
     </section>
 </template>
 

@@ -1,6 +1,21 @@
 <script setup>
-defineProps({
-    counts: {},
+import {computed} from 'vue';
+
+const {rolls} = defineProps({
+    rolls: Array,
+});
+
+const NB_SIDES = 6;
+
+const counts = computed(() => {
+    const results = {};
+    for (let side = 1; side <= NB_SIDES; side++) {
+        results[side] = 0;
+    }
+    for (let i = 0; i < rolls.length; i++) {
+        results[rolls[i]]++;
+    }
+    return results;
 });
 </script>
 
