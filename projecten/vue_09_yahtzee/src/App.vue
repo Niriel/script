@@ -22,7 +22,6 @@ const rollClear = () => {
 </script>
 
 <template>
-    MOI
     <header><h1>Yahtzee</h1></header>
     <section>
         <header>
@@ -46,10 +45,9 @@ const rollClear = () => {
         <header>
             <h2>Scores</h2>
         </header>
-        <Main>
-            <ScoreTable v-models="rolls" />
-        </Main>
-        <main></main>
+        <main>
+            <ScoreTable v-model="rolls" />
+        </main>
     </section>
 </template>
 
