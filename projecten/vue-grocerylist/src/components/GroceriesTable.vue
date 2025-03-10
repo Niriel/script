@@ -1,5 +1,5 @@
 <script setup>
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
 const props = defineProps({
     groceryList: Array,
@@ -11,9 +11,6 @@ const totalCost = computed(() => {
 </script>
 
 <template>
-    <header>
-        <h2>Grocery list</h2>
-    </header>
     <main>
         <table>
             <thead>
