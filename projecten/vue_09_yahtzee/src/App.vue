@@ -18,7 +18,11 @@ const rollDice = () => {
 
 const rollClear = () => {
     rolls.value.length = 0;
+    for (let i = 0; i < NB_ROLLS; i++) {
+        rolls.value.push(0);
+    }
 };
+rollClear();
 </script>
 
 <template>

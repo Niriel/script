@@ -2,12 +2,12 @@
 const rolls = defineModel();
 
 // Unicode drawings of dice.
-const dieFaces = '\u2680\u2681\u2682\u2683\u2684\u2685';
+const dieFaces = '\u00a0\u2680\u2681\u2682\u2683\u2684\u2685';
 const useFaces = true;
 
 const showRoll = roll => {
     if (useFaces) {
-        return dieFaces[roll - 1];
+        return dieFaces[roll];
     } else {
         return roll.toString();
     }

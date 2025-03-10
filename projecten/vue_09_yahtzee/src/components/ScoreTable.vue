@@ -11,7 +11,9 @@ const counts = computed(() => {
         results[side] = 0;
     }
     for (let i = 0; i < rolls.value.length; i++) {
-        results[rolls.value[i]]++;
+        if (rolls.value[i] > 0) {
+            results[rolls.value[i]]++;
+        }
     }
     return results;
 });
@@ -19,7 +21,6 @@ const counts = computed(() => {
 const sumOfAllRolls = computed(() => {
     let sum = 0;
     for (const [side, count] of Object.entries(counts.value)) {
-        console.log(count);
         sum += side * count;
     }
     return sum;
