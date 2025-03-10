@@ -6,7 +6,7 @@ const props = defineProps({
 });
 
 const totalCost = computed(() => {
-    return props.groceryList.reduce((acc, item) => acc + item.cost, 0.0);
+    return props.groceryList.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0.0);
 });
 </script>
 
@@ -28,7 +28,7 @@ const totalCost = computed(() => {
                     <td>
                         <input type="number" min="0" step="1" v-model="item.quantity" />
                     </td>
-                    <td class="price">{{ item.cost.toFixed(2) }}</td>
+                    <td class="price">{{ (item.unitPrice * item.quantity).toFixed(2) }}</td>
                 </tr>
             </tbody>
             <tfoot>
@@ -41,39 +41,4 @@ const totalCost = computed(() => {
     </main>
 </template>
 
-<style scoped>
-table {
-    margin: 0.5em auto;
-    border-collapse: collapse;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-}
-
-td,
-th {
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-/* Table headers that form a row at the top of the table */
-th[scope='col'] {
-    text-align: center;
-    border-bottom: 1px solid;
-}
-
-/* Table headers that form a column on the left of the table */
-th[scope='row'] {
-    text-align: left;
-    /* border-right: 1px solid; */
-}
-
-td.price {
-    font-family: 'Courier New', Courier, monospace;
-    text-align: right;
-}
-
-input[type='number'] {
-    width: 64px;
-    text-align: right;
-}
-</style>
+<style scoped></style>
