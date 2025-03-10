@@ -91,15 +91,15 @@ const rollLargeStraight = () => {
 .roll_grid {
     display: inline-grid;
     grid-template-columns: 1fr 1fr;
-}
-.roll_grid button {
-    margin: 4px;
+    column-gap: 4px;
+    row-gap: 4px;
+    margin: 0.5em 0;
 }
 .cheat_grid {
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
-}
-.cheat_grid button {
-    margin: 4px
+    column-gap: 4px;
+    row-gap: 4px;
+    margin: 0.5em 0;
 }
 </style>
