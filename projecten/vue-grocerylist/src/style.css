@@ -46,6 +46,14 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+/* Bertrand */
+button.small_btn {
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: 4px;
+  transition: border-color 0.25s;
+}
+
 button:hover {
   border-color: #646cff;
 }
@@ -135,4 +143,10 @@ form {
   border: 1px solid;
   border-radius: 3px;
   padding: 8px;
+}
+
+.grid2 {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5em;
 }

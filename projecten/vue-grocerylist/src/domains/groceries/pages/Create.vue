@@ -1,5 +1,4 @@
 <script setup>
-import {ref} from 'vue';
 import GroceryForm from '../components/GroceryForm.vue';
 import {addGroceryItem, newGroceryItem} from '../store';
 

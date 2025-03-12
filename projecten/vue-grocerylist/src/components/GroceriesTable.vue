@@ -1,6 +1,6 @@
 <script setup>
 import {computed} from 'vue';
-import {groceryItemCost} from '../domains/groceries/store';
+import {deleteGroceryItemById, groceryItemCost} from '../domains/groceries/store';
 
 const props = defineProps({
     groceryList: Array,
@@ -9,6 +9,9 @@ const props = defineProps({
 const totalCost = computed(() => {
     return props.groceryList.reduce((acc, item) => acc + groceryItemCost(item), 0.0);
 });
+
+const EDIT_CAPTION = '\u{1f589}';
+const DELETE_CAPTION = '\u{1F5D1}';
 </script>
 
 <template>
@@ -20,6 +23,7 @@ const totalCost = computed(() => {
                     <th scope="col">unit price</th>
                     <th scope="col">quantity</th>
                     <th scope="col">cost</th>
+                    <th scope="col">actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,12 +34,21 @@ const totalCost = computed(() => {
                         <input type="number" min="0" step="1" v-model="item.quantity" />
                     </td>
                     <td class="price">{{ groceryItemCost(item).toFixed(2) }}</td>
+                    <td>
+                        <div class="grid2">
+                            <button class="small_btn">{{ EDIT_CAPTION }}</button>
+                            <button @click="deleteGroceryItemById(item.id)" class="small_btn">
+                                {{ DELETE_CAPTION }}
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <th scope="row" colspan="3">Total cost</th>
                     <td class="price">{{ totalCost.toFixed(2) }}</td>
+                    <td></td>
                 </tr>
             </tfoot>
         </table>
