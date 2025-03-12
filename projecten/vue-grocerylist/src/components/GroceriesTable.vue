@@ -36,7 +36,9 @@ const DELETE_CAPTION = '\u{1F5D1}';
                     <td class="price">{{ groceryItemCost(item).toFixed(2) }}</td>
                     <td>
                         <div class="grid2">
-                            <button class="small_btn">{{ EDIT_CAPTION }}</button>
+                            <button @click="$router.push({name: 'edit', params: {id: item.id}})" class="small_btn">
+                                {{ EDIT_CAPTION }}
+                            </button>
                             <button @click="deleteGroceryItemById(item.id)" class="small_btn">
                                 {{ DELETE_CAPTION }}
                             </button>

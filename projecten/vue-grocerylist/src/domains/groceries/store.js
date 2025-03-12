@@ -27,12 +27,12 @@ const groceries = ref([
 
 // Getters
 export const getAllGroceryItems = computed(() => groceries.value);
-export const getGroceryItemById = id => computed(() => groceries.value.find(item => item.id === id));
+export const getGroceryItemById = id => computed(() => groceries.value.find(item => item.id == id));
 
 // Actions
 export const addGroceryItem = new_item => groceries.value.push(new_item);
 export const editGroceryItem = new_item => {
-    const index = groceries.value.findIndex(old_item => old_item.id == item.id);
+    const index = groceries.value.findIndex(old_item => old_item.id == new_item.id);
     if (index >= 0) {
         groceries.value[index] = new_item;
     }
