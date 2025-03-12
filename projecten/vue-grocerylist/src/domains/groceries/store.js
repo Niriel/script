@@ -1,4 +1,4 @@
-import {computed, reactive, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 const newGroceryItem = (name, unitPrice) => {
     return {
@@ -14,15 +14,16 @@ const groceryItemCost = groceryItem => {
 
 // State
 const groceries = ref([
-    reactive(newGroceryItem('Bread', 1.0)),
-    reactive(newGroceryItem('Broccoli', 0.99)),
-    reactive(newGroceryItem('Krentenbollen', 1.2)),
-    reactive(newGroceryItem('Nuts', 2.99)),
+    newGroceryItem('Bread', 1.0),
+    newGroceryItem('Broccoli', 0.99),
+    newGroceryItem('Krentenbollen', 1.2),
+    newGroceryItem('Nuts', 2.99),
 ]);
 
 // Getters
 export const getAllGroceryItems = computed(() => groceries.value);
-export const getGroceryItemById = id => computed(() => groceries.value[id]);
+export const getGroceryItemByIndex = index => computed(() => groceries.value[index]);
+export const getGroceryItemByName = name => computed(() => groceries.value.find(item => item.name === name));
 
 // Actions
 export const addGroceryItem = item => groceries.value.push(item);

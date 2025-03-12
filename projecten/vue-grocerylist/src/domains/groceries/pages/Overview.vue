@@ -1,7 +1,7 @@
 <script setup>
 import GroceriesTable from '../../../components/GroceriesTable.vue';
 import GroceryForm from '../components/GroceryForm.vue';
-import {getAllGroceryItems, getGroceryItemById} from '../store';
+import {getAllGroceryItems, getGroceryItemByIndex} from '../store';
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import {getAllGroceryItems, getGroceryItemById} from '../store';
         <GroceriesTable :groceryList="getAllGroceryItems" />
     </main>
     <h2>Temporary shenanigan</h2>
-    <GroceryForm :groceryItem="getGroceryItemById(0)" />
+    <GroceryForm :groceryItem="getGroceryItemByIndex(1)" />
 </template>
 
 <style scoped></style>

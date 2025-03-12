@@ -13,7 +13,7 @@ const props = defineProps({
                         <label for="item_name">Name:</label>
                     </th>
                     <td>
-                        <input id="item_name" type="text" v-model="groceryItem.name" />
+                        <input id="item_name" type="text" v-model="groceryItem.value.name" />
                     </td>
                 </tr>
                 <tr>
@@ -21,7 +21,13 @@ const props = defineProps({
                         <label for="item_unit_price">Unit price:</label>
                     </th>
                     <td>
-                        <input id="item_unit_price" type="number" v-model="groceryItem.unitPrice" min="0" step="0.01" />
+                        <input
+                            id="item_unit_price"
+                            type="number"
+                            v-model="groceryItem.value.unitPrice"
+                            min="0"
+                            step="0.01"
+                        />
                     </td>
                 </tr>
                 <tr></tr>
@@ -30,7 +36,7 @@ const props = defineProps({
                         <label for="item_quantity">Quantity:</label>
                     </th>
                     <td>
-                        <input id="item_quantity" type="number" v-model="groceryItem.quantity" min="0" step="1" />
+                        <input id="item_quantity" type="number" v-model="groceryItem.value.quantity" min="0" step="1" />
                     </td>
                 </tr>
             </tbody>
