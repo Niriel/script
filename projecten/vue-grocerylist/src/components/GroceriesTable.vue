@@ -1,14 +1,17 @@
 <script setup>
 import {computed} from 'vue';
 import {deleteGroceryItemById, groceryItemCost} from '../domains/groceries/store';
+import {useRouter} from 'vue-router';
 
-const props = defineProps({
+const {groceryList} = defineProps({
     groceryList: Array,
 });
 
-const totalCost = computed(() => {
-    return props.groceryList.reduce((acc, item) => acc + groceryItemCost(item), 0.0);
-});
+const router = useRouter();
+
+const totalCost = computed(() => groceryList.reduce((acc, item) => acc + groceryItemCost(item), 0.0));
+
+const goToEditPage = item => router.push({name: 'edit', params: {id: item.id}});
 
 const EDIT_CAPTION = '\u{1f589}';
 const DELETE_CAPTION = '\u{1F5D1}';
@@ -36,7 +39,7 @@ const DELETE_CAPTION = '\u{1F5D1}';
                     <td class="price">{{ groceryItemCost(item).toFixed(2) }}</td>
                     <td>
                         <div class="grid2">
-                            <button @click="$router.push({name: 'edit', params: {id: item.id}})" class="small_btn">
+                            <button @click="goToEditPage(item)" class="small_btn">
                                 {{ EDIT_CAPTION }}
                             </button>
                             <button @click="deleteGroceryItemById(item.id)" class="small_btn">

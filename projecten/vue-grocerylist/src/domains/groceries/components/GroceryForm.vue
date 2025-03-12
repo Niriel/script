@@ -1,5 +1,5 @@
 <script setup>
-import {reactive} from 'vue';
+import {reactive, ref} from 'vue';
 import {groceryItemCost} from '../store';
 
 const emit = defineEmits(['submit']);
@@ -10,11 +10,11 @@ const props = defineProps({
 });
 
 // Clone the input so we don't directly modify it.
-const localGroceryItem = reactive({...props.groceryItem});
+const localGroceryItem = ref({...props.groceryItem});
 </script>
 
 <template>
-    <form v-on:submit.prevent="$emit('submit', localGroceryItem)">
+    <form @submit.prevent="$emit('submit', localGroceryItem)">
         <table>
             <tbody>
                 <tr>

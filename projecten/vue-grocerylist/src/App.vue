@@ -13,8 +13,12 @@ const highlightForPath = path => {
         <h1>Vue groceries</h1>
     </header>
     <nav>
-        <RouterLink to="/" role="button" v-bind:class="highlightForPath('/')">Overview</RouterLink>
-        <RouterLink to="/create" role="button" v-bind:class="highlightForPath('/create')">Create</RouterLink>
+        <RouterLink :to="{name: 'groceries.overview'}" role="button" :class="highlightForPath('/')">
+            Overview
+        </RouterLink>
+        <RouterLink :to="{name: 'groceries.create'}" role="button" :class="highlightForPath('/create')">
+            Create
+        </RouterLink>
     </nav>
     <main>
         <RouterView />
