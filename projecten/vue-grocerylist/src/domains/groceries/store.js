@@ -1,6 +1,6 @@
 import {computed, ref} from 'vue';
 
-const newGroceryItem = (name, unitPrice) => {
+export const newGroceryItem = (name, unitPrice) => {
     return {
         name: name,
         unitPrice: unitPrice,
@@ -8,7 +8,7 @@ const newGroceryItem = (name, unitPrice) => {
     };
 };
 
-const groceryItemCost = groceryItem => {
+export const groceryItemCost = groceryItem => {
     return groceryItem.unitPrice * groceryItem.quantity;
 };
 

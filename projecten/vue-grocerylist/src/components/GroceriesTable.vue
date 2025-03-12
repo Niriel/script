@@ -1,12 +1,13 @@
 <script setup>
 import {computed} from 'vue';
+import {groceryItemCost} from '../domains/groceries/store';
 
 const props = defineProps({
     groceryList: Array,
 });
 
 const totalCost = computed(() => {
-    return props.groceryList.reduce((acc, item) => acc + item.unitPrice * item.quantity, 0.0);
+    return props.groceryList.reduce((acc, item) => acc + groceryItemCost(item), 0.0);
 });
 </script>
 
@@ -28,7 +29,7 @@ const totalCost = computed(() => {
                     <td>
                         <input type="number" min="0" step="1" v-model="item.quantity" />
                     </td>
-                    <td class="price">{{ (item.unitPrice * item.quantity).toFixed(2) }}</td>
+                    <td class="price">{{ groceryItemCost(item).toFixed(2) }}</td>
                 </tr>
             </tbody>
             <tfoot>
