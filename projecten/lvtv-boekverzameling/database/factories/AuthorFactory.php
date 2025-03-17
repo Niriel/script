@@ -18,7 +18,7 @@ class AuthorFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'biography' => $this->faker->optional()->text,
+            'biography' => $this->faker->optional(0.6)->text,
         ];
     }
 }

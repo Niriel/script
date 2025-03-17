@@ -18,9 +18,17 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'author_id' => Author::inRandomOrder()->first()->id,
+            // Some books may not have an author.
+            'author_id' => (
+                rand(0, 100) < 60 ?
+                Author::inRandomOrder()->first()->id :
+                null),
             'title' => $this->faker->sentence,
-            'isbn' => $this->faker->optional()->isbn13,
+            // Several kinds of ISBN.
+            'isbn' => (
+                rand(0, 100) < 60 ?
+                $this->faker->optional(0.8)->isbn13 :
+                $this->faker->optional(0.8)->isbn10),
         ];
     }
 }
