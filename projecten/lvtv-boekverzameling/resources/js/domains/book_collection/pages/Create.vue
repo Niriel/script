@@ -1,3 +1,5 @@
 <script setup></script>
-<template></template>
+<template>
+    <header><h2>Create</h2></header>
+</template>
 <style scoped></style>

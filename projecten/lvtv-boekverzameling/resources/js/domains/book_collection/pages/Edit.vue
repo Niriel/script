@@ -1,3 +1,7 @@
 <script setup></script>
-<template></template>
+<template>
+    <header>
+        <h2>Edit</h2>
+    </header>
+</template>
 <style scoped></style>
