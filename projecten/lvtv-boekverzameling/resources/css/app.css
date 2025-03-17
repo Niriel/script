@@ -1,12 +1,287 @@
-@import 'tailwindcss';
+/* ======================================================== */
+/*                         CONSTANTS                        */
+/* ======================================================== */
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "../**/*.vue";
+:root {
+    --site_foreground_color: #eee;
+    --site_background_color: #333;
+    --neutral_color: #999;
+    --accent_color: hotpink;
+    --good_color: #04AA6D;
+    --bad_color: #f44336;
+    --button_text_color: #eee;
+    --frame_color: #999;
+    --premium_color: gold;
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --navbar_background_color: purple;
+    
+    --highlight_foreground_color: #fff;
+
+    --radius: 3px;
+}
+
+
+/* ======================================================== */
+/*                      MAIN ELEMENTS                       */
+/* ======================================================== */
+
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    color: var(--site_foreground_color);
+    background-color: var(--site_background_color);
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    color: var(--accent_color);
+    text-align: center;
+    font-size: xx-large;
+}
+
+a {
+    color: var(--site_foreground_color);
+}
+
+a:visited {
+    color: var(--good_color);
+}
+
+a:hover {
+    filter: brightness(130%);
+}
+
+[role="button"] {
+    display: inline-block;
+    box-sizing: border-box;
+    color: var(--button_text_color) !important;
+    background-color: var(--neutral_color);
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin: 8px 0;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+}
+
+::placeholder {
+    font-style: italic;
+}
+
+.left_right:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.nav_top {
+    background-color: var(--navbar_background_color);
+    border: none;
+    border-radius: var(--radius);
+}
+
+.nav_top a {
+    font-size: large;
+    font-weight: bolder;
+    margin: 8px;
+    padding: 16px 24px;
+}
+
+
+/* ======================================================== */
+/*                    FORMS AND BUTTONS                     */
+/* ======================================================== */
+
+ul.errors {
+    color: var(--bad_color);
+    margin-top: 0;
+}
+
+li.error {
+    padding-left: 0px;
+}
+
+/* For content that should not take the whole width of the page.
+   meant for login form, maybe errors, narrow centered on the page. */
+.dialog {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog_title {
+    color: var(--accent_color);
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+.container {
+    padding: 16px;
+}
+
+/* For real forms, not just forms that are wrapping a single button. */
+form.real_form {
+    border: 3px solid var(--frame_color);
+    border-radius: var(--radius);
+}
+
+/* Group label and field together. */
+.form_field {
+    margin: 0.5em 0;
+    line-height: 2em;
+}
+
+.form_submit {
+}
+
+input {
+    accent-color: var(--accent_color);
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent_color);
+    padding: 12px 20px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+}
+
+select {
+    accent-color: var(--accent_color);
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent_color);
+}
+
+textarea {
+    accent-color: var(--accent_color);
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent_color);
+    padding: 12px 20px;
+}
+
+/* Set a style for all buttons */
+button {
+    display: inline-block;
+    box-sizing: border-box;
+    color: var(--button_text_color);
+    background-color: var(--neutral_color);
+    font-size: medium;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    margin: 8px 0;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+}
+
+button.full_width {
+    width: 100%;
+}
+
+button:hover {
+    filter: brightness(120%);
+}
+
+/* For buttons that imply progress: post an article, log in, etc. */
+button.good {
+    background-color: var(--good_color);
+}
+
+/* For buttons that imply danger: cancel, delete article, unsubscribe, etc */
+button.bad {
+    background-color: var(--bad_color);
+}
+
+
+
+/* ======================================================== */
+/*                         ARTICLES                         */
+/* ======================================================== */
+
+.article_box {
+    box-sizing: border-box;
+    margin: 8px 40px;
+    border: 1px solid var(--neutral_color);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+}
+
+.article_header{
+
+}
+
+.article_title {
+    margin-top: 0;
+}
+
+.article_metadata {
+
+}
+
+.author {
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.date{
+    color: var(--neutral_color);
+}
+
+.article_image {
+    text-align: center;
+}
+
+.article_image img {
+    max-width: 1024px;
+    max-height: 1024px;
+    width: auto;
+    height: auto;
+}
+
+.article_content {
+    margin-left: 16px;
+    border-left: 3px solid var(--neutral_color);
+    padding-left: 16px;
+}
+
+.comment_box {
+    box-sizing: border-box;
+    margin: 8px 40px;
+    border: 1px solid var(--neutral_color);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+}
+
+.comment_header {
+
+}
+
+.comment_content {
+    border-left: 2px solid var(--neutral_color);
+    padding-left: 16px;
+}
+
+.premium {
+    color: var(--premium_color) !important;
+    font-weight: bold;
+    letter-spacing: 0.05em;
 }

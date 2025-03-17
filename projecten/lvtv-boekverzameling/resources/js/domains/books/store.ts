@@ -1,12 +1,20 @@
-import { computed, ref } from "vue";
-const axios = require('axios').default;
+import { computed, ref } from 'vue';
+import axios from 'axios';
 
-const books = ref([]);
+interface Book {
+    id: number;
+    title: string;
+    author_id: number;
+    isbn: string;
+    review_ids: number[];
+}
 
-const fetchBooks = async () => {
-    const {data} = await axios.get('api/books');
+const books = ref<Book[]>([]);
+
+export const fetchBooks = async () => {
+    const { data } = await axios.get('/api/books');
     if (!data) return;
     books.value = data;
 }
 
-const getAllBooks = computed(() => books.value);
+export const getAllBooks = computed(() => books.value);

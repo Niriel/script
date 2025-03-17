@@ -6,11 +6,11 @@ const route = useRoute();
 
 <template>
     <header>
-        <h1>Vue groceries</h1>
+        <h1>Boekverzameling</h1>
     </header>
-    <nav>
-        <RouterLink :to="{ name: 'books.overview' }">Overview</RouterLink>
-        <RouterLink :to="{ name: 'books.create' }">Create</RouterLink>
+    <nav class="nav_top">
+        <RouterLink :to="{ name: 'books.overview' }" role="button">Overview</RouterLink>
+        <RouterLink :to="{ name: 'books.create' }" role="button">New book</RouterLink>
     </nav>
     <main>
         <RouterView />
