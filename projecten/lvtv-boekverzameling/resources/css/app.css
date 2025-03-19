@@ -98,6 +98,14 @@ a:hover {
     padding: 16px 24px;
 }
 
+nav menu li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.full_width {
+    width: 100%;
+}
 
 /* ======================================================== */
 /*                    FORMS AND BUTTONS                     */
@@ -146,7 +154,7 @@ form.real_form {
 .form_submit {
 }
 
-input {
+input, select {
     accent-color: var(--accent_color);
     display: inline-block;
     box-sizing: border-box;
@@ -159,13 +167,6 @@ input[type=text], input[type=password], input[type=email] {
     width: 100%;
 }
 
-select {
-    accent-color: var(--accent_color);
-    display: inline-block;
-    box-sizing: border-box;
-    border-radius: var(--radius);
-    border: 1px solid var(--accent_color);
-}
 
 textarea {
     accent-color: var(--accent_color);
@@ -190,10 +191,6 @@ button {
     border: none;
     border-radius: var(--radius);
     padding: 14px 20px;
-}
-
-button.full_width {
-    width: 100%;
 }
 
 button:hover {

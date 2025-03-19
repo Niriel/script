@@ -1,5 +1,4 @@
 <script setup>
-import BaseButton from '../components/BaseButton.vue';
 import { fetchBooks, getAllBooks } from '../store';
 
 fetchBooks();
@@ -9,7 +8,7 @@ const books = getAllBooks;
 </script>
 <template>
     <header>
-        <h2>Overview</h2>
+        <h2>Books overview</h2>
     </header>
     <main>
         <p>Number of books found: {{ books.length }}.</p>

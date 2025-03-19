@@ -9,8 +9,11 @@ const route = useRoute();
         <h1>Boekverzameling</h1>
     </header>
     <nav class="nav_top">
-        <RouterLink :to="{ name: 'books.overview' }" role="button">Overview</RouterLink>
-        <RouterLink :to="{ name: 'books.create' }" role="button">New book</RouterLink>
+        <menu>
+            <li><RouterLink :to="{ name: 'books.overview' }" role="button">Books</RouterLink></li>
+            <li><RouterLink :to="{ name: 'authors.overview' }" role="button">Authors</RouterLink></li>
+            <li><RouterLink :to="{ name: 'books.create' }" role="button">New book</RouterLink></li>
+        </menu>
     </nav>
     <main>
         <RouterView />
