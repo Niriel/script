@@ -1,7 +1,4 @@
 <script setup>
-import { useRoute } from "vue-router";
-
-const route = useRoute();
 </script>
 
 <template>
@@ -10,9 +7,9 @@ const route = useRoute();
     </header>
     <nav class="nav_top">
         <menu>
-            <li><RouterLink :to="{ name: 'books.overview' }" role="button">Books</RouterLink></li>
             <li><RouterLink :to="{ name: 'authors.overview' }" role="button">Authors</RouterLink></li>
-            <li><RouterLink :to="{ name: 'books.create' }" role="button">New book</RouterLink></li>
+            <li><RouterLink :to="{ name: 'books.overview' }" role="button">Books</RouterLink></li>
+            <li><RouterLink :to="{ name: 'reviews.overview' }" role="button">Reviews</RouterLink></li>
         </menu>
     </nav>
     <main>

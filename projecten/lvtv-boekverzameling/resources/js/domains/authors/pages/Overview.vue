@@ -1,9 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { fetchAuthors, getAllAuthors } from '../store';
 
 fetchAuthors();
-
-const authors = getAllAuthors;
 
 </script>
 <template>
@@ -11,9 +9,9 @@ const authors = getAllAuthors;
         <h2>Authors overview</h2>
     </header>
     <main>
-        <p>Number of authors found: {{ authors.length }}.</p>
+        <p>Number of authors found: {{ getAllAuthors.length }}.</p>
         <ul>
-            <li v-for="author in authors">{{ author.name }}</li>
+            <li v-for="author in getAllAuthors">{{ author.name }}</li>
         </ul>
     </main>
 </template>

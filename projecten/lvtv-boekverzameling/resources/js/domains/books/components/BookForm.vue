@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { PropType } from 'vue';
-import { Author, Book, emptyAuthor } from '../store'
+import { Book } from '../store'
+import { getAllAuthors } from '../../authors/store';
 
 const emit = defineEmits(['submit']);
 
-const props = defineProps({
-    book: Object as PropType<Book>,
-    authors: Array as PropType<Author[]>,
+const props = defineProps<{
+    book: Book,
     buttonText: String,
-});
+}>();
 
 // Local copy so we don't mess up the store.
 const localBook = ref({...props.book});
@@ -34,7 +33,7 @@ const localBook = ref({...props.book});
                             <select v-model="localBook.author_id" id="book_author" class="full_width">
                                 <option disabled value="">Select an author</option>
                                 <option value="null">Unknown author</option>
-                                <option v-for="author in authors" :value="author.id">{{ author.name }}</option>
+                                <option v-for="author in getAllAuthors" :value="author.id">{{ author.name }}</option>
                             </select>
                         </div>
 

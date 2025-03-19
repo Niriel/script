@@ -1,11 +1,13 @@
-import AuthorsOverview from './pages/AuthorsOverview.vue';
-import BooksOverview from './pages/BooksOverview.vue';
-import BooksCreate from './pages/BooksCreate.vue';
-import BooksEdit from './pages/BooksEdit.vue';
+import Overview from './pages/Overview.vue';
+import Create from './pages/Create.vue';
+import Edit from './pages/Edit.vue';
+import Show from './pages/Show.vue';
+import Delete from './pages/Delete.vue';
 
 export const routes = [
-    {path: '/', component: BooksOverview, name: 'books.overview'},
-    {path: '/create', component: BooksCreate, name: 'books.create'},
-    {path: '/edit/:id', component: BooksEdit, name: 'books.edit'},
-    {path: '/authors', component: AuthorsOverview, name: 'authors.overview'}
+    {path: '/books', component: Overview, name: 'books.overview', alias: '/'},
+    {path: '/books/create', component: Create, name: 'books.create'},
+    {path: '/books/:id', component: Show, name: 'books.show'},
+    {path: '/books/:id/edit', component: Edit, name: 'books.edit'},
+    {path: '/books/:id/delete', component: Delete, name: 'books.delete'},
 ];

@@ -1,4 +1,5 @@
 <script setup>
+import BookOverview from '../components/BookOverview.vue';
 import { fetchBooks, getAllBooks } from '../store';
 
 fetchBooks();
@@ -13,7 +14,7 @@ const books = getAllBooks;
     <main>
         <p>Number of books found: {{ books.length }}.</p>
         <ul>
-            <li v-for="book in books">{{ book.title }}</li>
+            <li v-for="book in books"><BookOverview :book="book" /></li>
         </ul>
     </main>
 </template>
