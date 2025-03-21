@@ -18,6 +18,7 @@ class AuthorResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'biography' => $this->biography,
+            'book_ids' => $this->books->pluck('id'),
         ];
     }
 }

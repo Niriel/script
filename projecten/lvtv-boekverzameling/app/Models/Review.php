@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
@@ -11,7 +12,7 @@ class Review extends Model
 
     protected $fillable = ['book_id', 'content'];
 
-    public function book()
+    public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);
     }

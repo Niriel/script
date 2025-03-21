@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
-use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-
-
     public function index()
     {
         $books = Book::all();
@@ -25,30 +23,30 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         $validated = $request->validated();
-
         Book::create($validated);
-
+        // We should return the created object,
+        // but we return everything because our front-end
+        // store is dumb and tiny.
         $books = Book::all();
-
         return BookResource::collection($books);
     }
 
-    public function show(string $id)
+    public function show(Book $book)
     {
         //
     }
 
-    public function edit(string $id)
+    public function edit(Book $book)
     {
         //
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
         //
     }
 
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
         //
     }
