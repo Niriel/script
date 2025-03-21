@@ -23,6 +23,24 @@ export const fetchReviews = async () => {
     reviews.value = data;
 }
 
+export const createReview = async (review:Review) => {
+    const { data } = await axios.post('/api/reviews', review);
+    if (!data) return;
+    reviews.value = data;    
+}
+
+export const editReview = async (review:Review) => {
+    const { data } = await axios.put(`/api/reviews/${review.id}`, review);
+    if (!data) return;
+    reviews.value = data;
+}
+
+export const deleteReview = async (review:Review) => {
+    const { data } = await axios.delete(`/api/reviews/${review.id}`);
+    if (!data) return;
+    reviews.value = data;
+}
+
 export const getAllReviews = computed(() => reviews.value);
 export const getReviewById = (id:number) => computed(() => reviews.value.find(item => item.id == id) as Review);
 export const getReviewsByIds = (ids:number[]) => computed(

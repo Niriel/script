@@ -43,11 +43,22 @@ class ReviewController extends Controller
 
     public function update(Request $request, Review $review)
     {
-        //
+        $validated = $request->validated();
+        $review->update($validated);
+        // We should return the created object,
+        // but we return everything because our front-end
+        // store is dumb and tiny.
+        $reviews = Review::all();
+        return ReviewResource::collection($reviews);
     }
 
     public function destroy(Review $review)
     {
-        //
+        $review->delete();
+        // We should return the created object,
+        // but we return everything because our front-end
+        // store is dumb and tiny.
+        $reviews = Review::all();
+        return ReviewResource::collection($reviews);
     }
 }

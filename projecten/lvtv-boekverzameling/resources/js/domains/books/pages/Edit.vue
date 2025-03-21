@@ -26,7 +26,7 @@ const onBookFormSumbitted = (localBook: Book) => {
 </script>
 <template>
     <header>
-        <h2>Create</h2>
+        <h2>Edit</h2>
     </header>
     <main>
         <BookForm :book="book" :buttonText="'Edit'" @submit="onBookFormSumbitted"/>

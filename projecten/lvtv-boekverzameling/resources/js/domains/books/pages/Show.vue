@@ -7,6 +7,7 @@ import { Book, deleteBook, getBookById } from '../store';
 import { fetchAuthors, getAuthorById } from '../../authors/store';
 import { fetchReviews, getReviewsByIds } from '../../reviews/store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
+import ReviewDisplay from '../../reviews/components/ReviewDisplay.vue';
 
 const route = useRoute();
 
@@ -49,7 +50,7 @@ const confirmDeleteBook = (book: Book) => {
                 <template v-if="maybe_reviews !== null">
                     <p>Number of reviews: {{ maybe_reviews.length }}</p>
                     <ul>
-                        <li v-for="review in maybe_reviews">{{ review.content }}</li>
+                        <li v-for="review in maybe_reviews"><ReviewDisplay :review="review"/></li>
                     </ul>
                 </template>
             </template>
