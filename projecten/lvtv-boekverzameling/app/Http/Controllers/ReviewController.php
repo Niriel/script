@@ -31,22 +31,22 @@ class ReviewController extends Controller
         return ReviewResource::collection($reviews);
     }
 
-    public function show(string $id)
+    public function show(Review $review)
+    {
+        return new ReviewResource($review);
+    }
+
+    public function edit(Review $review)
     {
         //
     }
 
-    public function edit(string $id)
+    public function update(Request $request, Review $review)
     {
         //
     }
 
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
+    public function destroy(Review $review)
     {
         //
     }

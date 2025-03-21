@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id')->nullable()->constrained()->onDelete('set null');;
-            $table->string('title');
-            $table->string('isbn')->nullable();
+            $table->string('title', length: 255);
+            $table->string('isbn', length: 30)->nullable();
             $table->timestamps();
         });
     }

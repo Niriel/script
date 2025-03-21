@@ -22,8 +22,8 @@ class StoreAuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50',
-            'biography' => 'nullable|string',
+            'name' => 'required|string|max:50|unique:authors',
+            'biography' => 'nullable|string|max:5000',
         ];
     }
 }

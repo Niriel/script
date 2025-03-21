@@ -12,6 +12,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
+
         return BookResource::collection($books);
     }
 
@@ -33,7 +34,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        //
+        return new BookResource($book);
     }
 
     public function edit(Book $book)

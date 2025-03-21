@@ -33,7 +33,7 @@ class AuthorController extends Controller
 
     public function show(Author $author)
     {
-        //
+        return new AuthorResource($author);
     }
 
     public function edit(Author $author)

@@ -6,6 +6,7 @@ export interface Book {
     title: string;
     author_id: number|null;
     isbn: string|null;
+    review_ids: number[];
 }
 
 export const emptyBook = ():Book => {
@@ -14,6 +15,7 @@ export const emptyBook = ():Book => {
         title: '',
         author_id: null,
         isbn: null,
+        review_ids: [],
     }
 }
 
