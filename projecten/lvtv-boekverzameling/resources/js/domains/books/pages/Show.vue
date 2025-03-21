@@ -3,7 +3,7 @@ import { ComputedRef } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { maybe } from '../../../utils/funcs';
-import { Book, getBookById } from '../store';
+import { Book, deleteBook, getBookById } from '../store';
 import { fetchAuthors, getAuthorById } from '../../authors/store';
 import { fetchReviews, getReviewsByIds } from '../../reviews/store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
@@ -24,9 +24,14 @@ const maybe_review_ids = maybe((book:ComputedRef<Book>) => book.value.review_ids
 const maybe_reviews = maybe(getReviewsByIds)(maybe_review_ids);
 
 const router = useRouter();
-const goToEditBook = (book_id:number) => {
-    router.push({name:'books.edit', params:{id:book_id}});
+const goToEditBook = (book: Book) => {
+    router.push({name:'books.edit', params:{id:book.id}});
 };
+
+const confirmDeleteBook = (book: Book) => {
+    deleteBook(book);
+    router.push({name: 'books.overview'});
+}
 </script>
 
 <template>
@@ -38,7 +43,8 @@ const goToEditBook = (book_id:number) => {
                 <p v-if="maybe_author">by <AuthorLink :author="maybe_author" /></p>
                 <p v-else>by <em>unknown author</em></p>
 
-                <button @click="goToEditBook(maybe_book.id)">Edit book</button>
+                <button @click="goToEditBook(maybe_book)">Edit book</button>
+                <button @click="confirmDeleteBook(maybe_book)" class="bad">Delete book</button>
 
                 <template v-if="maybe_reviews !== null">
                     <p>Number of reviews: {{ maybe_reviews.length }}</p>

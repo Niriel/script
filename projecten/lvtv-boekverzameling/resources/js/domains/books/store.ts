@@ -36,7 +36,13 @@ export const createBook = async (book:Book) => {
 export const editBook = async (book:Book) => {
     const { data } = await axios.put(`/api/books/${book.id}`, book);
     if (!data) return;
-    books.value = data;    
+    books.value = data;
+}
+
+export const deleteBook = async (book:Book) => {
+    const { data } = await axios.delete(`/api/books/${book.id}`);
+    if (!data) return;
+    books.value = data;
 }
 
 export const getAllBooks = computed(() => books.value);
