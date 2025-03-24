@@ -34,22 +34,36 @@ const confirmDeleteBook = (book: Book) => {
 </script>
 
 <template>
-    <header>
-        <h2>Books Show</h2>
-        <main>
-            <template v-if="book">
-                <h3>{{ book.title }}</h3>
-                <p v-if="author">by <AuthorLink :author="author" /></p>
-                <p v-else>by <em>unknown author</em></p>
-
+    <template v-if="book">
+        <header class="left_right">
+            <hgroup class="left">
+                <h2>{{ book.title }}</h2>
+            </hgroup>
+            <div class="right">
                 <button @click="goToEditBook(book)">Edit book</button>
                 <button @click="confirmDeleteBook(book)" class="bad">Delete book</button>
-
+            </div>
+        </header>
+        <main>
+            <section>
+                <header><h3>Details about this book</h3></header>
+                <main>
+                    <dl>
+                        <dt>Title:</dt>
+                        <dd>{{ book.title }}</dd>
+                        <dt>Author:</dt>
+                        <dd v-if="author"><AuthorLink :author="author"/></dd>
+                        <dd v-else><em>unknown</em></dd>
+                    </dl>
+                </main>
+            </section>
+            <section>
+                <header><h3>Reviews</h3></header>
                 <ReviewList :book_id="book.id" />
-            </template>
-            <template v-else>
-                <p>404</p>
-            </template>
+            </section>
         </main>
-    </header>
+    </template>
+    <template v-else>
+        404
+    </template>
 </template>

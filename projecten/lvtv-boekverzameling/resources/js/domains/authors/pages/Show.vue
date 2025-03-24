@@ -13,14 +13,18 @@ if (typeof route.params.id === 'string') {
 }
 const author = maybe(getAuthorById)(author_id);
 const books = maybe(getBooksByAuthorId)(author_id);
-
 </script>
+
 <template>
     <template v-if="author">
-        <header>
-            <hgroup>
+        <header class="left_right">
+            <hgroup class="left">
                 <h2>{{ author.name }}</h2>
             </hgroup>
+            <div class="right">
+                <button>Edit author</button>
+                <button class="bad">Delete author</button>
+            </div>
         </header>
         <main>
             <section>
@@ -37,9 +41,10 @@ const books = maybe(getBooksByAuthorId)(author_id);
                     </dl>
                 </main>
             </section>
+
             <section>
                 <header>
-                    <h3>Books by this author</h3>
+                    <h3>Bibliography</h3>
                 </header>
                 <main>
                     <p>Number of books: {{ books===null ? 0 : books.length }}</p>
