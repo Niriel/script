@@ -1,18 +1,16 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { fetchAuthors } from '../../authors/store';
 import { fetchBooks, getAllBooks } from '../store';
 import BookHeadline from '../components/BookHeadline.vue';
-
+import { fetchAuthors } from '../../authors/store';
 
 fetchBooks();
 fetchAuthors();
-
 const books = getAllBooks;
 
 const router = useRouter();
 const goToCreateBook = () => {
-    router.push({ name:'books.show' });
+    router.push({ name:'books.create' });
 };
 </script>
 <template>

@@ -43,3 +43,5 @@ export const deleteAuthor = async (author: Author) => {
 
 export const getAllAuthors = computed(() => authors.value);
 export const getAuthorById = (id:number) => computed(() => authors.value.find(item => item.id == id) as Author);
+
+fetchAuthors();

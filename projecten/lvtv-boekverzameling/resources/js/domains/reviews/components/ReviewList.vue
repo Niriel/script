@@ -40,9 +40,6 @@ const onDeleteClicked = (review: Review) => {
 
 <template>
     <p>Number of reviews: {{ reviews.length }}.</p>
-    <p><samp>book_id == {{ book_id }}</samp></p>
-    <p><samp>editId == {{ editId }}</samp></p>
-    
     <div>
         <p>Share your thoughts:</p>
         <ReviewMiniCreate @created="onCreated" />

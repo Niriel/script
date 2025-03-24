@@ -9,8 +9,8 @@ const router = useRouter();
 
 const book = ref(emptyBook());
 
-const onBookFormSumbitted = (localBook: Book) => {
-    createBook(localBook);
+const onBookFormSumbitted = async (localBook: Book) => {
+    await createBook(localBook);
     router.push({ name: 'books.overview' });
 }
 

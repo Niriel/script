@@ -18,8 +18,8 @@ fetchBooks();
 
 const book = getBookById(book_id);
 
-const onBookFormSumbitted = (localBook: Book) => {
-    editBook(localBook);
+const onBookFormSumbitted = async (localBook: Book) => {
+    await editBook(localBook);
     router.push({ name: 'books.overview' });
 }
 

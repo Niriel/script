@@ -46,3 +46,5 @@ export const getReviewById = (id:number) => computed(() => reviews.value.find(it
 export const getReviewsByBookId = (book_id: number) => computed(
     () => reviews.value.filter(review => review.book_id === book_id) as Review[]
 );
+
+fetchReviews();
