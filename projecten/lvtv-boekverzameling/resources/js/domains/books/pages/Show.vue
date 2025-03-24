@@ -14,13 +14,13 @@ const route = useRoute();
 fetchAuthors();
 fetchReviews();
 
-let maybe_book_id: number|null = null;
+let book_id: number|null = null;
 if (typeof route.params.id === 'string') {
-    maybe_book_id = parseInt(route.params.id);
+    book_id = parseInt(route.params.id);
 }
-const maybe_book = maybe(getBookById)(maybe_book_id);
-const maybe_author_id = maybe((book:ComputedRef<Book>) => book.value.author_id)(maybe_book);
-const maybe_author = maybe(getAuthorById)(maybe_author_id);
+const book = maybe(getBookById)(book_id);
+const author_id = maybe((someBook:ComputedRef<Book>) => someBook.value.author_id)(book);
+const author = maybe(getAuthorById)(author_id);
 
 const router = useRouter();
 const goToEditBook = (book: Book) => {
@@ -37,15 +37,15 @@ const confirmDeleteBook = (book: Book) => {
     <header>
         <h2>Books Show</h2>
         <main>
-            <template v-if="maybe_book">
-                <h3>{{ maybe_book.title }}</h3>
-                <p v-if="maybe_author">by <AuthorLink :author="maybe_author" /></p>
+            <template v-if="book">
+                <h3>{{ book.title }}</h3>
+                <p v-if="author">by <AuthorLink :author="author" /></p>
                 <p v-else>by <em>unknown author</em></p>
 
-                <button @click="goToEditBook(maybe_book)">Edit book</button>
-                <button @click="confirmDeleteBook(maybe_book)" class="bad">Delete book</button>
+                <button @click="goToEditBook(book)">Edit book</button>
+                <button @click="confirmDeleteBook(book)" class="bad">Delete book</button>
 
-                <ReviewList :book_id="maybe_book.id" />
+                <ReviewList :book_id="book.id" />
             </template>
             <template v-else>
                 <p>404</p>
