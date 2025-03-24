@@ -21,19 +21,19 @@ const onEditCanceled = () => {
     editId.value = -1;
 }
 
-const onEditConfirmed = (review: Review) => {
-    editReview(review);
+const onEditConfirmed = async (review: Review) => {
+    await editReview(review);
     editId.value = -1;
 }
 
-const onCreated = (review: Review) => {
+const onCreated = async (review: Review) => {
     review.book_id = props.book_id;
-    createReview(review);
+    await createReview(review);
     editId.value = -1;
 }
 
-const onDeleteClicked = (review: Review) => {
-    deleteReview(review);
+const onDeleteClicked = async (review: Review) => {
+    await deleteReview(review);
     editId.value = -1;
 }
 </script>
