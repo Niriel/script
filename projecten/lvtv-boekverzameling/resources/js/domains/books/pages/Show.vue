@@ -5,9 +5,9 @@ import { useRoute, useRouter } from 'vue-router';
 import { maybe } from '../../../utils/funcs';
 import { Book, deleteBook, getBookById } from '../store';
 import { fetchAuthors, getAuthorById } from '../../authors/store';
-import { fetchReviews, getReviewsByIds } from '../../reviews/store';
+import { fetchReviews } from '../../reviews/store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
-import ReviewDisplay from '../../reviews/components/ReviewDisplay.vue';
+import ReviewList from '../../reviews/components/ReviewList.vue';
 
 const route = useRoute();
 
@@ -21,8 +21,6 @@ if (typeof route.params.id === 'string') {
 const maybe_book = maybe(getBookById)(maybe_book_id);
 const maybe_author_id = maybe((book:ComputedRef<Book>) => book.value.author_id)(maybe_book);
 const maybe_author = maybe(getAuthorById)(maybe_author_id);
-const maybe_review_ids = maybe((book:ComputedRef<Book>) => book.value.review_ids)(maybe_book);
-const maybe_reviews = maybe(getReviewsByIds)(maybe_review_ids);
 
 const router = useRouter();
 const goToEditBook = (book: Book) => {
@@ -47,12 +45,7 @@ const confirmDeleteBook = (book: Book) => {
                 <button @click="goToEditBook(maybe_book)">Edit book</button>
                 <button @click="confirmDeleteBook(maybe_book)" class="bad">Delete book</button>
 
-                <template v-if="maybe_reviews !== null">
-                    <p>Number of reviews: {{ maybe_reviews.length }}</p>
-                    <ul>
-                        <li v-for="review in maybe_reviews"><ReviewDisplay :review="review"/></li>
-                    </ul>
-                </template>
+                <ReviewList :book_id="maybe_book.id" />
             </template>
             <template v-else>
                 <p>404</p>

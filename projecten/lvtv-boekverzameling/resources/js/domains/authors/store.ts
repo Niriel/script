@@ -23,19 +23,19 @@ export const fetchAuthors = async () => {
     authors.value = data;
 }
 
-export const createReview = async (author: Author) => {
+export const createAuthor = async (author: Author) => {
     const { data } = await axios.post('/api/authors', author);
     if (!data) return;
     authors.value = data;    
 }
 
-export const editReview = async (author: Author) => {
+export const editAuthor = async (author: Author) => {
     const { data } = await axios.put(`/api/authors/${author.id}`, author);
     if (!data) return;
     authors.value = data;
 }
 
-export const deleteReview = async (author: Author) => {
+export const deleteAuthor = async (author: Author) => {
     const { data } = await axios.delete(`/api/authors/${author.id}`);
     if (!data) return;
     authors.value = data;

@@ -2,25 +2,33 @@
 import { ref } from 'vue';
 import { Review } from '../store'
 
-const emit = defineEmits(['submit']);
+const emit = defineEmits(['submitted', 'canceled']);
 
-const props = defineProps<{
+defineProps<{
     review: Review,
-    buttonText: String,
+    buttonText: string,
+    showCancel: boolean,
 }>();
 
-// Local copy so we don't mess up the store.
-const localReview = ref({...props.review});
+const performSubmit = (r: Review) => {
+    console.log('form submit ', r);
+    emit('submitted', r);
+}
 
+const performCancel = () => {
+    console.log('form cancel');
+    emit('canceled');
+}
 </script>
+
 <template>
-    <form @submit.prevent="$emit('submit', localReview)" class="real_form">
+    <form @submit.prevent="performSubmit(review)" class="real_form">
         <div class="container">
             <div class="form_field">
-                <label for="review_content">Title:</label>
-                <textarea v-model="localReview.content" id="review_content" required>
-                </textarea>
+                <label for="review_content">Review content:</label>
+                <textarea v-model="review.content" id="review_content" required></textarea>
             </div>
+            <button v-if="showCancel" @click="performCancel">Cancel</button>
             <button type="submit" class="form_submit good">{{ buttonText }}</button>
         </div>
     </form>

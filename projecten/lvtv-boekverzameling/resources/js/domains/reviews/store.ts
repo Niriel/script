@@ -43,6 +43,6 @@ export const deleteReview = async (review:Review) => {
 
 export const getAllReviews = computed(() => reviews.value);
 export const getReviewById = (id:number) => computed(() => reviews.value.find(item => item.id == id) as Review);
-export const getReviewsByIds = (ids:number[]) => computed(
-    () => reviews.value.filter(review => ids.includes(review.id))
+export const getReviewsByBookId = (book_id: number) => computed(
+    () => reviews.value.filter(review => review.book_id === book_id) as Review[]
 );
