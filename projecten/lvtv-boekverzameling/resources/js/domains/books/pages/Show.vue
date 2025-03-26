@@ -3,9 +3,8 @@ import { ComputedRef } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { maybe } from '../../../utils/funcs';
-import { Book, deleteBook, fetchBooks, getBookById } from '../store';
-import { fetchAuthors, getAuthorById } from '../../authors/store';
-import { fetchReviews } from '../../reviews/store';
+import { Book, deleteBook, getBookById } from '../store';
+import { getAuthorById } from '../../authors/store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
 import ReviewList from '../../reviews/components/ReviewList.vue';
 
@@ -15,10 +14,6 @@ let book_id: number|null = null;
 if (typeof route.params.id === 'string') {
     book_id = parseInt(route.params.id);
 }
-
-fetchAuthors();
-fetchBooks()
-fetchReviews();
 
 const book = maybe(getBookById)(book_id);
 const author_id = maybe((someBook:ComputedRef<Book>) => someBook.value.author_id)(book);

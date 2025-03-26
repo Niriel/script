@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { maybe } from '../../../utils/funcs';
-import { fetchAuthors, getAuthorById } from '../store';
-import { fetchBooks, getBooksByAuthorId } from '../../books/store';
+import { getAuthorById } from '../store';
+import { getBooksByAuthorId } from '../../books/store';
 import BookLink from '../../books/components/BookLink.vue';
 
 const route = useRoute();
-
-fetchAuthors();
-fetchBooks();
 
 let author_id: number|null = null;
 if (typeof route.params.id === 'string') {

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 
-import { Book, editBook, fetchBooks, getBookById } from '../store';
-import { fetchAuthors } from '../../authors/store';
+import { Book, editBook, getBookById } from '../store';
 import BookForm from '../components/BookForm.vue';
 
 const route = useRoute();
@@ -14,9 +13,6 @@ if (typeof route.params.id === 'string') {
 } else {
     // TODO: WHAT IF string[]?
 }
-
-fetchBooks();
-fetchAuthors();
 
 const book = getBookById(book_id);
 

@@ -1,4 +1,11 @@
 <script setup>
+import { fetchAuthors } from './domains/authors/store';
+import { fetchBooks } from './domains/books/store';
+import { fetchReviews } from './domains/reviews/store';
+
+fetchAuthors();
+fetchBooks();
+fetchReviews();
 </script>
 
 <template>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import AuthorLink from '../components/AuthorLink.vue';
-import { fetchAuthors, getAllAuthors } from '../store';
-
-fetchAuthors();
+import { getAllAuthors } from '../store';
 
 const router = useRouter();
 const goToCreateAuthor = () => {

@@ -1,11 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { fetchBooks, getAllBooks } from '../store';
+import { getAllBooks } from '../store';
 import BookHeadline from '../components/BookHeadline.vue';
-import { fetchAuthors } from '../../authors/store';
 
-fetchBooks();
-fetchAuthors();
 const books = getAllBooks;
 
 const router = useRouter();

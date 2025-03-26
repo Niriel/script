@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { fetchReviews, getAllReviews } from '../store';
-
-
-fetchReviews();
+import { getAllReviews } from '../store';
 
 </script>
 <template>
