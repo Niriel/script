@@ -9,6 +9,9 @@ const props = defineProps<{
     book_id: number;
 }>();
 
+
+console.log('DEBUGGING');
+
 const reviews = getReviewsByBookId(props.book_id);
 
 const editId = ref(-1);
@@ -41,7 +44,7 @@ const onDeleteClicked = async (review: Review) => {
 <template>
     <p>Number of reviews: {{ reviews.length }}.</p>
     <div>
-        <p>Share your thoughts:</p>
+        <p>Write a review:</p>
         <ReviewMiniCreate @created="onCreated" />
     </div>
 

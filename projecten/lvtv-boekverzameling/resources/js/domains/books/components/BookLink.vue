@@ -7,7 +7,5 @@ defineProps<{
 </script>
 
 <template>
-    <RouterLink :to="{ name: 'books.show', params: { id:book.id }}">
-    {{ book.title }}
-    </RouterLink>
+    <RouterLink :to="{ name: 'books.show', params: { id:book.id }}">{{ book.title }}</RouterLink>
 </template>

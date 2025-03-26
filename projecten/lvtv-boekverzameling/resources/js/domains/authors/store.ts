@@ -41,7 +41,5 @@ export const deleteAuthor = async (author: Author) => {
     authors.value = data;
 }
 
-export const getAllAuthors = computed(() => authors.value);
-export const getAuthorById = (id:number) => computed(() => authors.value.find(item => item.id == id) as Author);
-
-fetchAuthors();
+export const getAllAuthors = computed<Author[]>(() => authors.value);
+export const getAuthorById = (id:number) => computed<Author>(() => authors.value.find(item => item.id === id) as Author);

@@ -41,10 +41,8 @@ export const deleteReview = async (review:Review) => {
     reviews.value = data;
 }
 
-export const getAllReviews = computed(() => reviews.value);
-export const getReviewById = (id:number) => computed(() => reviews.value.find(item => item.id == id) as Review);
-export const getReviewsByBookId = (book_id: number) => computed(
+export const getAllReviews = computed<Review[]>(() => reviews.value);
+export const getReviewById = (id:number) => computed<Review>(() => reviews.value.find(item => item.id === id) as Review);
+export const getReviewsByBookId = (book_id: number) => computed<Review[]>(
     () => reviews.value.filter(review => review.book_id === book_id) as Review[]
 );
-
-fetchReviews();

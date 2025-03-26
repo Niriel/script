@@ -3,7 +3,7 @@ import { ComputedRef } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { maybe } from '../../../utils/funcs';
-import { Book, deleteBook, getBookById } from '../store';
+import { Book, deleteBook, fetchBooks, getBookById } from '../store';
 import { fetchAuthors, getAuthorById } from '../../authors/store';
 import { fetchReviews } from '../../reviews/store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
@@ -11,13 +11,15 @@ import ReviewList from '../../reviews/components/ReviewList.vue';
 
 const route = useRoute();
 
-fetchAuthors();
-fetchReviews();
-
 let book_id: number|null = null;
 if (typeof route.params.id === 'string') {
     book_id = parseInt(route.params.id);
 }
+
+fetchAuthors();
+fetchBooks()
+fetchReviews();
+
 const book = maybe(getBookById)(book_id);
 const author_id = maybe((someBook:ComputedRef<Book>) => someBook.value.author_id)(book);
 const author = maybe(getAuthorById)(author_id);
@@ -36,9 +38,15 @@ const confirmDeleteBook = (book: Book) => {
 <template>
     <template v-if="book">
         <header class="left_right">
-            <hgroup class="left">
+            <div class="left">
+                <div class="category">Book</div>
                 <h2>{{ book.title }}</h2>
-            </hgroup>
+                <div>
+                    by
+                    <AuthorLink v-if="author" :author="author"/>
+                    <em v-else>unknown</em>
+                </div>
+            </div>
             <div class="right">
                 <button @click="goToEditBook(book)">Edit book</button>
                 <button @click="confirmDeleteBook(book)" class="bad">Delete book</button>

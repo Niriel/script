@@ -2,6 +2,7 @@
 import { useRoute, useRouter } from 'vue-router';
 
 import { Book, editBook, fetchBooks, getBookById } from '../store';
+import { fetchAuthors } from '../../authors/store';
 import BookForm from '../components/BookForm.vue';
 
 const route = useRoute();
@@ -15,6 +16,7 @@ if (typeof route.params.id === 'string') {
 }
 
 fetchBooks();
+fetchAuthors();
 
 const book = getBookById(book_id);
 

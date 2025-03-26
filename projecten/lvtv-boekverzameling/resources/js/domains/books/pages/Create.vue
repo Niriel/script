@@ -3,9 +3,12 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { Book, createBook, emptyBook } from '../store';
+import { fetchAuthors } from '../../authors/store';
 import BookForm from '../components/BookForm.vue';
 
 const router = useRouter();
+
+fetchAuthors();
 
 const book = ref(emptyBook());
 

@@ -13,13 +13,18 @@ const goToCreateBook = () => {
     router.push({ name:'books.create' });
 };
 </script>
+
 <template>
-    <header>
-        <h2>Books overview</h2>
+    <header class="left_right">
+        <div class="left">
+            <h1>Books</h1>
+        </div>
+        <div class="right">
+            <button @click="goToCreateBook">Add a book</button>
+        </div>
     </header>
     <main>
         <p>Number of books found: {{ books.length }}.</p>
-        <button @click="goToCreateBook">Add a book to the collection</button>
         <ul v-if="books">
             <li v-for="book in books"><BookHeadline :book="book" /></li>
         </ul>

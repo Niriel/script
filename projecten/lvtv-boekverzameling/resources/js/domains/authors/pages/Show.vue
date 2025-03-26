@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { maybe } from '../../../utils/funcs';
-import { getAuthorById } from '../store';
-import { getBooksByAuthorId } from '../../books/store';
+import { fetchAuthors, getAuthorById } from '../store';
+import { fetchBooks, getBooksByAuthorId } from '../../books/store';
 import BookLink from '../../books/components/BookLink.vue';
 
 const route = useRoute();
+
+fetchAuthors();
+fetchBooks();
 
 let author_id: number|null = null;
 if (typeof route.params.id === 'string') {
@@ -19,7 +22,8 @@ const books = maybe(getBooksByAuthorId)(author_id);
     <template v-if="author">
         <header class="left_right">
             <hgroup class="left">
-                <h2>{{ author.name }}</h2>
+                <div class="category">Author</div>
+                <h1>{{ author.name }}</h1>
             </hgroup>
             <div class="right">
                 <button>Edit author</button>
@@ -29,14 +33,18 @@ const books = maybe(getBooksByAuthorId)(author_id);
         <main>
             <section>
                 <header>
-                    <h3>Details about this author</h3>
+                    <h2>Details about this author</h2>
                 </header>
                 <main>
                     <dl>
                         <dt>Name:</dt>
                         <dd>{{ author.name }}</dd>
                         <dt>Biography:</dt>
-                        <dd v-if="author.biography">{{ author.biography }}</dd>
+                        <dd v-if="author.biography">
+                            <blockquote>
+                                {{ author.biography }}
+                            </blockquote>
+                        </dd>
                         <dd v-else><em>none</em></dd>
                     </dl>
                 </main>
@@ -44,10 +52,10 @@ const books = maybe(getBooksByAuthorId)(author_id);
 
             <section>
                 <header>
-                    <h3>Bibliography</h3>
+                    <h2>Bibliography</h2>
                 </header>
                 <main>
-                    <p>Number of books: {{ books===null ? 0 : books.length }}</p>
+                    <p>Number of books: {{ books===null ? 0 : books.length }}.</p>
                     <ul v-if="books !== null">
                         <li v-for="book in books">
                             <BookLink :book="book" />

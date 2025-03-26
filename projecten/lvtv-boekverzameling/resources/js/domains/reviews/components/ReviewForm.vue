@@ -22,7 +22,7 @@ const performCancel = () => {
 </script>
 
 <template>
-    <form @submit.prevent="performSubmit(review)" class="real_form">
+    <form @submit.prevent="performSubmit(review)" >
         <div class="container">
             <div class="form_field">
                 <label for="review_content">Review content:</label>
