@@ -3,17 +3,19 @@
 /* ======================================================== */
 
 :root {
-    --site_foreground_color: #eee;
-    --site_background_color: #333;
-    --neutral_color: #999;
-    --accent_color: hotpink;
+    --site_background_color: white;
+    --site_primary_text_color: #15141a;
+    --site_secondary_text_color: #5b5b66;
+    --neutral_color: #ededf0;
+    --accent_color: rgb(50, 104, 145);
     --good_color: #04AA6D;
     --bad_color: #f44336;
     --button_text_color: #eee;
+    --button_background_color: #333;
     --frame_color: #999;
     --premium_color: gold;
 
-    --navbar_background_color: purple;
+    --navbar_background_color: #ddd;
     
     --highlight_foreground_color: #fff;
 
@@ -27,62 +29,50 @@
 
 body {
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    color: var(--site_foreground_color);
+    color: var(--site_primary_text_color);
     background-color: var(--site_background_color);
-    max-width: 1500px;
+    margin: 0;
+}
+
+.website_header {
+    width: 100%;
+}
+
+.website_content {
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
-h1 {
-    color: var(--accent_color);
+.website_footer {
+    width: 100%;
+    margin: 1em 0;
+    border-top: 1px solid var(--neutral_color);
+}
+
+/* The banner provided on content pages. Contains log-in button, today's date, site logo, nav bar, etc. */
+.website_full_banner {
+    width: 100%;
+}
+
+/* Used for simple utility pages, such as a login form. Do not overload a simple form with a complete header full of world news.
+ * Typically, just show the website logo that links to the index.
+ */
+.website_simple_banner {
+    width: 100%;
+    box-shadow: 0px 0.125em 0.2em var(--neutral_color);
+    margin-bottom: 1em;
+}
+
+.website_simple_logo {
     text-align: center;
+    font-family: 'Times New Roman', 'Georgia', Times, serif;
     font-size: xx-large;
+    padding: 0.25em 0;
 }
 
-a {
-    color: var(--site_foreground_color);
-}
-
-a:visited {
-    color: var(--good_color);
-}
-
-a:hover {
-    filter: brightness(130%);
-}
-
-[role="button"] {
-    display: inline-block;
-    box-sizing: border-box;
-    color: var(--button_text_color) !important;
-    background-color: var(--neutral_color);
-    font-size: medium;
-    font-weight: bold;
+.website_simple_logo a {
     text-decoration: none;
-    letter-spacing: 0.05em;
-    margin: 8px 0;
-    border: none;
-    border-radius: var(--radius);
-    padding: 14px 20px;
-}
-
-::placeholder {
-    font-style: italic;
-}
-
-.left_right:after {
-    display: block;
-    clear: both;
-    content: '';
-}
-
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
 }
 
 .nav_top {
@@ -102,6 +92,47 @@ nav menu li {
     display: inline-block;
     list-style-type: none;
 }
+
+nav menu li + li {
+    padding-left: 1em;
+}
+
+h1, h2, h3 {
+    font-family:'Times New Roman', 'Georgia', Times, serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: xx-large;
+}
+
+a {
+    color: var(--site_primary_text_color);
+}
+
+a:visited {
+    color: var(--good_color);
+}
+
+a:hover {
+    filter: brightness(130%);
+}
+
+.left_right:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
 
 .full_width {
     width: 100%;
@@ -151,9 +182,6 @@ form.real_form {
     line-height: 2em;
 }
 
-.form_submit {
-}
-
 input, select {
     accent-color: var(--accent_color);
     display: inline-block;
@@ -167,6 +195,9 @@ input[type=text], input[type=password], input[type=email] {
     width: 100%;
 }
 
+::placeholder {
+    font-style: italic;
+}
 
 textarea {
     accent-color: var(--accent_color);
@@ -183,7 +214,7 @@ button {
     display: inline-block;
     box-sizing: border-box;
     color: var(--button_text_color);
-    background-color: var(--neutral_color);
+    background-color: var(--button_background_color);
     font-size: medium;
     font-weight: bold;
     letter-spacing: 0.05em;
@@ -194,7 +225,7 @@ button {
 }
 
 button:hover {
-    filter: brightness(120%);
+    filter: brightness(130%);
 }
 
 /* For buttons that imply progress: post an article, log in, etc. */
