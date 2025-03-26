@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import AuthorLink from '../components/AuthorLink.vue';
 import { fetchAuthors, getAllAuthors } from '../store';
 
 fetchAuthors();
-
 </script>
+
 <template>
     <header>
         <h2>Authors overview</h2>
@@ -11,7 +12,7 @@ fetchAuthors();
     <main>
         <p>Number of authors found: {{ getAllAuthors.length }}.</p>
         <ul>
-            <li v-for="author in getAllAuthors">{{ author.name }}</li>
+            <li v-for="author in getAllAuthors"><AuthorLink :author="author" /></li>
         </ul>
     </main>
 </template>

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreReviewRequest;
+use App\Http\Requests\UpdateReviewRequest;
 use App\Http\Resources\ReviewResource;
 use App\Models\Review;
 
@@ -31,23 +31,34 @@ class ReviewController extends Controller
         return ReviewResource::collection($reviews);
     }
 
-    public function show(string $id)
+    public function show(Review $review)
+    {
+        return new ReviewResource($review);
+    }
+
+    public function edit(Review $review)
     {
         //
     }
 
-    public function edit(string $id)
+    public function update(UpdateReviewRequest $request, Review $review)
     {
-        //
+        $validated = $request->validated();
+        $review->update($validated);
+        // We should return the created object,
+        // but we return everything because our front-end
+        // store is dumb and tiny.
+        $reviews = Review::all();
+        return ReviewResource::collection($reviews);
     }
 
-    public function update(Request $request, string $id)
+    public function destroy(Review $review)
     {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        $review->delete();
+        // We should return the created object,
+        // but we return everything because our front-end
+        // store is dumb and tiny.
+        $reviews = Review::all();
+        return ReviewResource::collection($reviews);
     }
 }

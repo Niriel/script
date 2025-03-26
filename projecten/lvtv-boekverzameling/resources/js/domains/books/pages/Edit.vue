@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 
-import { Book, fetchBooks, getBookById } from '../store';
+import { Book, editBook, fetchBooks, getBookById } from '../store';
 import BookForm from '../components/BookForm.vue';
 
 const route = useRoute();
@@ -18,16 +18,15 @@ fetchBooks();
 
 const book = getBookById(book_id);
 
-const onBookFormSumbitted = (localBook: Book) => {
-    // editBook(localBook);
-    console.log(book);
+const onBookFormSumbitted = async (localBook: Book) => {
+    await editBook(localBook);
     router.push({ name: 'books.overview' });
 }
 
 </script>
 <template>
     <header>
-        <h2>Create</h2>
+        <h2>Edit</h2>
     </header>
     <main>
         <BookForm :book="book" :buttonText="'Edit'" @submit="onBookFormSumbitted"/>

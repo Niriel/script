@@ -32,7 +32,7 @@ const localBook = ref({...props.book});
                             <label for="book_author">Author:</label><br/>
                             <select v-model="localBook.author_id" id="book_author" class="full_width">
                                 <option disabled value="">Select an author</option>
-                                <option value="null">Unknown author</option>
+                                <option :value="null">Unknown author</option>
                                 <option v-for="author in getAllAuthors" :value="author.id">{{ author.name }}</option>
                             </select>
                         </div>
