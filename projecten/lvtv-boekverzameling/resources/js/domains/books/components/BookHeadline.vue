@@ -15,6 +15,6 @@ const author = maybe(getAuthorById)(props.book.author_id);
 
 <template>
     <BookLink :book="book" />
-    by
+    <span class="by">by</span>
     <AuthorLink :author="author" />
 </template>

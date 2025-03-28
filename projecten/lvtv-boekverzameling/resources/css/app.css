@@ -300,7 +300,10 @@ button.bad {
     text-decoration: underline;
     text-decoration-color: var(--neutral_color);
 }
-
+.by {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
 .author_name {
     font-style: italic;
     text-decoration: underline;
@@ -319,9 +322,9 @@ ul {
 }
 
 blockquote {
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
+    /* font-size: larger; */
     font-style: italic;
-    font-size: larger;
     min-height: 2em;
     margin: 0.5em 1em;
     border-left: 2px solid var(--frame_color);
@@ -329,6 +332,8 @@ blockquote {
 }
 blockquote::before {
     float: left;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
     content: '\201F';
     color: var(--frame_color);
     font-size: 2em;
