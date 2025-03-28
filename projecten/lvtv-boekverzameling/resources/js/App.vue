@@ -10,7 +10,7 @@ fetchReviews();
 
 <template>
     <header class="website_header">
-        <h1>Boekverzameling</h1>
+        <h1 class="website_logo"><a href="/">Boekverzameling</a></h1>
         <nav class="website_nav">
             <menu>
                 <li><RouterLink :to="{ name: 'authors.overview' }" role="button">Authors</RouterLink></li>

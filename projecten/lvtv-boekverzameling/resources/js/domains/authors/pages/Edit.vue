@@ -12,7 +12,7 @@ const author = maybe(getAuthorById)(author_id);
 const router = useRouter();
 const onSumbitted = async (localAuthor: Author) => {
     await editAuthor(localAuthor);
-    router.push({ name: 'authors.overview' });
+    router.push({ name: 'authors.show', params:{ id:localAuthor.id } });
 }
 const onCanceled = () => {
     router.go(-1);

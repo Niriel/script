@@ -12,7 +12,7 @@ const book = maybe(getBookById)(book_id);
 const router = useRouter();
 const onSumbitted = async (localBook: Book) => {
     await editBook(localBook);
-    router.push({ name: 'books.overview' });
+    router.push({ name: 'books.show', params:{ id:localBook.id } });
 }
 const onCanceled = () => {
     router.go(-1);

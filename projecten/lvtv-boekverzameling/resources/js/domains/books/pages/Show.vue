@@ -52,6 +52,8 @@ const confirmDeleteBook = async(book: Book) => {
                         <dd class="book_title">{{ book.title }}</dd>
                         <dt>Author:</dt>
                         <dd><AuthorLink :author="author"/></dd>
+                        <dt>ISBN:</dt>
+                        <dd><samp>{{ book.isbn }}</samp></dd>
                     </dl>
                 </main>
             </section>

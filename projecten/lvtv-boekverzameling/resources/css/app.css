@@ -83,23 +83,20 @@ a:hover {
     width: 100%;
 }
 
-/* Used for simple utility pages, such as a login form. Do not overload a simple form with a complete header full of world news.
- * Typically, just show the website logo that links to the index.
- */
-.website_simple_banner {
-    width: 100%;
-    box-shadow: 0px 0.125em 0.2em var(--neutral_color);
-    margin-bottom: 1em;
-}
-
-.website_simple_logo {
+.website_logo {
+    color: var(--site_primary_text_color);
     text-align: center;
     font-family: 'Times New Roman', 'Georgia', Times, serif;
     font-size: xx-large;
     padding: 0.25em 0;
 }
 
-.website_simple_logo a {
+.website_logo a {
+    color: var(--site_primary_text_color);
+    text-decoration: none;
+}
+.website_logo a:visited {
+    color: var(--site_primary_text_color);
     text-decoration: none;
 }
 
@@ -173,15 +170,6 @@ nav menu li + li {
 /*                    FORMS AND BUTTONS                     */
 /* ======================================================== */
 
-ul.errors {
-    color: var(--bad_color);
-    margin-top: 0;
-}
-
-li.error {
-    padding-left: 0px;
-}
-
 /* For content that should not take the whole width of the page.
    meant for login form, maybe errors, narrow centered on the page. */
 .dialog {
@@ -199,11 +187,11 @@ li.error {
 }
 
 form.small_form {
+    margin-bottom: 0.5em;
     border: 1px solid var(--neutral_color);
     border-radius: var(--radius);
     padding: 0.5em;
 }
-/* For real forms, not just forms that are wrapping a single button. */
 form.real_form {
     min-width: 500px;
     border: 2px solid var(--frame_color);
@@ -257,6 +245,7 @@ textarea {
 button {
     display: inline-block;
     box-sizing: border-box;
+    cursor: pointer;
     color: var(--button_text_color);
     background-color: var(--button_background_color);
     font-size: medium;
@@ -308,12 +297,14 @@ button.bad {
 .book_title {
     font-family: 'Times New Roman', Times, serif;
     font-size: larger;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--neutral_color);
 }
 
 .author_name {
     font-style: italic;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--neutral_color);
 }
 
 dt {
@@ -322,6 +313,9 @@ dt {
 }
 dd + dt {
     margin-top: 1em;
+}
+ul {
+    line-height: 2em;
 }
 
 blockquote {
@@ -340,8 +334,4 @@ blockquote::before {
     font-size: 2em;
     padding-top: 0.25em;
     padding-right: 0.25em;
-}
-blockquote::after {
-    
-    content: '';
 }
