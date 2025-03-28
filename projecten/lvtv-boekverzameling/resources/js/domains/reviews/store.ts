@@ -18,7 +18,7 @@ export const emptyReview = ():Review => {
 const reviews = ref<Review[]>([]);
 
 export const fetchReviews = async () => {
-    const { data } = await axios.get('api/reviews');
+    const { data } = await axios.get('/api/reviews');
     if (!data) return;
     reviews.value = data;
 }

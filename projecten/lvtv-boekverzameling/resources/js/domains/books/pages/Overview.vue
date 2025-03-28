@@ -12,12 +12,13 @@ const goToCreateBook = () => {
 </script>
 
 <template>
-    <header class="left_right">
-        <div class="left">
-            <h1>Books</h1>
-        </div>
-        <div class="right">
-            <button @click="goToCreateBook">Add a book</button>
+    <header>
+        <div class="page_header">
+            <div class="columns">
+                <div class="column_fix category">Books</div>
+                <div class="column_grow center page_title"><h1>Books</h1></div>
+                <div class="column_fix button_row"><button @click="goToCreateBook">Add a book</button></div>
+            </div>
         </div>
     </header>
     <main>
@@ -25,6 +26,7 @@ const goToCreateBook = () => {
         <ul v-if="books">
             <li v-for="book in books"><BookHeadline :book="book" /></li>
         </ul>
+        <button @click="goToCreateBook">Add a book</button>
     </main>
 </template>
 <style scoped></style>

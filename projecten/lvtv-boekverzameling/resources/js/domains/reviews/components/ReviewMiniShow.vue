@@ -16,9 +16,13 @@ const performDelete = () => {
 </script>
 
 <template>
-    <div>
-        <blockquote>{{ review.content }}</blockquote>
-        <button @click="performEdit">Edit review</button>
-        <button @click="performDelete" class="bad">Delete review</button>
+    <div class="columns">
+        <div class="column_grow">
+            <blockquote>{{ review.content }}</blockquote>
+        </div>
+        <div class="column_fix button_row">
+            <button @click="performEdit">Edit</button>
+            <button @click="performDelete" class="bad">Delete</button>
+        </div>
     </div>
 </template>

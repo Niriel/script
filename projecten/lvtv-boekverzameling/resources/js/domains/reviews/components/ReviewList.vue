@@ -43,10 +43,8 @@ const onDeleteClicked = async (review: Review) => {
 
 <template>
     <p>Number of reviews: {{ reviews.length }}.</p>
-    <div>
-        <p>Write a review:</p>
-        <ReviewMiniCreate @created="onCreated" />
-    </div>
+    
+    <ReviewMiniCreate @created="onCreated" />
 
     <ul>
         <li v-for="review in reviews">

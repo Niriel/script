@@ -23,7 +23,7 @@ class UpdateAuthorRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:authors,id',
-            'name' => 'required|string|max:50|unique:authors',
+            'name' => 'required|string|max:50',
             'biography' => 'nullable|string|max:5000',
         ];
     }

@@ -18,7 +18,7 @@ export const emptyAuthor = ():Author => {
 const authors = ref<Author[]>([]);
 
 export const fetchAuthors = async () => {
-    const { data } = await axios.get('api/authors');
+    const { data } = await axios.get('/api/authors');
     if (!data) return;
     authors.value = data;
 }
@@ -41,5 +41,5 @@ export const deleteAuthor = async (author: Author) => {
     authors.value = data;
 }
 
-export const getAllAuthors = computed<Author[]>(() => authors.value);
-export const getAuthorById = (id:number) => computed<Author>(() => authors.value.find(item => item.id === id) as Author);
+export const getAllAuthors = computed(() => authors.value);
+export const getAuthorById = (id:number) => computed(() => authors.value.find(item => item.id === id));

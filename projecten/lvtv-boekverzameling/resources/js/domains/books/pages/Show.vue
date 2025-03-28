@@ -2,7 +2,7 @@
 import { ComputedRef } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { maybe } from '../../../utils/funcs';
+import { getRouteId, maybe } from '../../../utils/funcs';
 import { Book, deleteBook, getBookById } from '../store';
 import { getAuthorById } from '../../authors/store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
@@ -10,13 +10,9 @@ import ReviewList from '../../reviews/components/ReviewList.vue';
 
 const route = useRoute();
 
-let book_id: number|null = null;
-if (typeof route.params.id === 'string') {
-    book_id = parseInt(route.params.id);
-}
-
+const book_id = getRouteId(route);
 const book = maybe(getBookById)(book_id);
-const author_id = maybe((someBook:ComputedRef<Book>) => someBook.value.author_id)(book);
+const author_id = book && book.value ? book.value.author_id : null;
 const author = maybe(getAuthorById)(author_id);
 
 const router = useRouter();
@@ -24,45 +20,46 @@ const goToEditBook = (book: Book) => {
     router.push({name:'books.edit', params:{id:book.id}});
 };
 
-const confirmDeleteBook = (book: Book) => {
-    deleteBook(book);
+const confirmDeleteBook = async(book: Book) => {
+    await deleteBook(book);
     router.push({name: 'books.overview'});
 }
 </script>
 
 <template>
     <template v-if="book">
-        <header class="left_right">
-            <div class="left">
-                <div class="category">Book</div>
-                <h2>{{ book.title }}</h2>
-                <div>
-                    by
-                    <AuthorLink v-if="author" :author="author"/>
-                    <em v-else>unknown</em>
+        <header>
+            <div class="page_header">
+                <div class="columns">
+                    <div class="column_fix category">Book</div>
+                    <div class="column_grow center page_title">
+                        <h1>{{ book.title }}</h1>
+                        <p>by <AuthorLink :author="author"/></p>
+                    </div>
+                    <div class="column_fix button_row">
+                        <button @click="goToEditBook(book)">Edit book</button>                    
+                        <button @click="confirmDeleteBook(book)" class="bad">Delete book</button>
+                    </div>
                 </div>
-            </div>
-            <div class="right">
-                <button @click="goToEditBook(book)">Edit book</button>
-                <button @click="confirmDeleteBook(book)" class="bad">Delete book</button>
             </div>
         </header>
         <main>
             <section>
-                <header><h3>Details about this book</h3></header>
+                <header><h2>Details about this book</h2></header>
                 <main>
                     <dl>
                         <dt>Title:</dt>
-                        <dd>{{ book.title }}</dd>
+                        <dd class="book_title">{{ book.title }}</dd>
                         <dt>Author:</dt>
-                        <dd v-if="author"><AuthorLink :author="author"/></dd>
-                        <dd v-else><em>unknown</em></dd>
+                        <dd><AuthorLink :author="author"/></dd>
                     </dl>
                 </main>
             </section>
             <section>
-                <header><h3>Reviews</h3></header>
-                <ReviewList :book_id="book.id" />
+                <header><h2>Reviews</h2></header>
+                <main>
+                    <ReviewList :book_id="book.id" />
+                </main>
             </section>
         </main>
     </template>
@@ -70,3 +67,7 @@ const confirmDeleteBook = (book: Book) => {
         404
     </template>
 </template>
+
+<style scoped>
+
+</style>

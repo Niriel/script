@@ -14,5 +14,5 @@ const performCreate = (newReview: Review) => {
 </script>
 
 <template>
-    <ReviewForm :review="localReview" :button-text="'Add review'" :show-cancel="false" @submitted="performCreate" />
+    <ReviewForm :review="localReview" :form-title="'Add review:'" :button-text="'Add review'" :show-cancel="false" @submitted="performCreate" />
 </template>

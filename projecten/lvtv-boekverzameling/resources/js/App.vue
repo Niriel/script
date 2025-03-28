@@ -15,7 +15,6 @@ fetchReviews();
             <menu>
                 <li><RouterLink :to="{ name: 'authors.overview' }" role="button">Authors</RouterLink></li>
                 <li><RouterLink :to="{ name: 'books.overview' }" role="button">Books</RouterLink></li>
-                <li><RouterLink :to="{ name: 'reviews.overview' }" role="button">Reviews</RouterLink></li>
             </menu>
         </nav>
     </header>

@@ -16,6 +16,5 @@ const author = maybe(getAuthorById)(props.book.author_id);
 <template>
     <BookLink :book="book" />
     by
-    <AuthorLink v-if="author" :author="author" />
-    <em v-else>unknown author</em>
+    <AuthorLink :author="author" />
 </template>

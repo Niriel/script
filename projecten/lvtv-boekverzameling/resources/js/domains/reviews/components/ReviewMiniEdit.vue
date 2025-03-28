@@ -21,5 +21,5 @@ const performCancel = () => {
 </script>
 
 <template>
-    <ReviewForm :review="localReview" :button-text="'Update review'" :show-cancel="true" @submitted="performUpdate" @canceled="performCancel"/>
+    <ReviewForm :review="localReview" :form-title="'Edit review:'" :button-text="'Update review'" :show-cancel="true" @submitted="performUpdate" @canceled="performCancel"/>
 </template>

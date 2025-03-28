@@ -46,7 +46,7 @@ export const deleteBook = async (book:Book) => {
 }
 
 export const getAllBooks = computed<Book[]>(() => books.value);
-export const getBookById = (id:number) => computed(() => books.value.find(item => item.id === id) as Book);
+export const getBookById = (id:number) => computed(() => books.value.find(item => item.id === id));
 export const getBooksByAuthorId = (author_id: number) => computed<Book[]>(
     () => books.value.filter(book => book.author_id === author_id) as Book[]
 );

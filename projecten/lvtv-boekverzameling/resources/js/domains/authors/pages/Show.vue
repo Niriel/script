@@ -1,30 +1,40 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { maybe } from '../../../utils/funcs';
-import { getAuthorById } from '../store';
+import { useRoute, useRouter } from 'vue-router';
+import { getRouteId, maybe } from '../../../utils/funcs';
+import { Author, deleteAuthor, getAuthorById } from '../store';
 import { getBooksByAuthorId } from '../../books/store';
 import BookLink from '../../books/components/BookLink.vue';
 
 const route = useRoute();
-
-let author_id: number|null = null;
-if (typeof route.params.id === 'string') {
-    author_id = parseInt(route.params.id);
-}
+const author_id = getRouteId(route);
 const author = maybe(getAuthorById)(author_id);
 const books = maybe(getBooksByAuthorId)(author_id);
+
+const router = useRouter();
+const goToEditAuthor = (author: Author) => {
+    router.push({name:'authors.edit', params:{id:author.id}});
+};
+
+const confirmDeleteAuthor = async(author: Author) => {
+    await deleteAuthor(author);
+    router.push({name: 'authors.overview'});
+}
 </script>
 
 <template>
     <template v-if="author">
-        <header class="left_right">
-            <hgroup class="left">
-                <div class="category">Author</div>
-                <h1>{{ author.name }}</h1>
-            </hgroup>
-            <div class="right">
-                <button>Edit author</button>
-                <button class="bad">Delete author</button>
+        <header>
+            <div class="page_header">
+                <div class="columns">
+                    <div class="column_fix category">Author</div>
+                    <div class="column_grow center page_title">
+                        <h1>{{ author.name }}</h1>
+                    </div>
+                    <div class="column_fix button_row">
+                        <button @click="goToEditAuthor(author)">Edit author</button>
+                        <button @click="confirmDeleteAuthor(author)" class="bad">Delete author</button>
+                    </div>
+                </div>
             </div>
         </header>
         <main>
@@ -46,14 +56,13 @@ const books = maybe(getBooksByAuthorId)(author_id);
                     </dl>
                 </main>
             </section>
-
             <section>
                 <header>
                     <h2>Bibliography</h2>
                 </header>
                 <main>
-                    <p>Number of books: {{ books===null ? 0 : books.length }}.</p>
-                    <ul v-if="books !== null">
+                    <p>Number of books: {{ (books===null) ? 0 : books.length }}.</p>
+                    <ul v-if="books">
                         <li v-for="book in books">
                             <BookLink :book="book" />
                         </li>

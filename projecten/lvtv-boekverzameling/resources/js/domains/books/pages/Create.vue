@@ -9,18 +9,22 @@ const router = useRouter();
 
 const book = ref(emptyBook());
 
-const onBookFormSumbitted = async (localBook: Book) => {
+const onSumbited = async (localBook: Book) => {
     await createBook(localBook);
     router.push({ name: 'books.overview' });
+}
+
+const onCanceled = () => {
+    router.go(-1);
 }
 
 </script>
 <template>
     <header>
-        <h2>Create</h2>
+        <h1 class="page_title center">Add a new book</h1>
     </header>
     <main>
-        <BookForm :book="book" :buttonText="'Add to collection'" @submit="onBookFormSumbitted"/>
+        <BookForm :book="book" :buttonText="'Add to collection'" @submited="onSumbited" @canceled="onCanceled"/>
     </main>
 </template>
 
