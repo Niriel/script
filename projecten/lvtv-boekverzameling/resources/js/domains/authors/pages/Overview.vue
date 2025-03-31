@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import AuthorLink from '../components/AuthorLink.vue';
+import { goToRoute } from '../../../services/router';
 import { getAllAuthors } from '../store';
+import AuthorLink from '../components/AuthorLink.vue';
 
-const router = useRouter();
 const goToCreateAuthor = () => {
-    router.push({ name:'authors.create' });
+    goToRoute('authors.create');
 };
 </script>
 

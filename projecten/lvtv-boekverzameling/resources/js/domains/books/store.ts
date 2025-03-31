@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue';
-import axios from 'axios';
+import { deleteRequest, getRequest, postRequest, putRequest } from '../../services/http';
 
 export interface Book {
     id: number;
@@ -22,25 +22,25 @@ export const emptyBook = ():Book => {
 const books = ref<Book[]>([]);
 
 export const fetchBooks = async () => {
-    const { data } = await axios.get('/api/books');
+    const { data } = await getRequest('/books');
     if (!data) return;
     books.value = data;
 }
 
 export const createBook = async (book:Book) => {
-    const { data } = await axios.post('/api/books', book);
+    const { data } = await postRequest('books', book);
     if (!data) return;
     books.value = data;    
 }
 
 export const editBook = async (book:Book) => {
-    const { data } = await axios.put(`/api/books/${book.id}`, book);
+    const { data } = await putRequest(`/books/${book.id}`, book);
     if (!data) return;
     books.value = data;
 }
 
 export const deleteBook = async (book:Book) => {
-    const { data } = await axios.delete(`/api/books/${book.id}`);
+    const { data } = await deleteRequest(`books/${book.id}`);
     if (!data) return;
     books.value = data;
 }

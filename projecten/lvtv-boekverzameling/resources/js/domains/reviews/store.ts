@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue';
 import axios from 'axios';
+import { deleteRequest, getRequest, postRequest, putRequest } from '../../services/http';
 
 export interface Review {
     id: number,
@@ -18,25 +19,25 @@ export const emptyReview = ():Review => {
 const reviews = ref<Review[]>([]);
 
 export const fetchReviews = async () => {
-    const { data } = await axios.get('/api/reviews');
+    const { data } = await getRequest('/reviews');
     if (!data) return;
     reviews.value = data;
 }
 
 export const createReview = async (review:Review) => {
-    const { data } = await axios.post('/api/reviews', review);
+    const { data } = await postRequest('/reviews', review);
     if (!data) return;
     reviews.value = data;    
 }
 
 export const editReview = async (review:Review) => {
-    const { data } = await axios.put(`/api/reviews/${review.id}`, review);
+    const { data } = await putRequest(`/reviews/${review.id}`, review);
     if (!data) return;
     reviews.value = data;
 }
 
 export const deleteReview = async (review:Review) => {
-    const { data } = await axios.delete(`/api/reviews/${review.id}`);
+    const { data } = await deleteRequest(`/reviews/${review.id}`);
     if (!data) return;
     reviews.value = data;
 }

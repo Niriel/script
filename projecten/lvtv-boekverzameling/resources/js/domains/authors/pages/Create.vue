@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
+import { goBack, goToRoute } from '../../../services/router';
 import { Author, createAuthor, emptyAuthor } from '../store';
 import AuthorForm from '../components/AuthorForm.vue';
-
-const router = useRouter();
 
 const author = ref(emptyAuthor());
 
 const onSumbited = async (localAuthor: Author) => {
     await createAuthor(localAuthor);
-    router.push({ name: 'authors.overview' });
+    goToRoute('authors.overview');
 }
 
 const onCanceled = () => {
-    router.go(-1);
+    goBack();
 }
 
 </script>

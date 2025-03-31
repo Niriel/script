@@ -1,13 +1,12 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { goToRoute } from '../../../services/router';
 import { getAllBooks } from '../store';
 import BookHeadline from '../components/BookHeadline.vue';
 
 const books = getAllBooks;
 
-const router = useRouter();
 const goToCreateBook = () => {
-    router.push({ name:'books.create' });
+    goToRoute('books.create');
 };
 </script>
 

@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
+import { goBack, goToRoute } from '../../../services/router';
 import { Book, createBook, emptyBook } from '../store';
 import BookForm from '../components/BookForm.vue';
-
-const router = useRouter();
 
 const book = ref(emptyBook());
 
 const onSumbited = async (localBook: Book) => {
     await createBook(localBook);
-    router.push({ name: 'books.overview' });
+    goToRoute('books.overview');
 }
 
 const onCanceled = () => {
-    router.go(-1);
+    goBack();
 }
 
 </script>

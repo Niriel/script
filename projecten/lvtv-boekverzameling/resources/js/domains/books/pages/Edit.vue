@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
+import { goBack, goToRoute } from '../../../services/router';
 import { getRouteId, maybe } from '../../../utils/funcs';
 import { Book, editBook, getBookById } from '../store';
 import BookForm from '../components/BookForm.vue';
@@ -9,13 +10,12 @@ const route = useRoute();
 const book_id = getRouteId(route);
 const book = maybe(getBookById)(book_id);
 
-const router = useRouter();
 const onSumbitted = async (localBook: Book) => {
     await editBook(localBook);
-    router.push({ name: 'books.show', params:{ id:localBook.id } });
+    goToRoute('books.show', localBook.id);
 }
 const onCanceled = () => {
-    router.go(-1);
+    goBack();
 }
 </script>
 

@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
+
 import { getRouteId, maybe } from '../../../utils/funcs';
-import { Author, deleteAuthor, getAuthorById } from '../store';
+import { goToRoute } from '../../../services/router';
 import { getBooksByAuthorId } from '../../books/store';
+import { Author, deleteAuthor, getAuthorById } from '../store';
 import BookLink from '../../books/components/BookLink.vue';
 
 const route = useRoute();
@@ -10,14 +12,13 @@ const author_id = getRouteId(route);
 const author = maybe(getAuthorById)(author_id);
 const books = maybe(getBooksByAuthorId)(author_id);
 
-const router = useRouter();
 const goToEditAuthor = (author: Author) => {
-    router.push({name:'authors.edit', params:{id:author.id}});
+    goToRoute('authors.edit', author.id)
 };
 
 const confirmDeleteAuthor = async(author: Author) => {
     await deleteAuthor(author);
-    router.push({name: 'authors.overview'});
+    goToRoute('authors.overview');
 }
 </script>
 

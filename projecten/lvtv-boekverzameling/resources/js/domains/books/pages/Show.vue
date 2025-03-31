@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ComputedRef } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
+import { goToRoute } from '../../../services/router';
 import { getRouteId, maybe } from '../../../utils/funcs';
-import { Book, deleteBook, getBookById } from '../store';
 import { getAuthorById } from '../../authors/store';
+import { Book, deleteBook, getBookById } from '../store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
 import ReviewList from '../../reviews/components/ReviewList.vue';
 
@@ -15,14 +15,13 @@ const book = maybe(getBookById)(book_id);
 const author_id = book && book.value ? book.value.author_id : null;
 const author = maybe(getAuthorById)(author_id);
 
-const router = useRouter();
 const goToEditBook = (book: Book) => {
-    router.push({name:'books.edit', params:{id:book.id}});
+    goToRoute('books.edit', book.id);
 };
 
 const confirmDeleteBook = async(book: Book) => {
     await deleteBook(book);
-    router.push({name: 'books.overview'});
+    goToRoute('books.overview');
 }
 </script>
 
