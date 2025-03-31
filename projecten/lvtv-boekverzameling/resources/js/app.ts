@@ -1,9 +1,9 @@
 import App from './App.vue';
 import { createApp } from 'vue';
-import { useRouterInApp } from './services/router';
-import { configureRoutes } from './router';
+import { addRoutes, useRouterInApp } from './services/router';
+import { appRoutes } from './router';
 
-configureRoutes();
+addRoutes(appRoutes);
 
 const app = createApp(App);
 useRouterInApp(app);
