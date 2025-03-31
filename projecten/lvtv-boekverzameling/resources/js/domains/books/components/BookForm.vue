@@ -5,13 +5,13 @@ import { getAllAuthors } from '../../authors/store';
 
 const emit = defineEmits(['submited', 'canceled']);
 
-const props = defineProps<{
+const {book} = defineProps<{
     book: Book,
     buttonText: String,
 }>();
 
 // Local copy so we don't mess up the store.
-const localBook = ref({...props.book});
+const localBook = ref({...book});
 
 </script>
 <template>
@@ -41,7 +41,7 @@ const localBook = ref({...props.book});
 
                     <div class="form_buttons">
                         <button type="submit" class="form_submit full_width good">{{ buttonText }}</button>
-                        <button @click="$emit('canceled')">Cancel</button>
+                        <button @click="$emit('canceled')" type="button">Cancel</button>
                     </div>
                 </div>
         </form>
