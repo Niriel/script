@@ -318,6 +318,9 @@ button.bad {
     text-decoration: underline;
     text-decoration-color: var(--neutral_color);
 }
+.author_unknown {
+    font-style: italic;
+}
 
 dt {
     color: var(--site_secondary_text_color);
