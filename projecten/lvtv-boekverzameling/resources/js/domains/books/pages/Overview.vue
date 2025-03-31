@@ -22,7 +22,7 @@ const goToCreateBook = () => {
         </div>
     </header>
     <main>
-        <p>Number of books found: {{ books.length }}.</p>
+        <p>Number of books: {{ books.length }}.</p>
         <ul v-if="books">
             <li v-for="book in books"><BookHeadline :book="book" /></li>
         </ul>

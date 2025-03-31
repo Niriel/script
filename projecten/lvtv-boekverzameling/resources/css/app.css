@@ -130,6 +130,15 @@ nav menu li + li {
     border-bottom: 3px double var(--site_primary_text_color);
 }
 
+.website_nav a {
+    border-radius: var(--radius);
+    padding: 0.5em 1em;
+}
+
+.website_nav a:hover {
+    background-image: linear-gradient(var(--site_background_color), var(--frame_color));
+}
+
 .website_header h1 {
     text-align: center;
 }

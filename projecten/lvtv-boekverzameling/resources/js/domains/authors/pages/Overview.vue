@@ -20,7 +20,7 @@ const goToCreateAuthor = () => {
         </div>
     </header>
     <main>
-        <p>Number of authors found: {{ getAllAuthors.length }}.</p>
+        <p>Number of authors: {{ getAllAuthors.length }}.</p>
         <ul>
             <li v-for="author in getAllAuthors"><AuthorLink :author="author" /></li>
         </ul>
