@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { createReview, deleteReview, editReview, getReviewsByBookId, Review } from '../store';
+// import { createReview, deleteReview, editReview, getReviewsByBookId, Review } from '../store';
+import { Review, reviewsStore } from '../store';
 import ReviewMiniCreate from './ReviewMiniCreate.vue';
 import ReviewMiniEdit from './ReviewMiniEdit.vue';
 import ReviewMiniShow from './ReviewMiniShow.vue';
@@ -25,18 +26,18 @@ const onEditCanceled = () => {
 }
 
 const onEditConfirmed = async (review: Review) => {
-    await editReview(review);
+    await reviewsStore.actions.update(review);
     editId.value = -1;
 }
 
 const onCreated = async (review: Review) => {
     review.book_id = props.book_id;
-    await createReview(review);
+    await reviewsStore.actions.create(review);
     editId.value = -1;
 }
 
 const onDeleteClicked = async (review: Review) => {
-    await deleteReview(review);
+    await reviewsStore.actions.delete(review);
     editId.value = -1;
 }
 </script>

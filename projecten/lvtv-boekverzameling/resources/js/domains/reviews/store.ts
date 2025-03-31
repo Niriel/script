@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue';
 import axios from 'axios';
 import { deleteRequest, getRequest, postRequest, putRequest } from '../../services/http';
+import { storeModuleFactory } from '../../services/stores';
 
 export interface Review {
     id: number,
@@ -16,34 +17,7 @@ export const emptyReview = ():Review => {
     }
 }
 
-const reviews = ref<Review[]>([]);
-
-export const fetchReviews = async () => {
-    const { data } = await getRequest('/reviews');
-    if (!data) return;
-    reviews.value = data;
-}
-
-export const createReview = async (review:Review) => {
-    const { data } = await postRequest('/reviews', review);
-    if (!data) return;
-    reviews.value = data;    
-}
-
-export const editReview = async (review:Review) => {
-    const { data } = await putRequest(`/reviews/${review.id}`, review);
-    if (!data) return;
-    reviews.value = data;
-}
-
-export const deleteReview = async (review:Review) => {
-    const { data } = await deleteRequest(`/reviews/${review.id}`);
-    if (!data) return;
-    reviews.value = data;
-}
-
-export const getAllReviews = computed<Review[]>(() => reviews.value);
-export const getReviewById = (id:number) => computed<Review>(() => reviews.value.find(item => item.id === id) as Review);
+export const reviewsStore = storeModuleFactory('/reviews');
 export const getReviewsByBookId = (book_id: number) => computed<Review[]>(
-    () => reviews.value.filter(review => review.book_id === book_id) as Review[]
+     () => Object.entries(reviewsStore.state.value).filter([id, review] => review.book_id === book_id) as Review[]
 );

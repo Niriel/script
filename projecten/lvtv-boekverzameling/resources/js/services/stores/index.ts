@@ -1,8 +1,8 @@
 import { computed, ref } from 'vue';
 import { deleteRequest, getRequest, postRequest, putRequest } from '../http';
 
-export const storeModuleFactory = (moduleName: string) => {
-    const state = ref<{[id:number] : {id:number}}>({});
+export const storeModuleFactory = <T extends {id: number}>(moduleName: string) => {
+    const state = ref<{[id:number] : T}>({});
     
     const getters = {
         all: computed(() => Object.values(state.value)),
@@ -10,11 +10,14 @@ export const storeModuleFactory = (moduleName: string) => {
     };
 
     const setters = {
-        setAll: (items: {id:number}[]) => {
+        set: (item: T) => {
+            state.value[item.id] = item;
+        },
+        setAll: (items: T[]) => {
             items.forEach(item => {
                 state.value[item.id] = item;
             });
-        }
+        },
     };
 
     const actions = {
@@ -25,21 +28,21 @@ export const storeModuleFactory = (moduleName: string) => {
             }
         },
 
-        post: async (newData: any) => {
+        create: async (newData: T) => {
             const { data } = await postRequest(moduleName, newData);
             if (data) {
                 setters.setAll(data);
             }
         },
 
-        update: async (betterData: {id: number}) => {
+        update: async (betterData: T) => {
             const { data } = await putRequest(`${moduleName}/${betterData.id}`, betterData);
             if (data) {
                 setters.setAll(data);
             }
         },
 
-        delete: async (terribleData: {id: number}) => {
+        delete: async (terribleData: T) => {
             const { data } = await deleteRequest(`${moduleName}/${terribleData.id}`);
             if (data) {
                 setters.setAll(data);
@@ -48,6 +51,7 @@ export const storeModuleFactory = (moduleName: string) => {
     };
 
     return {
+        state,
         getters,
         actions,
     }
