@@ -1,6 +1,4 @@
-import { computed, ref } from 'vue';
-import axios from 'axios';
-import { deleteRequest, getRequest, postRequest, putRequest } from '../../services/http';
+import { computed } from 'vue';
 import { storeModuleFactory } from '../../services/stores';
 
 export interface Review {
@@ -17,7 +15,7 @@ export const emptyReview = ():Review => {
     }
 }
 
-export const reviewsStore = storeModuleFactory('/reviews');
+export const reviewsStore = storeModuleFactory<Review>('/reviews');
 export const getReviewsByBookId = (book_id: number) => computed<Review[]>(
-     () => Object.entries(reviewsStore.state.value).filter([id, review] => review.book_id === book_id) as Review[]
+     () => reviewsStore.getters.all.filter((review:Review) => review.book_id === book_id)
 );
