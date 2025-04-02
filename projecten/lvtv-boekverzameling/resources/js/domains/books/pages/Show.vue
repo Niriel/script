@@ -3,24 +3,24 @@ import { useRoute } from 'vue-router';
 
 import { goToRoute } from '../../../services/router';
 import { getRouteId, maybe } from '../../../utils/funcs';
-import { getAuthorById } from '../../authors/store';
-import { Book, deleteBook, getBookById } from '../store';
+import { authorStore } from '../../authors/store';
+import { Book, bookStore } from '../store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
 import ReviewList from '../../reviews/components/ReviewList.vue';
 
 const route = useRoute();
 
 const book_id = getRouteId(route);
-const book = maybe(getBookById)(book_id);
+const book = maybe(bookStore.getters.byId)(book_id);
 const author_id = book && book.value ? book.value.author_id : null;
-const author = maybe(getAuthorById)(author_id);
+const author = maybe(authorStore.getters.byId)(author_id);
 
 const goToEditBook = (book: Book) => {
     goToRoute('books.edit', book.id);
 };
 
 const confirmDeleteBook = async(book: Book) => {
-    await deleteBook(book);
+    await bookStore.actions.delete(book.id);
     goToRoute('books.overview');
 }
 </script>

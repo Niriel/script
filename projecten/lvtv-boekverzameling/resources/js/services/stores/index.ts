@@ -11,43 +11,47 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
     };
 
     const setters = {
-        set: (item: T) => {
-            state.value[item.id] = item;
-        },
         setAll: (items: T[]) => {
             items.forEach(item => {
                 state.value[item.id] = item;
             });
         },
+        set: (item: T) => {
+            state.value[item.id] = item;
+        },
+        deleteById: (id: number) => {
+            delete state.value[id];
+        }
     };
 
     const actions = {
         getAll: async () => {
             const { data } = await getRequest(moduleName);
-            if (data) {
-                setters.setAll(data);
-            }
+            if (!data) return;
+            setters.setAll(data);
+        },
+
+        getById: async (id: number) => {
+            const { data } = await getRequest(`${moduleName}/${id}`);
+            if (!data) return;
+            setters.set(data);
         },
 
         create: async (item: T) => {
             const { data } = await postRequest(moduleName, item);
-            if (data) {
-                setters.setAll(data);
-            }
+            if (!data) return;
+            setters.set(data);
         },
 
         update: async (item: T) => {
             const { data } = await putRequest(`${moduleName}/${item.id}`, item);
-            if (data) {
-                setters.setAll(data);
-            }
+            if (!data) return;
+            setters.set(data);
         },
 
-        delete: async (item: T) => {
-            const { data } = await deleteRequest(`${moduleName}/${item.id}`);
-            if (data) {
-                setters.setAll(data);
-            }
+        delete: async (id: number) => {
+            await deleteRequest(`${moduleName}/${id}`);
+            setters.deleteById(id);
         },
     };
 

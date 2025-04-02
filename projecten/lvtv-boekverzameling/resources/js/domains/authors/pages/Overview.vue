@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { goToRoute } from '../../../services/router';
-import { getAllAuthors } from '../store';
+import { authorStore } from '../store';
 import AuthorLink from '../components/AuthorLink.vue';
+
+const authors = authorStore.getters.all;
 
 const goToCreateAuthor = () => {
     goToRoute('authors.create');
@@ -19,9 +21,9 @@ const goToCreateAuthor = () => {
         </div>
     </header>
     <main>
-        <p>Number of authors: {{ getAllAuthors.length }}.</p>
+        <p>Number of authors: {{ authors.length }}.</p>
         <ul>
-            <li v-for="author in getAllAuthors"><AuthorLink :author="author" /></li>
+            <li v-for="author in authors"><AuthorLink :author="author" /></li>
         </ul>
         <button @click="goToCreateAuthor">Add an author</button>
     </main>

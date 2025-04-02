@@ -3,15 +3,15 @@ import { useRoute } from 'vue-router';
 
 import { goBack, goToRoute } from '../../../services/router';
 import { getRouteId, maybe } from '../../../utils/funcs';
-import { Book, editBook, getBookById } from '../store';
+import { Book, bookStore } from '../store';
 import BookForm from '../components/BookForm.vue';
 
 const route = useRoute();
 const book_id = getRouteId(route);
-const book = maybe(getBookById)(book_id);
+const book = maybe(bookStore.getters.byId)(book_id);
 
 const onSumbitted = async (localBook: Book) => {
-    await editBook(localBook);
+    await bookStore.actions.update(localBook);
     goToRoute('books.show', localBook.id);
 }
 const onCanceled = () => {
@@ -25,7 +25,7 @@ const onCanceled = () => {
             <h1 class="page_title center">Edit book</h1>
         </header>
         <main>
-            <BookForm :book="book" :buttonText="'Edit'" @submited="onSumbitted" @canceled="onCanceled"/>
+            <BookForm :book="book" :buttonText="'Edit'" @submitted="onSumbitted" @canceled="onCanceled"/>
         </main>
     </template>
     <template v-else>

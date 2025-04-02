@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getAuthorById } from '../../authors/store';
+import { authorStore } from '../../authors/store';
 import { maybe } from '../../../utils/funcs';
 import { Book } from '../store';
 import AuthorLink from '../../authors/components/AuthorLink.vue';
@@ -9,7 +9,7 @@ const props = defineProps<{
     book: Book,
 }>();
 
-const author = maybe(getAuthorById)(props.book.author_id);
+const author = maybe(authorStore.getters.byId)(props.book.author_id);
 
 </script>
 

@@ -17,5 +17,5 @@ export const emptyReview = ():Review => {
 
 export const reviewsStore = storeModuleFactory<Review>('/reviews');
 export const getReviewsByBookId = (book_id: number) => computed<Review[]>(
-     () => reviewsStore.getters.all.filter((review:Review) => review.book_id === book_id)
+     () => reviewsStore.getters.all.value.filter((review:Review) => review.book_id === book_id)
 );

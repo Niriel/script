@@ -1,11 +1,4 @@
 <script setup>
-import { fetchAuthors } from './domains/authors/store';
-import { fetchBooks } from './domains/books/store';
-import { fetchReviews } from './domains/reviews/store';
-
-fetchAuthors();
-fetchBooks();
-fetchReviews();
 </script>
 
 <template>
@@ -25,9 +18,9 @@ fetchReviews();
         <nav>
             <menu>
                 <li>&copy; 2025 Script B.V.</li>
-                <li><a href="https://script.nl/privacy-cookies/">Privacy &amp; cookies</a></li>
-                <li>Help</li>
-                <li>Contact us</li>
+                <li><a href="#">Privacy &amp; cookies</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Contact us</a></li>
             </menu>
         </nav>
     </footer>

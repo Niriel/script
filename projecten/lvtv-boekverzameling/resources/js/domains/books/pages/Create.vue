@@ -2,13 +2,13 @@
 import { ref } from 'vue';
 
 import { goBack, goToRoute } from '../../../services/router';
-import { Book, createBook, emptyBook } from '../store';
+import { Book, bookStore, emptyBook } from '../store';
 import BookForm from '../components/BookForm.vue';
 
 const book = ref(emptyBook());
 
-const onSumbited = async (localBook: Book) => {
-    await createBook(localBook);
+const onSubmitted = async (localBook: Book) => {
+    await bookStore.actions.create(localBook);
     goToRoute('books.overview');
 }
 
@@ -22,7 +22,7 @@ const onCanceled = () => {
         <h1 class="page_title center">Add a new book</h1>
     </header>
     <main>
-        <BookForm :book="book" :buttonText="'Add to collection'" @submited="onSumbited" @canceled="onCanceled"/>
+        <BookForm :book="book" :buttonText="'Add to collection'" @submitted="onSubmitted" @canceled="onCanceled"/>
     </main>
 </template>
 

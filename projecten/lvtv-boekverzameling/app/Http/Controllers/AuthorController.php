@@ -23,12 +23,8 @@ class AuthorController extends Controller
     public function store(StoreAuthorRequest $request)
     {
         $validated = $request->validated();
-        Author::create($validated);
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $authors = Author::all();
-        return AuthorResource::collection($authors);
+        $author = Author::create($validated);
+        return new AuthorResource($author);
     }
 
     public function show(Author $author)
@@ -45,20 +41,11 @@ class AuthorController extends Controller
     {
         $validated = $request->validated();
         $author->update($validated);
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $authors = Author::all();
-        return AuthorResource::collection($authors);
+        return new AuthorResource($author);
     }
 
     public function destroy(Author $author)
     {
         $author->delete();
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $authors = Author::all();
-        return AuthorResource::collection($authors);
     }
 }

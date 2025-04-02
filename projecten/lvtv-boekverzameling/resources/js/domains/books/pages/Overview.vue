@@ -1,9 +1,9 @@
 <script setup>
 import { goToRoute } from '../../../services/router';
-import { getAllBooks } from '../store';
+import { bookStore } from '../store';
 import BookHeadline from '../components/BookHeadline.vue';
 
-const books = getAllBooks;
+const books = bookStore.getters.all;
 
 const goToCreateBook = () => {
     goToRoute('books.create');

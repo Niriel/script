@@ -23,12 +23,8 @@ class ReviewController extends Controller
     public function store(StoreReviewRequest $request)
     {
         $validated = $request->validated();
-        Review::create($validated);
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $reviews = Review::all();
-        return ReviewResource::collection($reviews);
+        $review = Review::create($validated);
+        return new ReviewResource($review);
     }
 
     public function show(Review $review)
@@ -45,20 +41,11 @@ class ReviewController extends Controller
     {
         $validated = $request->validated();
         $review->update($validated);
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $reviews = Review::all();
-        return ReviewResource::collection($reviews);
+        return new ReviewResource($review);
     }
 
     public function destroy(Review $review)
     {
         $review->delete();
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $reviews = Review::all();
-        return ReviewResource::collection($reviews);
     }
 }

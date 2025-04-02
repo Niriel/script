@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { Author } from '../store';
 
-const emit = defineEmits(['submited', 'canceled']);
+const emit = defineEmits(['submitted', 'canceled']);
 
 const props = defineProps<{
     author: Author,
@@ -15,7 +15,7 @@ const localAuthor = ref({...props.author});
 </script>
 <template>
     <div class="dialog">
-        <form @submit.prevent="$emit('submited', localAuthor)" class="real_form">
+        <form @submit.prevent="$emit('submitted', localAuthor)" class="real_form">
                 <div class="container">
                     <h2 class="dialog_title">Author details</h2>
 

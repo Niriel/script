@@ -3,15 +3,15 @@ import { useRoute } from 'vue-router';
 
 import { goBack, goToRoute } from '../../../services/router';
 import { getRouteId, maybe } from '../../../utils/funcs';
-import { Author, editAuthor, getAuthorById } from '../store';
+import { Author, authorStore } from '../store';
 import AuthorForm from '../components/AuthorForm.vue';
 
 const route = useRoute();
 const author_id = getRouteId(route);
-const author = maybe(getAuthorById)(author_id);
+const author = maybe(authorStore.getters.byId)(author_id);
 
 const onSumbitted = async (localAuthor: Author) => {
-    await editAuthor(localAuthor);
+    await authorStore.actions.update(localAuthor);
     goToRoute('authors.show', localAuthor.id);
 }
 const onCanceled = () => {
@@ -25,7 +25,7 @@ const onCanceled = () => {
             <h1 class="page_title center">Edit author</h1>
         </header>
         <main>
-            <AuthorForm :author="author" :buttonText="'Edit'" @submited="onSumbitted" @canceled="onCanceled"/>
+            <AuthorForm :author="author" :buttonText="'Edit'" @submitted="onSumbitted" @canceled="onCanceled"/>
         </main>
     </template>
     <template v-else>

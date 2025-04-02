@@ -4,12 +4,12 @@ import { useRoute } from 'vue-router';
 import { getRouteId, maybe } from '../../../utils/funcs';
 import { goToRoute } from '../../../services/router';
 import { getBooksByAuthorId } from '../../books/store';
-import { Author, deleteAuthor, getAuthorById } from '../store';
+import { Author, authorStore } from '../store';
 import BookLink from '../../books/components/BookLink.vue';
 
 const route = useRoute();
 const author_id = getRouteId(route);
-const author = maybe(getAuthorById)(author_id);
+const author = maybe(authorStore.getters.byId)(author_id);
 const books = maybe(getBooksByAuthorId)(author_id);
 
 const goToEditAuthor = (author: Author) => {
@@ -17,7 +17,7 @@ const goToEditAuthor = (author: Author) => {
 };
 
 const confirmDeleteAuthor = async(author: Author) => {
-    await deleteAuthor(author);
+    await authorStore.actions.delete(author.id);
     goToRoute('authors.overview');
 }
 </script>

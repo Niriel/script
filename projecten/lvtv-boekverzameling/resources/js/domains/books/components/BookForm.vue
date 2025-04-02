@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Book } from '../store'
-import { getAllAuthors } from '../../authors/store';
+import { authorStore } from '../../authors/store';
 
-const emit = defineEmits(['submited', 'canceled']);
+const emit = defineEmits(['submitted', 'canceled']);
 
-const {book} = defineProps<{
+const { book } = defineProps<{
     book: Book,
     buttonText: String,
 }>();
+const authors = authorStore.getters.all;
 
 // Local copy so we don't mess up the store.
 const localBook = ref({...book});
@@ -16,7 +17,7 @@ const localBook = ref({...book});
 </script>
 <template>
     <div class="dialog">
-        <form @submit.prevent="$emit('submited', localBook)" class="real_form">
+        <form @submit.prevent="$emit('submitted', localBook)" class="real_form">
                 <div class="container">
                     <h2 class="dialog_title">Book details</h2>
 
@@ -30,7 +31,7 @@ const localBook = ref({...book});
                         <select v-model="localBook.author_id" id="book_author" class="full_width">
                             <option disabled value="">Select an author</option>
                             <option :value="null">Unknown author</option>
-                            <option v-for="author in getAllAuthors" :value="author.id">{{ author.name }}</option>
+                            <option v-for="author in authors" :value="author.id">{{ author.name }}</option>
                         </select>
                     </div>
 

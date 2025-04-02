@@ -23,12 +23,8 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         $validated = $request->validated();
-        Book::create($validated);
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $books = Book::all();
-        return BookResource::collection($books);
+        $book = Book::create($validated);
+        return new BookResource($book);
     }
 
     public function show(Book $book)
@@ -45,20 +41,11 @@ class BookController extends Controller
     {
         $validated = $request->validated();
         $book->update($validated);
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $books = Book::all();
-        return BookResource::collection($books);
+        return new BookResource($book);
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
-        // We should return the created object,
-        // but we return everything because our front-end
-        // store is dumb and tiny.
-        $books = Book::all();
-        return BookResource::collection($books);
     }
 }
