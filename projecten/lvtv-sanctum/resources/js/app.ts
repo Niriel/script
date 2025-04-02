@@ -1,6 +1,10 @@
-import './bootstrap';
-import { createApp } from "vue";
-import App from "./App.vue";
+import App from './App.vue';
+import { createApp } from 'vue';
+import { addRoutes, useRouterInApp } from './services/router';
+import { appRoutes } from './router';
+
+addRoutes(appRoutes);
 
 const app = createApp(App);
-app.mount("#app");
+useRouterInApp(app);
+app.mount('#app');
