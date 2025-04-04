@@ -1,3 +1,4 @@
-import { routes as authRoutes } from '../domains/users/routes';
+import { routes as authRoutes } from '../domains/auth/routes';
+import { routes as userRoutes } from '../domains/users/routes';
 
-export const appRoutes = [...authRoutes, ]
+export const appRoutes = [...authRoutes, ...userRoutes];

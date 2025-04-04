@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanctum and stuff</title>
+    <title>Script Sanctum</title>
     @vite(['resources/css/app.css', 'resources/js/app.ts'])
 </head>
 

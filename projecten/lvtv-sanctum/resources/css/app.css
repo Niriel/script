@@ -122,10 +122,6 @@ nav menu li {
     list-style-type: none;
 }
 
-nav menu li + li {
-    padding-left: 1.5em;
-}
-
 .website_nav {
     border-bottom: 3px double var(--site_primary_text_color);
 }

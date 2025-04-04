@@ -11,8 +11,8 @@ const { user } = defineProps<{
 
 // Local copy so we don't mess up the store.
 const localUser = ref({...user});
-
 </script>
+
 <template>
     <div class="dialog">
         <form @submit.prevent="$emit('submitted', localUser)" class="real_form">
