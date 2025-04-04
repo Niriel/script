@@ -12,7 +12,6 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
 
     const setters = {
         setAll: (items: T[]) => {
-            console.log("The items: ", items, "type ", typeof items);
             items.forEach(item => {
                 state.value[item.id] = item;
             });
@@ -28,9 +27,7 @@ export const storeModuleFactory = <T extends {id: number}>(moduleName: string) =
     const actions = {
         getAll: async () => {
             const response = await getRequest(moduleName);
-            console.log("response = ", response);
             const data = response.data;
-            console.log("data = ", data);
             if (!data) return;
             setters.setAll(data);
         },

@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { goBack } from '../../../services/router';
+import { goBack, goToRoute } from '../../../services/router';
+import { getRequest, postRequest } from '../../../services/http';
+import axios from 'axios';
 
 const email = ref('');
 const password = ref('');
+const me = ref('');
+
+const errorMessages = ref<string[]>([]);
 
 const onCancel = () => {
     goBack();
 }
 
-const onLogIn = () => {
-    console.log(`Loggin in as ${email}:${password}.`);
+const onLogIn = async () => {
+    const response = await postRequest('/login', {email:email.value, password:password.value});
+    console.log(response.data.user);
+}
+
+const onWhoAmI = async () => {
+    const { data } = await getRequest('/me');
+    if (!data) return;
+    me.value = data.user? data.user.name : '';
 }
 </script>
 
@@ -29,13 +41,19 @@ const onLogIn = () => {
 
                         <div class="form_field">
                             <label for="user_email">E-mail:</label>
-                            <input type="text" id="user_email" v-model="email" />
+                            <input type="text" id="user_email" v-model="email" required />
                         </div>
 
                         <div class="form_field">
                             <label for="user_password">Password:</label>
-                            <input type="password" id="user_password" v-model="password" />
+                            <input type="password" id="user_password" v-model="password" required />
                         </div>
+
+                        <blockquote v-if="errorMessages.length">
+                            <ul>
+                                <li v-for="errorMessage in errorMessages"><samp>{{errorMessage}}</samp></li>
+                            </ul>
+                        </blockquote>
 
                         <div class="form_buttons">
                             <button type="submit" class="full_width good">Log in</button>
@@ -44,5 +62,24 @@ const onLogIn = () => {
                     </div>
             </form>
         </div>
+    <section class="silly">
+        <h2>/me</h2>
+        <div>
+            <button type="button" @click="onWhoAmI">Ja ok das goed maar wie is het dat ik ben? Druk op mij als je dit graag wil weten.</button>
+        </div>
+        <p>Me:
+            <samp v-if="me">{{ me }}</samp>
+            <em v-else>Dat weet ik nog niet hoor, ga maar drukkie doen.</em>
+        </p>
+    </section>
     </main>
 </template>
+
+<style scoped>
+.silly {
+    margin:2em;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding:1em;
+}
+</style>

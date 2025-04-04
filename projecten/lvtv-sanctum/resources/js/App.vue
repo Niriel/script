@@ -2,6 +2,7 @@
 import { userStore } from './domains/users/store';
 
 userStore.actions.getAll();
+
 </script>
 
 <template>
